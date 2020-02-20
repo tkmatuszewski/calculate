@@ -1,0 +1,23 @@
+.calendarToggle {
+  height: 35px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #5A008D;
+  cursor: pointer;
+}
+
+.calendarToggleIconShow {
+  width: 60px;
+  height: 40px;
+  background-image: url("../assets/Down.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+
+.calendarToggleIconHide {
+  @extend .calendarToggleIconShow;
+  transform: rotate(180deg);
+}
