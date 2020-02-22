@@ -33,7 +33,7 @@ class AppLoader extends React.Component {
     componentDidMount() {
         setTimeout(function loader() {
             this.setState({loading: false})
-        }.bind(this), 2000);
+        }.bind(this), 2500);
     }
 }
 
