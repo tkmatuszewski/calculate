@@ -1,23 +1,35 @@
 .calendarToggle {
   height: 35px;
   width: 100%;
+  background-image: linear-gradient(to right bottom, #5821b0, #7121c5, #8b1fd9, #a617ec, #c300ff);
+  cursor: pointer;
+}
+.calendarToggleMask {
+  width: 100%;
+  background-color: rgba(0,0,0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #5A008D;
-  cursor: pointer;
 }
 
-.calendarToggleIconShow {
+.calendarToggleIcon {
   width: 60px;
   height: 40px;
-  background-image: url("../assets/Down.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: transparent;
+  background: url("../../assets/downArrow.svg") center no-repeat transparent;
+  color: white;
+  animation: show 0.5s ease-in-out 0ms 1 forwards;
 }
 
-.calendarToggleIconHide {
-  @extend .calendarToggleIconShow;
-  transform: rotate(180deg);
+.hide {
+  animation: hide 0.5s ease-in-out 0ms 1 forwards;
+}
+
+@keyframes hide {
+  from {transform: rotateX(0)}
+  to {transform: rotateX(180deg)}
+}
+
+@keyframes show {
+  from {transform: rotateX(180deg)}
+  to {transform: rotateX(0)}
 }

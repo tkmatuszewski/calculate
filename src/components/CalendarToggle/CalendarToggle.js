@@ -1,10 +1,15 @@
 import React from "react";
 import CalendarPart from "../CalendarPart/CalendarPart";
+import classNames from 'classnames';
 
 class CalendarToggle extends React.Component {
-    state = {
-        show: false
+    constructor(props) {
+        super(props);
+        this.state = {
+            show: false,
+        }
     };
+
     toggle = () => {
         this.setState({show: !this.state.show})
     };
@@ -13,22 +18,22 @@ class CalendarToggle extends React.Component {
     };
 
     render() {
-        // if (this.state.show) {
+        const toggleBtn =
+            <div className={"calendarToggle"} onClick={this.showCalendar}>
+                <div className="calendarToggleMask">
+                    <div className={classNames("calendarToggleIcon", {hide: this.state.show === true})}/>
+                </div>
+            </div>;
+        if (this.state.show) {
             return (
-                <div>
-                    <div className={"calendarToggle"} onClick={this.showCalendar}>
-                        <div className={"calendarToggleIconHide"}/>
-                    </div>
+                <>
+                    {toggleBtn}
                     <CalendarPart/>
-                </div>)
-    //         )
-    //     } else {
-    //         return (
-    //             <div className={"calendarToggle"} onClick={this.showCalendar}>
-    //                 <div className={"calendarToggleIconShow"}/>
-    //             </div>
-    //         )
-
+                </>
+            )
+        } else {
+            return toggleBtn
+        }
     }
 }
 
