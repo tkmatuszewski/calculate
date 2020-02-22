@@ -1,11 +1,16 @@
 @import "settings/reset";
 @import "settings/fonts";
 @import "settings/colors";
+@import "../AppLoader/AppLoader";
 @import "../AppHeader/AppHeader";
 @import "../AppFooter/AppFooter";
-
+@import "../AppContent/AppContent";
+@import "../CalendarToggle/CalendarToggle";
+@import "../CalendarPart/CalendarPart";
+@import "../CalendarEvents/CalendarEvents";
+//@import "../Calendar/Calendar";
+@import "../CalendarDate/CalendarDate";
 .app {
   width: 100%;
   min-height: 100vh;
-  background-image: $colorGradient
 }
