@@ -1,0 +1,9 @@
+.calendarAddEvent {
+  height: 40px;
+  width: 40px;
+  border: none;
+  color: $colorLight;
+  background: url("../../assets/addEvent.svg") left no-repeat;
+  cursor: pointer;
+  position: relative;
+}
