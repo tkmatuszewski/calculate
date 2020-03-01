@@ -1,0 +1,35 @@
+.eventEl {
+  max-width: 100%;
+  margin-top: 10px;
+}
+
+.eventContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.eventUser {
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #221824;
+  color:$colorLight;
+  font-size: 22px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.eventCount {
+  color: white;
+  font-size: 40px;
+  font-weight: bolder;
+  text-align: center;
+  margin: 20px 20px;
+}
+
+.eventDel {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: url("../../assets/trash.svg") center no-repeat transparent;
+}
