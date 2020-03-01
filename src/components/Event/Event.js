@@ -24,9 +24,9 @@ class Event extends React.Component {
         return (
             <li key={event} className={"eventEl"}>
                 <div data-id={event.id} className={"eventContainer"}>
-                    <div className={"eventUser"}>{event.data().inMinus}</div>
+                    <div className={"eventUser1"}>{event.data().inMinus}</div>
                     <div className={"eventCount"}>{event.data().count}</div>
-                    <div className={"eventUser"}>{event.data().inPlus}</div>
+                    <div className={"eventUser2"}>{event.data().inPlus}</div>
                     <button onClick={this.eventDelete} className={"eventDel"}/>
                 </div>
             </li>

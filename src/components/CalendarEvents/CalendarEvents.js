@@ -24,8 +24,8 @@ class CalendarEvents extends React.Component {
                     <CalendarDate date={this.props.date}/>
                     <CalendarAddEvent date={this.props.date} onAdded={this.onAdded}
                               tileContent={this.tileContent}/>
-                    <CalendarEventList date={this.props.date} key={this.state.key}/>
                 </div>
+                <CalendarEventList date={this.props.date} key={this.state.key}/>
             </div>
         )
     }

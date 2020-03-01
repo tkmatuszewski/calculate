@@ -54,12 +54,11 @@ class CalendarEventForm extends React.Component {
             e.preventDefault();
             this.props.onAdded();
             this.setState({success: "Dodano nowe zastępstwo!"});
-            // this.setState({show: false});
             data.collection(`sub`).add(this.state);
             setTimeout(function fade() {
                 this.props.hide();
             }.bind(this), 4000);
-            // this.props.tileContent(this.state.date, month);
+            // this.props.tileContent(this.state.date);
         }
     };
     closeForm = () => {

@@ -1,7 +1,7 @@
 import React from "react";
 import CalendarEventForm from "../CalendarEventForm/CalendarEventForm";
 
-class CalendarAddEvent extends React.Component{
+class CalendarAddEvent extends React.Component {
     state = {
         show: false
     };
@@ -18,7 +18,8 @@ class CalendarAddEvent extends React.Component{
             return (
                 <>
                     <button className={"calendarAddEvent"} onClick={this.showForm}/>
-                    <CalendarEventForm date={this.props.date} hide={this.passToggle} onAdded={this.props.onAdded}/>
+                    <CalendarEventForm date={this.props.date} hide={this.passToggle} onAdded={this.props.onAdded}
+                                       tileContent={this.tileContent}/>
                 </>
             )
         } else {

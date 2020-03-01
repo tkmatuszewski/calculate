@@ -1,30 +1,41 @@
 .eventEl {
   max-width: 100%;
-  margin-top: 10px;
 }
 
 .eventContainer {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr 0.5fr ;
+  grid-template-rows: 0.75fr;
 }
 
-.eventUser {
-  padding: 20px;
+.eventUser1 {
+  padding: 15px;
   border-radius: 20px;
-  background-color: #221824;
+  background-color: $colorDark;
   color:$colorLight;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: bolder;
   text-align: center;
+  grid-row: 1/2;
+  grid-column: 1/2;
 }
 
 .eventCount {
   color: white;
-  font-size: 40px;
+  font-size: 25px;
   font-weight: bolder;
   text-align: center;
-  margin: 20px 20px;
+  margin: 20px;
+  grid-row: 1/2;
+  grid-column: 2/3;
+}
+.eventUser2 {
+  @extend .eventUser1;
+  grid-row: 1/2;
+  grid-column: 3/4;
 }
 
 .eventDel {
@@ -32,4 +43,6 @@
   height: 20px;
   border: none;
   background: url("../../assets/trash.svg") center no-repeat transparent;
+  grid-row: 1/2;
+  grid-column: 4/5;
 }
