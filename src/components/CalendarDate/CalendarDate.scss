@@ -1,8 +1,3 @@
-.calendarDate {
-  padding-left: 5%;
-  padding-top: 2%;
-}
-
 .calendarDate_dayName {
   color: lightgray;
   font-size: 25px;
@@ -17,5 +12,6 @@
 }
 
 .calendarDate_month {
-  @extend .calendarDate_dayName
+  @extend .calendarDate_dayName;
+  margin-left: 0.5em;
 }

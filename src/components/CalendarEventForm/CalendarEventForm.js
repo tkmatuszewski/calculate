@@ -40,23 +40,23 @@ class CalendarEventForm extends React.Component {
     submitHandler = (e) => {
         if ((this.state.inPlus === "Wybierz pracownika") || (this.state.inMinus === "Wybierz pracownika")) {
             e.preventDefault();
-            this.setState({error : "Wybierz pracownika z listy"})
+            this.setState({error: "Wybierz pracownika z listy"})
         }
         if (this.state.inPlus === this.state.inMinus) {
             e.preventDefault();
-            this.setState({error : "Pola osoby zastępującej i zastępowanej nie mogą mieć tej samej wartości!"});
+            this.setState({error: "Pola osoby zastępującej i zastępowanej nie mogą mieć tej samej wartości!"});
         }
         if ((this.state.count === "") || (this.state.count <= 0)) {
             e.preventDefault();
-            this.setState({error : "Pole godzin nie może być puste ani mniejsze od 0!"});
+            this.setState({error: "Pole godzin nie może być puste ani mniejsze od 0!"});
         }
         if (this.state.error === "") {
             e.preventDefault();
             this.props.onAdded();
-            this.setState({success : "Dodano nowe zastępstwo!"});
+            this.setState({success: "Dodano nowe zastępstwo!"});
             // this.setState({show: false});
             data.collection(`sub`).add(this.state);
-            setTimeout(function fade (){
+            setTimeout(function fade() {
                 this.props.hide();
             }.bind(this), 4000);
             // this.props.tileContent(this.state.date, month);
@@ -75,14 +75,16 @@ class CalendarEventForm extends React.Component {
                     <div className={"eventFormError"}>{this.state.error}</div>
                     <div className={"eventFormSuccess"}>{this.state.success}</div>
                     <label className={"eventFormLabel1"}>Osoba zastępowana
-                        <select id="inMinus" className={"eventFormSct"} onChange={this.inputHandler} value={this.state.inMinus}>
+                        <select id="inMinus" className={"eventFormSct"} onChange={this.inputHandler}
+                                value={this.state.inMinus}>
                             <option value="Wybierz pracownika">Wybierz pracownika</option>
                             <option value="Inne">Inne</option>
                             {this.selectPerson1()}
                         </select>
                     </label>
                     <label className={"eventFormLabel2"}>Osoba zastępująca
-                        <select id="inPlus" className={"eventFormSct"} onChange={this.inputHandler} value={this.state.inPlus}>
+                        <select id="inPlus" className={"eventFormSct"} onChange={this.inputHandler}
+                                value={this.state.inPlus}>
                             <option value={"Wybierz pracownika"}>Wybierz pracownika</option>
                             {this.selectPerson2()}
                         </select>

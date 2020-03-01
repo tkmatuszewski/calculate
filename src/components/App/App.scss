@@ -8,10 +8,12 @@
 @import "../CalendarToggle/CalendarToggle";
 @import "../CalendarPart/CalendarPart";
 @import "../CalendarEvents/CalendarEvents";
-//@import "../Calendar/Calendar";
+@import "../Calendar/Calendar";
 @import "../CalendarDate/CalendarDate";
 @import "../CalendarAddEvent/CalendarAddEvent";
 @import "../CalendarEventForm/CalendarEventForm";
+@import "../CalendarEventList/CalendarEventList";
+@import "../Event/Event";
 .app {
   width: 100%;
   min-height: 100vh;

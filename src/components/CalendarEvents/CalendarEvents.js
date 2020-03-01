@@ -1,6 +1,7 @@
 import React from "react";
 import CalendarDate from "../CalendarDate/CalendarDate";
 import CalendarAddEvent from "../CalendarAddEvent/CalendarAddEvent"
+import CalendarEventList from "../CalendarEventList/CalendarEventList";
 
 class CalendarEvents extends React.Component {
     constructor(props) {
@@ -23,7 +24,7 @@ class CalendarEvents extends React.Component {
                     <CalendarDate date={this.props.date}/>
                     <CalendarAddEvent date={this.props.date} onAdded={this.onAdded}
                               tileContent={this.tileContent}/>
-                    {/*<CalendarEventList date={this.props.date} key={this.state.key}/>*/}
+                    <CalendarEventList date={this.props.date} key={this.state.key}/>
                 </div>
             </div>
         )

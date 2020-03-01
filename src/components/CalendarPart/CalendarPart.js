@@ -1,5 +1,5 @@
 import React from "react";
-// import Calendar from 'react-calendar/dist/entry.nostyle';
+import Calendar from 'react-calendar/dist/entry.nostyle'
 import CalendarEvents from "../CalendarEvents/CalendarEvents";
 
 class CalendarPart extends React.Component {
@@ -20,9 +20,9 @@ class CalendarPart extends React.Component {
     render() {
         return (
             <div className={"calendarPart"}>
-                {/*<Calendar*/}
-                {/*    onChange={this.onChange}*/}
-                {/*    value={this.state.date}/>*/}
+                <Calendar
+                    onChange={this.onChange}
+                    value={this.state.date}/>
                 <CalendarEvents date={this.state.date} tileContent={this.tileContent}/>
             </div>
         );
