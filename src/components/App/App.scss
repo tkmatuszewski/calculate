@@ -15,7 +15,5 @@
 @import "../CalendarEventList/CalendarEventList";
 @import "../Event/Event";
 @import "../UserPart/UserPart";
-.app {
-  width: 100%;
-  min-height: 100vh;
-}
+@import "../UserPanel/UserPanel";
+@import "../BusinessDays/BusinessDays";
