@@ -1,0 +1,16 @@
+.userAdd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userAddIcon {
+  width: 40px;
+  height: 40px;
+  background: url("../../assets/addUser.svg") no-repeat;
+  cursor: pointer;
+}
+
+.userAddTitle {
+  @extend .businessDaysTitle
+}

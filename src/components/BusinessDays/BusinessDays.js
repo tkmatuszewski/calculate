@@ -1,22 +1,14 @@
 import React from "react";
+import BusinessDaysForm from "../BusinessDaysForm/BusinessDaysForm";
 import data from "../Firebase/Firebase";
 
 class BusinessDays extends React.Component {
     state = {
         show: false,
         businessDays: 0,
-        error: ""
     };
-    inputHandler = (e) => {
-        this.setState({[e.target.name]: e.target.value});
-        this.props.update(e.target.value);
-    };
-    submitHandler = (e) => {
-        e.preventDefault();
-        data.collection(`businessDays`).doc("hvcziTCipJEMkNgYIxRt").set(this.state);
-        this.setState({show: false});
-    };
-    showInput = () => {
+
+    toggleForm = () => {
         this.setState({show: !this.state.show})
     };
 
@@ -24,30 +16,23 @@ class BusinessDays extends React.Component {
         if (this.state.show) {
             return (
                 <>
-                    <span className={"businessDaysName"}>Dni robocze</span>
-                    <div className={"businessDays"} onClick={this.showInput}>
-                        <div className={"businessDaysVal"}>
-                            <span>{this.state.businessDays}</span>
+                    <div className={"businessDays"} onClick={this.toggleForm}>
+                        <div className={"businessDaysIcon"}>
+                            <div className={"businessDaysVal"}>{this.state.businessDays}</div>
                         </div>
+                        <div className={"businessDaysDsc"}>Dni robocze</div>
+                        <BusinessDaysForm toggle = {this.toggleForm}/>
                     </div>
-                    <form className={"businessDaysForm"} onSubmit={this.submitHandler}>
-                        <input type="number" name="businessDays" className={"businessDaysInput"}
-                               onChange={this.inputHandler} placeholder={this.state.businessDays}/>
-                        <button className={"businessDaysBtn"}>
-                            <div className={"businessDaysBtnIcon"}/>
-                        </button>
-                        {this.state.error}
-                    </form>
                 </>
             )
         } else {
             return (
-                <>
-                    <span className={"businessDaysName"}>Dni robocze</span>
-                    <div className={"businessDays"} onClick={this.showInput}>
+                <div className={"businessDays"}>
+                    <div className={"businessDaysIcon"} onClick={this.toggleForm}>
                         <div className={"businessDaysVal"}>{this.state.businessDays}</div>
                     </div>
-                </>
+                    <div className={"businessDaysDsc"}>Dni robocze</div>
+                </div>
             )
         }
     }
