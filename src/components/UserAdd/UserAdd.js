@@ -1,16 +1,16 @@
 import React from "react";
+import UserAddForm from "../UserAddForm/UserAddForm";
 
-class AddUser extends React.Component {
+class UserAdd extends React.Component {
     state = {
         show: false
     };
-    toggle = () => {
+
+    toggleForm = (e) => {
+        e.preventDefault();
         this.setState({show: !this.state.show})
     };
-    showForm = (e) => {
-        e.preventDefault();
-        this.toggle();
-    };
+
     passShowForm = (state) => {
         this.setState({show: state})
     };
@@ -19,17 +19,17 @@ class AddUser extends React.Component {
         if (this.state.show) {
             return (
                 <div className={"userAdd"}>
-                    <span className={"userAddTitle"}>Nowy pracownik</span>
-                    <div className={"userAddIcon"} onClick={this.showForm}/>
-                    {/*<UserAddForm passShowForm={this.passShowForm}/>*/}
+                    <div className={"userAddIcon"} onClick={this.toggleForm}/>
+                    <div className={"userAddDesc"}>Nowy pracownik</div>
+                    <UserAddForm passShowForm={this.passShowForm}/>
                     {/*<UserList businessDays={this.props.businessDays}/>*/}
                 </div>
             )
         } else {
             return (
                 <div className={"userAdd"}>
-                    <span className={"userAddTitle"}>Nowy pracownik</span>
-                    <div className={"userAddIcon"} onClick={this.showForm}/>
+                    <div className={"userAddIcon"} onClick={this.toggleForm}/>
+                    <div className={"userAddDesc"}>Nowy pracownik</div>
                     {/*<UserList businessDays={this.props.businessDays}/>*/}
                 </div>
             )
@@ -37,4 +37,4 @@ class AddUser extends React.Component {
     }
 }
 
-export default AddUser
+export default UserAdd

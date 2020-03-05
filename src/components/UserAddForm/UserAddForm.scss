@@ -1,0 +1,73 @@
+.userAddForm {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.userAddFormForm {
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #221824;
+  color: $colorLight;
+  font-weight: bolder;
+  border-radius: 30px;
+  -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.5);
+}
+
+.userAddFormTop {
+  display: grid;
+  grid-template-columns: 1fr 30px;
+  grid-template-rows: 1fr;
+}
+.userAddFormClose {
+  grid-row: 1/2;
+  grid-column: 2/3;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: url("../../assets/close.svg") center no-repeat transparent;
+  cursor: pointer;
+}
+
+.userAddTitle {
+  grid-row: 1/2;
+  grid-column: 1/2;
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  padding: 10px;
+}
+
+.userAddLabel {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  margin: 5px 0;
+}
+
+#name, #surname, #dailyTime {
+  border-radius: 25px;
+  background: white;
+  font-size: 18px;
+}
+
+.userAddBtn {
+  width: 120px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: 800;
+  color: $colorLight;
+  border: none;
+  border-radius: 40px;
+  background-color: $accent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  cursor: pointer;
+}
