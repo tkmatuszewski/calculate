@@ -1,5 +1,22 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import "settings/reset";
+@import "settings/fonts";
+@import "settings/colors";
+@import "../AppLoader/AppLoader";
+@import "../AppHeader/AppHeader";
+@import "../AppFooter/AppFooter";
+@import "../AppContent/AppContent";
+@import "../CalendarToggle/CalendarToggle";
+@import "../CalendarPart/CalendarPart";
+@import "../CalendarEvents/CalendarEvents";
+@import "../Calendar/Calendar";
+@import "../CalendarDate/CalendarDate";
+@import "../CalendarAddEvent/CalendarAddEvent";
+@import "../CalendarEventForm/CalendarEventForm";
+@import "../CalendarEventList/CalendarEventList";
+@import "../Event/Event";
+@import "../UserPart/UserPart";
+@import "../UserPanel/UserPanel";
+@import "../BusinessDays/BusinessDays";
+@import "../BusinessDaysForm/BusinessDaysForm";
+@import "../UserAdd/UserAdd";
+@import "../UserAddForm/UserAddForm";

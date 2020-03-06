@@ -1,0 +1,13 @@
+.calendarAddEvent {
+  height: 80px;
+  width: 80px;
+  border: none;
+  background: url("../../assets/addEvent.svg") center no-repeat;
+  cursor: pointer;
+  position: relative;
+  border-radius: 80px;
+  margin: 0 30px;
+  &:hover{
+    background: url("../../assets/addEventColor.svg") center no-repeat;
+  }
+}

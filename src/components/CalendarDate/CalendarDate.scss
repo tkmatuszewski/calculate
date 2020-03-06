@@ -1,0 +1,17 @@
+.calendarDate_dayName {
+  color: lightgray;
+  font-size: 25px;
+  font-family: 'Cabin', sans-serif;
+  font-weight: bolder;
+}
+
+.calendarDate_day {
+  @extend .calendarDate_dayName;
+  font-size: 50px;
+  position: relative;
+}
+
+.calendarDate_month {
+  @extend .calendarDate_dayName;
+  margin-left: 0.5em;
+}

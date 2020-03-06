@@ -1,0 +1,24 @@
+.userAdd {
+  height: 70px;
+  width: 70px;
+  background-color: #221824;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Bebas Nue', sans-serif;
+  font-weight: bold;
+  //position: relative;
+}
+
+.userAddIcon {
+  width: 50px;
+  height: 50px;
+  background: url("../../assets/addUser.svg") no-repeat;
+}
+
+.userAddDesc {
+  color: $colorLight;
+  font-size: 10px;
+}

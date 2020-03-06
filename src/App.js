@@ -1,11 +1,13 @@
 import React from 'react';
 import './components/App/App.scss'
-import ReactDOM from 'react-dom';
-import * as serviceWorker from './serviceWorker';
+import AppLoader from "./components/AppLoader/AppLoader";
 
 function App() {
     return (
-        <h1>Init</h1>
+        <div className={"App"}>
+            <AppLoader/>
+        </div>
     )
 }
+
 export default App

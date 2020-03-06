@@ -14,12 +14,13 @@ var firebaseConfig = {
 };
 
 // Initialize Firebase
-export class Firebase {
-    constructor() {
-        app.initializeApp(firebaseConfig);
-    }
-}
-
+// export class Firebase {
+//     constructor() {
+//         app.initializeApp(firebaseConfig);
+//         this.data = app.firestore();
+//     }
+// }
+app.initializeApp(firebaseConfig);
 export const data = app.firestore();
 
-export default Firebase
+export default data
