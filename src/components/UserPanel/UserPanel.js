@@ -1,5 +1,6 @@
 import React from "react";
 import BusinessDays from "../BusinessDays/BusinessDays";
+import UserAdd from "../UserAdd/UserAdd";
 
 class UserPanel extends React.Component {
     state = {
@@ -13,7 +14,7 @@ class UserPanel extends React.Component {
         return (
             <div className={"userPanel"}>
                 <BusinessDays update={this.passBusinessDays}/>
-                {/*<AddUser businessDays={this.state.businessDays}/>*/}
+                <UserAdd businessDays={this.state.businessDays}/>
             </div>
         )
     }
