@@ -12,6 +12,10 @@ class BusinessDays extends React.Component {
         this.setState({show: !this.state.show})
     };
 
+    update = (state) => {
+      this.setState({businessDays : state})
+    };
+
     render() {
         if (this.state.show) {
             return (
@@ -21,14 +25,14 @@ class BusinessDays extends React.Component {
                             <div className={"businessDaysVal"}>{this.state.businessDays}</div>
                         </div>
                         <div className={"businessDaysDsc"}>Dni robocze</div>
-                        <BusinessDaysForm toggle = {this.toggleForm}/>
+                        <BusinessDaysForm toggle = {this.toggleForm} update={this.update}/>
                     </div>
                 </>
             )
         } else {
             return (
-                <div className={"businessDays"}>
-                    <div className={"businessDaysIcon"} onClick={this.toggleForm}>
+                <div className={"businessDays"} onClick={this.toggleForm}>
+                    <div className={"businessDaysIcon"}>
                         <div className={"businessDaysVal"}>{this.state.businessDays}</div>
                     </div>
                     <div className={"businessDaysDsc"}>Dni robocze</div>

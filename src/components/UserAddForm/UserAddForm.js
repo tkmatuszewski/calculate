@@ -10,7 +10,7 @@ class UserAddForm extends React.Component {
         dailyTime: 0,
         totalTime: 0,
         subs: [],
-        show: false
+        show: true
     };
     generateNick = () => {
         this.setState({nick: this.state.name[0] + this.state.surname[0]})
@@ -52,7 +52,7 @@ class UserAddForm extends React.Component {
     };
 
     toggleShow = (e) => {
-        e.preventDefault();
+        e.stopImmediatePropagation();
         this.setState({show: !this.state.show});
         this.props.passShowForm(this.state.show);
     };
@@ -63,7 +63,7 @@ class UserAddForm extends React.Component {
                 <form className={"userAddFormForm"} onSubmit={this.addUser}>
                     <div className={"userAddFormTop"}>
                         <h3 className={"userAddTitle"}>Nowy użytkownik</h3>
-                        <button className={"userAddFormClose"} onClick={this.toggleShow}/>
+                        <button className={"userAddFormClose"}/>
                     </div>
                     <label className={"userAddLabel"}> Imię
                         <input onChange={this.inputHandler} name="name" type="text" id="name"/>

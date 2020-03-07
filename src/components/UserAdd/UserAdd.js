@@ -18,19 +18,17 @@ class UserAdd extends React.Component {
     render() {
         if (this.state.show) {
             return (
-                <div className={"userAdd"}>
-                    <div className={"userAddIcon"} onClick={this.toggleForm}/>
+                <div className={"userAdd"} onClick={this.toggleForm}>
+                    <div className={"userAddIcon"}/>
                     <div className={"userAddDesc"}>Nowy pracownik</div>
                     <UserAddForm passShowForm={this.passShowForm}/>
-                    {/*<UserList businessDays={this.props.businessDays}/>*/}
                 </div>
             )
         } else {
             return (
-                <div className={"userAdd"}>
-                    <div className={"userAddIcon"} onClick={this.toggleForm}/>
+                <div className={"userAdd"} onClick={this.toggleForm}>
+                    <div className={"userAddIcon"}/>
                     <div className={"userAddDesc"}>Nowy pracownik</div>
-                    {/*<UserList businessDays={this.props.businessDays}/>*/}
                 </div>
             )
         }
