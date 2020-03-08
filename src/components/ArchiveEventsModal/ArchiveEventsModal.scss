@@ -1,0 +1,39 @@
+.archiveEventsModal {
+  @extend .userAddFormForm;
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%,-50%);
+}
+
+.archiveEventsModalTop {
+  @extend .userAddFormTop
+}
+
+.archiveEventsModalTitle {
+  @extend .userAddTitle
+}
+
+.archiveEventsModalClose {
+  @extend .userAddFormClose
+}
+
+.archiveEventsModalContent {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.archiveEventsBtnCnt {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.archiveEventsModalBtn {
+  @extend .userAddBtn
+}
+
+.archiveEventsModalMsg {
+  text-align: center;
+  color: lawngreen;
+}
