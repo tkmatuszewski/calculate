@@ -10,7 +10,8 @@ class UserAddForm extends React.Component {
         dailyTime: 0,
         totalTime: 0,
         subs: [],
-        show: true
+        show: true,
+        message : ""
     };
     generateNick = () => {
         this.setState({nick: this.state.name[0] + this.state.surname[0]})
@@ -37,24 +38,24 @@ class UserAddForm extends React.Component {
     };
     addUser = (e) => {
         e.preventDefault();
-        if ((this.state.name === "") || (this.state.surname === "")) {
-            return alert("Pola Imię oraz Nazwisko muszą być uzupełnione!")
-        } else {
+        // if ((this.state.name === "") || (this.state.surname === "")) {
+        //     this.setState({message : "Pola Imię oraz Nazwisko muszą być uzupełnione!"});
+        // }
+        // else {
             e.preventDefault();
             this.setState({show: false});
-            this.props.passShowForm(this.state.show);
+            this.props.passToggleForm(this.state.show);
             this.generateFullName();
 
             data.collection(`users`).add(this.state);
-            alert("Dodano nowego użytkownika!");
+            this.setState({message : "Dodano nowego użytkownika!"});
             this.clearForm();
-        }
+        // }
     };
 
-    toggleShow = (e) => {
-        e.stopImmediatePropagation();
-        this.setState({show: !this.state.show});
-        this.props.passShowForm(this.state.show);
+    closeForm = () => {
+        this.setState({show: false});
+        this.props.passToggleForm(this.state.show);
     };
 
     render() {
@@ -63,7 +64,7 @@ class UserAddForm extends React.Component {
                 <form className={"userAddFormForm"} onSubmit={this.addUser}>
                     <div className={"userAddFormTop"}>
                         <h3 className={"userAddTitle"}>Nowy użytkownik</h3>
-                        <button className={"userAddFormClose"}/>
+                        <button className={"userAddFormClose"} onClick={this.closeForm}/>
                     </div>
                     <label className={"userAddLabel"}> Imię
                         <input onChange={this.inputHandler} name="name" type="text" id="name"/>
@@ -71,11 +72,12 @@ class UserAddForm extends React.Component {
                     <label className={"userAddLabel"}> Nazwisko
                         <input onChange={this.inputHandler} name="surname" type="text" id="surname"/>
                     </label>
-                    <label className={"userAddLabel"}> Wymiar pracy
+                    <label className={"userAddLabel"}> Dzienny wymiar pracy
                         <input onChange={this.inputHandler} name="dailyTime" type="number" id="dailyTime"
                                placeholder={"W godzinach"}/>
                     </label>
                     <button className={"userAddBtn"} type="submit">Dodaj</button>
+                    <div>{this.state.message}</div>
                 </form>
             </div>
         )
