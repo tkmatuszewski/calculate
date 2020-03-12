@@ -1,7 +1,7 @@
 .userAddForm {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 50vh;
+  left: 50vw;
   transform: translate(-50%, -50%);
 }
 .userAddFormForm {
@@ -54,6 +54,7 @@
   border-radius: 25px;
   background: white;
   font-size: 18px;
+  text-align: center;
 }
 
 .userAddBtn {

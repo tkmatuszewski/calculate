@@ -31,7 +31,7 @@ class CalendarEventList extends React.Component {
         data.collection(`sub`).get()
             .then((el) => {
                 el.docs.map((doc) => {
-                    this.setState({
+                    return  this.setState({
                         events: this.state.events.concat(doc),
                     });
                 })

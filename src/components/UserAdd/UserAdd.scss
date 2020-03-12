@@ -9,16 +9,18 @@
   align-items: center;
   font-family: 'Bebas Nue', sans-serif;
   font-weight: bold;
-  //position: relative;
+  margin: 5px;
 }
 
 .userAddIcon {
   width: 50px;
   height: 50px;
+  margin: 4px;
   background: url("../../assets/addUser.svg") no-repeat;
 }
 
 .userAddDesc {
   color: $colorLight;
   font-size: 10px;
+  margin: 5px;
 }

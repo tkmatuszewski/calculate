@@ -9,7 +9,7 @@ class CalendarEventForm extends React.Component {
         count: 0,
         show: true,
         users: [],
-        error: [],
+        error: "",
         success: ""
     };
     setDate = () => {
@@ -38,6 +38,15 @@ class CalendarEventForm extends React.Component {
         this.setDate()
     };
     submitHandler = (e) => {
+        if (this.state.error === "") {
+            e.preventDefault();
+            this.props.onAdded();
+            this.setState({success: "Dodano nowe zastępstwo!"});
+            data.collection(`sub`).add(this.state);
+            setTimeout(() => {
+                this.props.hide();
+            }, 4000);
+        }
         if ((this.state.inPlus === "Wybierz pracownika") || (this.state.inMinus === "Wybierz pracownika")) {
             e.preventDefault();
             this.setState({error: "Wybierz pracownika z listy"})
@@ -49,16 +58,6 @@ class CalendarEventForm extends React.Component {
         if ((this.state.count === "") || (this.state.count <= 0)) {
             e.preventDefault();
             this.setState({error: "Pole godzin nie może być puste ani mniejsze od 0!"});
-        }
-        if (this.state.error === "") {
-            e.preventDefault();
-            this.props.onAdded();
-            this.setState({success: "Dodano nowe zastępstwo!"});
-            data.collection(`sub`).add(this.state);
-            setTimeout(function fade() {
-                this.props.hide();
-            }.bind(this), 4000);
-            // this.props.tileContent(this.state.date);
         }
     };
     closeForm = () => {
@@ -101,7 +100,7 @@ class CalendarEventForm extends React.Component {
     componentDidMount() {
         data.collection(`users`).get()
             .then((collection) => {
-                    collection.docs.map((doc) => {
+                    return collection.docs.map((doc) => {
                         return this.setState({
                             users: this.state.users.concat(doc.data())
                         })
