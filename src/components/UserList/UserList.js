@@ -25,7 +25,7 @@ class UserList extends React.Component {
     componentDidMount() {
         data.collection(`users`).get().then((el) => {
                 el.docs.map((doc) => {
-                    this.setState({
+                    return this.setState({
                         users: this.state.users.concat(doc),
                     });
                 })
