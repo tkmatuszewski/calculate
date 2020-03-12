@@ -1,10 +1,28 @@
 .businessDaysForm{
+  @extend .userAddFormForm;
   display: flex;
   align-items: center;
   position: absolute;
-  bottom: 0;
-  left: 0;
-  transform: translate(-25%,120%);
+  bottom: 50vh;
+  left: 50vw;
+  transform: translate(-50%, 50%);
+}
+
+.businessDaysFormTop {
+@extend .userAddFormTop
+}
+
+.businessDaysFormTitle {
+  text-align: center;
+  font-size: 24px;
+  padding: 10px;
+}
+.businessDaysFormClose {
+  @extend .userAddFormClose
+}
+.businessDaysFormBottom {
+  display: flex;
+  margin: 30px 0;
 }
 
 .businessDaysFormInput {
