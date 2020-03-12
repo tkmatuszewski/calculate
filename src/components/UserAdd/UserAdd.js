@@ -11,18 +11,20 @@ class UserAdd extends React.Component {
         this.setState({show: !this.state.show})
     };
 
-    passShowForm = (state) => {
+    passToggleForm = (state) => {
         this.setState({show: state})
     };
 
     render() {
         if (this.state.show) {
             return (
-                <div className={"userAdd"} onClick={this.toggleForm}>
-                    <div className={"userAddIcon"}/>
-                    <div className={"userAddDesc"}>Nowy pracownik</div>
-                    <UserAddForm passShowForm={this.passShowForm}/>
-                </div>
+                <>
+                    <div className={"userAdd"} onClick={this.toggleForm}>
+                        <div className={"userAddIcon"}/>
+                        <div className={"userAddDesc"}>Nowy pracownik</div>
+                    </div>
+                    <UserAddForm passToggleForm={this.passToggleForm}/>
+                </>
             )
         } else {
             return (
