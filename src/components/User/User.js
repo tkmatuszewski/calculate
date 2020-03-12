@@ -1,11 +1,11 @@
 import React from "react";
 import data from "../Firebase/Firebase";
 import TotalTime from "../UserTotalTime/UserTotalTime";
+import UserEvents from "../UserEvents/UserEvents";
 
 class User extends React.Component {
     _isMounted = false;
     state = {
-        showMore: false,
         events: [],
         bonusHours: 0
     };
@@ -31,60 +31,36 @@ class User extends React.Component {
         e.target.closest("li").remove();
         data.collection(`users`).doc(id).delete();
     };
-    // showMore = (e) => {
-    //     e.preventDefault();
-    //     this.setState({showMore: !this.state.showMore});
-    // };
 
     render() {
-        if (this.state.showMore) {
-            return (
+        return (
+            <>
                 <li key={this.props.surname} data-id={this.props.user.id} className={"user"}>
                     <div className={"userContainer"}>
                         <div className={"userNames"}>
                             <div className={"userName"}>{this.props.user.data().name}</div>
                             <div className={"userSurname"}>{this.props.user.data().surname}</div>
                         </div>
-                        <TotalTime businessDays={this.props.businessDays} dailyTime={this.props.user.data().dailyTime}
+                        <TotalTime businessDays={this.props.businessDays}
+                                   dailyTime={this.props.user.data().dailyTime}
                                    bonusHours={this.state.bonusHours}/>
                         <div className={"userButtons"}>
-                            {/*<button className={"userListBtn"} onClick={this.showMore}>Pokaż więcej</button>*/}
                             <button className={"userDelete"} onClick={this.delete}/>
                         </div>
                     </div>
+                    <div className={"userLowerContainer"}>
+                        <UserEvents events={this.state.events} user={this.props.user.data()}/>
+                    </div>
                 </li>
-            )
-        } else {
-            return (
-                <>
-                    <li key={this.props.surname} data-id={this.props.user.id} className={"user"}>
-                        <div className={"userContainer"}>
-                            <div className={"userNames"}>
-                                <div className={"userName"}>{this.props.user.data().name}</div>
-                                <div className={"userSurname"}>{this.props.user.data().surname}</div>
-                            </div>
-                            <TotalTime businessDays={this.props.businessDays}
-                                       dailyTime={this.props.user.data().dailyTime}
-                                       bonusHours={this.state.bonusHours}/>
-                            <div className={"userButtons"}>
-                                {/*<button className={"userListBtn"} onClick={this.showMore}>Pokaż więcej</button>*/}
-                                <button className={"userDelete"} onClick={this.delete}/>
-                            </div>
-                        </div>
-                        <div className={"userLowerContainer"}>
-                            {/*<UserEvents events={this.state.events} user={this.props.user.data()}/>*/}
-                        </div>
-                    </li>
-                </>
-            )
-        }
+            </>
+        )
     }
 
     componentDidMount() {
         this._isMounted = true;
         data.collection(`sub`).get().then((el) => {
                 el.docs.map((doc) => {
-                    this.setState({events: this.state.events.concat(doc.data())}, () => {
+                    return this.setState({events: this.state.events.concat(doc.data())}, () => {
                         this.additionalCount();
                     })
                 });
