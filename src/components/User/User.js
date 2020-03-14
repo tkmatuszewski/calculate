@@ -1,5 +1,6 @@
 import React from "react";
 import data from "../Firebase/Firebase";
+import UserMenu from "../UserMenu/UserMenu";
 import TotalTime from "../UserTotalTime/UserTotalTime";
 import UserEvents from "../UserEvents/UserEvents";
 
@@ -26,30 +27,26 @@ class User extends React.Component {
         });
         this.setState({bonusHours: Number(counter)});
     };
-    delete = (e) => {
-        let id = e.target.closest("li").getAttribute("data-id");
-        e.target.closest("li").remove();
-        data.collection(`users`).doc(id).delete();
-    };
 
     render() {
         return (
             <>
-                <li key={this.props.surname} data-id={this.props.user.id} className={"user"}>
+                <li key={this.props.surname} id={this.props.user.id} className={"user"}>
                     <div className={"userContainer"}>
                         <div className={"userNames"}>
                             <div className={"userName"}>{this.props.user.data().name}</div>
                             <div className={"userSurname"}>{this.props.user.data().surname}</div>
                         </div>
+                        <UserMenu data-id={this.props.id}/>
+                    </div>
+                    {/*<div className={"userButtons"}>*/}
+                    {/*    <button className={"userDelete"} onClick={this.delete}/>*/}
+                    {/*</div>*/}
+                    <div className={"userLowerContainer"}>
+                        <UserEvents events={this.state.events} user={this.props.user.data()}/>
                         <TotalTime businessDays={this.props.businessDays}
                                    dailyTime={this.props.user.data().dailyTime}
                                    bonusHours={this.state.bonusHours}/>
-                        <div className={"userButtons"}>
-                            <button className={"userDelete"} onClick={this.delete}/>
-                        </div>
-                    </div>
-                    <div className={"userLowerContainer"}>
-                        <UserEvents events={this.state.events} user={this.props.user.data()}/>
                     </div>
                 </li>
             </>
