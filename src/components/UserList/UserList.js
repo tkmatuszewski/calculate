@@ -8,7 +8,7 @@ class UserList extends React.Component {
     };
     renderUsers = () => {
         return this.state.users.map((el) => {
-            return <User user={el} businessDays={this.props.businessDays} key={Math.random()} liveR={this.liveR}/>
+            return <User user={el} businessDays={this.props.businessDays} key={el.id} liveR={this.liveR}/>
         })
     };
 
