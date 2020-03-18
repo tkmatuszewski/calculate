@@ -31,17 +31,14 @@ class User extends React.Component {
     render() {
         return (
             <>
-                <li key={this.props.surname} id={this.props.user.id} className={"user"}>
+                <li className={"user"}>
                     <div className={"userContainer"}>
                         <div className={"userNames"}>
                             <div className={"userName"}>{this.props.user.data().name}</div>
                             <div className={"userSurname"}>{this.props.user.data().surname}</div>
                         </div>
-                        <UserMenu data-id={this.props.id}/>
+                        <UserMenu id = {this.props.user.id}/>
                     </div>
-                    {/*<div className={"userButtons"}>*/}
-                    {/*    <button className={"userDelete"} onClick={this.delete}/>*/}
-                    {/*</div>*/}
                     <div className={"userLowerContainer"}>
                         <UserEvents events={this.state.events} user={this.props.user.data()}/>
                         <TotalTime businessDays={this.props.businessDays}
