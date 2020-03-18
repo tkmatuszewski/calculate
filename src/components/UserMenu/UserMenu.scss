@@ -1,29 +1,52 @@
 .userMenu {
-  height: 30px;
-  width: 30px;
+  height: 60px;
+  width: 50px;
   background: url("../../assets/menu.svg") no-repeat center;
   list-style-type: none;
   cursor: pointer;
+  position: relative;
 }
+
+.userMenuList {
+  border-radius: 50px;
+  animation: slideIn 1s ease-in-out forwards;
+}
+
 .userMenuElement {
+
   display: flex;
   justify-content: space-evenly;
-  background-color: $colorDark;
-  border: 1px solid $calendarActive;
+  align-items: center;
   width: 100px;
   height: 30px;
 }
+
 .userMenuEdit {
   height: 20px;
   width: 20px;
   background: url("../../assets/edit.svg") no-repeat center;
+  background-size: contain;
 }
+
 .userMenuDel {
   height: 20px;
   width: 20px;
   background: url("../../assets/trash.svg") no-repeat center;
+  background-size: contain;
 }
+
 span {
   display: flex;
   align-items: center;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(0);
+    opacity : (0)
+  }
+  100% {
+    transform: translateX(40px);
+    opacity : (1)
+  }
 }
