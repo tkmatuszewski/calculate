@@ -1,5 +1,5 @@
 .user {
-  min-width: 300px;
+  min-width: 360px;
   border-radius: 25px;
   color: white;
   background-color: rgba(209, 2, 253, 0.4);
@@ -15,7 +15,7 @@
 
 .userContainer {
   width: 100%;
-  padding: 10px;
+  padding: 10px 0;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -28,17 +28,10 @@
   margin-left: 10%;
 }
 
-.userDelete {
-  height: 20px;
-  width: 20px;
-  background-color: transparent;
-  border: none;
-  background-image: url("../../assets/trash.svg");
-  background-repeat: no-repeat;
-  background-position: center;
+.userDaily {
+  opacity: 0.3;
 }
 
 .userLowerContainer {
   display: flex;
-
 }

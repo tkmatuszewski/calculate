@@ -10,10 +10,6 @@ class User extends React.Component {
         events: [],
         bonusHours: 0
     };
-    // edit = () => {
-    //     let id  = e.target.closest("li").getAttribute("data-id");
-    //     db.collection(`users`).doc(id).update();
-    // };
     additionalCount = () => {
         const user = this.props.user.data();
         let counter = 0;
@@ -36,8 +32,9 @@ class User extends React.Component {
                         <div className={"userNames"}>
                             <div className={"userName"}>{this.props.user.data().name}</div>
                             <div className={"userSurname"}>{this.props.user.data().surname}</div>
+                            <div className={"userDaily"}>{this.props.user.data().dailyTime}h</div>
                         </div>
-                        <UserMenu id = {this.props.user.id}/>
+                        <UserMenu id={this.props.user.id}/>
                     </div>
                     <div className={"userLowerContainer"}>
                         <UserEvents events={this.state.events} user={this.props.user.data()}/>
