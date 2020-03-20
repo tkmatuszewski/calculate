@@ -1,7 +1,6 @@
 import React from "react";
 import UserDelete from "../UserDelete/UserDelete";
 
-
 class UserMenu extends React.Component {
     state = {
         show: false
