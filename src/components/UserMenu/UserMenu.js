@@ -1,20 +1,18 @@
 import React from "react";
-import data from "../Firebase/Firebase";
+import UserDelete from "../UserDelete/UserDelete";
+
 
 class UserMenu extends React.Component {
     state = {
         show: false
     };
     show = () => {
-        this.setState({show: !this.state.show})
+        this.setState({show: !this.state.show});
     };
     edit = () => {
 
     };
-    delete = () => {
-        let id = this.props.id;
-        data.collection(`users`).doc(id).delete();
-    };
+
     render() {
         if (this.state.show) {
             return (
@@ -24,10 +22,7 @@ class UserMenu extends React.Component {
                             <div className={"userMenuEdit"}/>
                             <span>Edytuj</span>
                         </li>
-                        <li className={"userMenuElement"}>
-                            <div className={"userMenuDel"} onClick={this.delete()}/>
-                            <span>Usuń</span>
-                        </li>
+                        <UserDelete id={this.props.id}/>
                     </ul>
                 </div>
             )
