@@ -8,7 +8,7 @@ class UserList extends React.Component {
     };
     renderUsers = () => {
         return this.state.users.map((el) => {
-            return <User user={el} businessDays={this.props.businessDays} key={el.id} liveR={this.liveR}/>
+            return <User user={el} businessDays={this.props.businessDays} key={el.id}/>
         })
     };
 
@@ -23,14 +23,25 @@ class UserList extends React.Component {
     }
 
     componentDidMount() {
-        data.collection(`users`).get().then((el) => {
-                el.docs.map((doc) => {
+
+        data.collection(`users`).onSnapshot((querySnapshot) => {
+            querySnapshot.docChanges().map((change) => {
+                if (change.type === "added") {
                     return this.setState({
-                        users: this.state.users.concat(doc),
+                        users: this.state.users.concat(change.doc),
                     });
-                })
-            }
-        ).catch(error => console.log(error))
+                }
+                if (change.type === "modified") {
+                    return console.log("Zmodyfikowano pracownika: ", change.doc.data());
+                }
+                if (change.type === "removed") {
+                    const filtered = this.state.users.filter(user => user.id !== change.doc.id);
+                    return this.setState({users: filtered});
+                }
+            })
+        }).error = (error) => {
+            return console.log(error)
+        };
     };
 }
 
