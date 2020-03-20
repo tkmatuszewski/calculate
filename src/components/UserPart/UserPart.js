@@ -4,7 +4,7 @@ import UserList from "../UserList/UserList";
 
 class UserPart extends React.Component {
     state = {
-      businessDays : 0
+        businessDays: 0,
     };
     update = (days) => {
         this.setState({businessDays: days})
@@ -13,7 +13,7 @@ class UserPart extends React.Component {
         return (
             <div className={"userPart"}>
                 <UserPanel update={this.update}/>
-                <UserList businessDays = {this.state.businessDays}/>
+                <UserList businessDays={this.state.businessDays}/>
             </div>
         )
     }
