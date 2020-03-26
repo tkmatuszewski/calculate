@@ -1,6 +1,8 @@
 @import "settings/reset";
 @import "settings/fonts";
 @import "settings/colors";
+@import "settings/mixins";
+@import "settings/animations";
 @import "../AppLoader/AppLoader";
 @import "../AppHeader/AppHeader";
 @import "../AppFooter/AppFooter";
