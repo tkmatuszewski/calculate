@@ -29,7 +29,7 @@
   font-size: 20px;
   font-weight: 800;
   color: $colorLight;
-  background-image: linear-gradient(to right top, #485DA6, #00a1ba, #00BF98, #36C486);
+  background-image: $colorAccentGradient;
   border: none;
   border-radius: 40px;
   display: flex;
@@ -45,7 +45,7 @@
 }
 
 @mixin userAdd-msg {
-  color: $accent;
+  color: $colorAccent;
   font-weight: bold;
   font-size: 20px;
   text-align: center;

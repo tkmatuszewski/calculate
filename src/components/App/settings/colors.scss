@@ -1,6 +1,8 @@
 $colorDark : #221824;
 $colorLight : white;
-$accent : #26BEB5;
-$calendarActive : #c300ff;
+$colorAccent : #26BEB5;
+$colorCalendarActive: #c300ff;
+$colorAccentGradient :  linear-gradient(to right top, #485DA6, #00a1ba, #00BF98, #36C486);
+$colorAccentCalendar : linear-gradient(to right top , #00a1ba, #00BF98, #36C486);
 $colorGradient : linear-gradient(to right bottom, #5821b0, #7121c5, #8b1fd9, #a617ec, #c300ff);
-$userGradient : linear-gradient(to right top, #5821b0, #7121c5, #8b1fd9, #a617ec, #c300ff);
+$colorForms : black;
