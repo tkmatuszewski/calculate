@@ -13,19 +13,6 @@ class User extends React.Component {
         bonusHours: 0,
         verified: false
     };
-    additionalCount = () => {
-        const user = this.props.user.data();
-        let counter = 0;
-        this.state.events.forEach(event => {
-            if (event.inPlus === user.fullName) {
-                counter += Number(event.count);
-            }
-            if (event.inMinus === user.fullName) {
-                counter -= Number(event.count);
-            }
-        });
-        this.setState({bonusHours: Number(counter)});
-    };
 
     passVerification = (state) => {
         this.setState({verified: state})
@@ -67,15 +54,8 @@ class User extends React.Component {
     }
 
     componentDidMount() {
-        // this._isMounted = true;
-        // data.collection(`sub`).get().then((el) => {
-        //         el.docs.map((doc) => {
-        //             return this.setState({events: this.state.events.concat(doc.data())}, () => {
-        //                 this.additionalCount();
-        //             })
-        //         });
-        //     }
-        // )
+        this._isMounted = true;
+
         data.collection(`sub`).onSnapshot((querySnapshot) => {
             querySnapshot.docChanges().map((change) => {
                 if (change.type === "added") {
@@ -96,9 +76,9 @@ class User extends React.Component {
         };
     };
 
-    // componentWillUnmount() {
-    //     this._isMounted = false;
-    // }
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
 }
 
 export default User
