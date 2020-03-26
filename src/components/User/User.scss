@@ -1,37 +1,47 @@
 .user {
-  min-width: 360px;
-  border-radius: 25px;
-  color: white;
-  background-color: rgba(209, 2, 253, 0.4);
+  min-width: 330px;
+  border-radius: 10px;
+  color: $colorLight;
+  background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 20px;
-  -webkit-box-shadow: 13px 10px 15px 2px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 13px 10px 15px 2px rgba(0, 0, 0, 0.4);
-  box-shadow: 13px 10px 15px 2px rgba(0, 0, 0, 0.4);
+  margin: 5px;
 }
 
-.userContainer {
-  width: 100%;
-  padding: 10px 0;
+.verified {
+  background-image: linear-gradient(to right bottom, #26beb5, #20a59d, #1a8c85, #14746e, #0e5d58);
+}
+
+.userCnt {
+  width: 90%;
+  padding: 5% 0;
+}
+
+.userCntTop {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+}
+
+
+.userCntBottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .userNames {
-  font-size: 30px;
-  font-family: 'Cabin', sans-serif;
+  font-size: 25px;
   font-weight: bolder;;
-  margin-left: 10%;
+  max-width: 70%;
+  color: darken($colorLight, 5);
 }
 
 .userDaily {
+  margin: 10px 0;
   opacity: 0.3;
 }
 
-.userLowerContainer {
+.userCntBottomEvents {
   display: flex;
 }
