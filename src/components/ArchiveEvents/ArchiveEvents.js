@@ -9,27 +9,29 @@ class ArchiveEvents extends React.Component {
         this.setState({show: !this.state.show})
     };
     closeModal = (state) => {
-        this.setState({show : state})
+        this.setState({show: state})
+    };
+    renderTile = () => {
+        return (
+            <div className={"archiveEvents"} onClick={this.toggle}>
+                <div className={"archiveEventsCnt"}>
+                    <div className={"archiveEventsIcon"}/>
+                    <div className={"archiveEventsDesc"}>Archiwizuj zastępstwa</div>
+                </div>
+            </div>
+        )
     };
 
     render() {
         if (this.state.show) {
             return (
                 <>
-                    <div className={"archiveEvents"} onClick={this.toggle}>
-                        <div className={"archiveEventsIcon"}/>
-                        <div className={"archiveEventsDesc"}>Archiwizuj zastępstwa</div>
-                    </div>
-                    <ArchiveEventsModal closeModal = {this.closeModal}/>
+                    {this.renderTile()}
+                    <ArchiveEventsModal closeModal={this.closeModal}/>
                 </>
             )
         } else {
-            return (
-                <div className={"archiveEvents"} onClick={this.toggle}>
-                    <div className={"archiveEventsIcon"}/>
-                    <div className={"archiveEventsDesc"}>Archiwizuj zastępstwa</div>
-                </div>
-            )
+            return this.renderTile()
         }
     }
 }
