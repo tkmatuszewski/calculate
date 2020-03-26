@@ -1,15 +1,9 @@
 .userAdd {
-  height: 70px;
-  width: 70px;
-  background-color: #221824;
-  border-radius: 10px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: 'Bebas Nue', sans-serif;
-  font-weight: bold;
-  margin: 5px;
+  @extend .businessDays;
+}
+
+.userAddCnt {
+  @extend .archiveEventsCnt;
 }
 
 .userAddIcon {

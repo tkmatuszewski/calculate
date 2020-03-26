@@ -15,24 +15,28 @@ class UserAdd extends React.Component {
         this.setState({show: state})
     };
 
+    renderTile = () => {
+        return (
+            <div className={"userAdd"} onClick={this.toggleForm}>
+                <div className={"userAddCnt"}>
+                    <div className={"userAddIcon"}/>
+                    <div className={"userAddDesc"}>Nowy pracownik</div>
+                </div>
+            </div>
+        )
+    };
+
     render() {
         if (this.state.show) {
             return (
                 <>
-                    <div className={"userAdd"} onClick={this.toggleForm}>
-                        <div className={"userAddIcon"}/>
-                        <div className={"userAddDesc"}>Nowy pracownik</div>
-                    </div>
+                    {this.renderTile()}
                     <UserAddForm passToggleForm={this.passToggleForm}/>
                 </>
             )
-        } else {
-            return (
-                <div className={"userAdd"} onClick={this.toggleForm}>
-                    <div className={"userAddIcon"}/>
-                    <div className={"userAddDesc"}>Nowy pracownik</div>
-                </div>
-            )
+        }
+        else {
+            return this.renderTile()
         }
     }
 }
