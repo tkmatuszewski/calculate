@@ -12,32 +12,37 @@ class BusinessDays extends React.Component {
         this.setState({show: !this.state.show})
     };
 
+    passToggleForm = (state) => {
+        this.setState({show : state})
+    };
+
     update = (state) => {
         this.setState({businessDays: state})
+    };
+    renderTile = () => {
+        return (
+            <div className={"businessDays"} onClick={this.toggleForm}>
+                <div className={"businessDaysIcon"}>
+                    <div className={"businessDaysVal"}>{this.state.businessDays}</div>
+                </div>
+                <div className={"businessDaysDsc"}>Dni robocze</div>
+            </div>
+        )
     };
 
     render() {
         if (this.state.show) {
             return (
                 <>
-                    <div className={"businessDays"} onClick={this.toggleForm}>
-                        <div className={"businessDaysIcon"}>
-                            <div className={"businessDaysVal"}>{this.state.businessDays}</div>
-                        </div>
-                        <div className={"businessDaysDsc"}>Dni robocze</div>
-                    </div>
-                    <BusinessDaysForm  toggleForm={this.toggleForm} update={this.update}/>
+                    {this.renderTile()}
+                    <BusinessDaysForm
+                        passToggleForm = {this.passToggleForm}
+                        update={this.update}
+                        businessDays={this.state.businessDays}/>
                 </>
             )
         } else {
-            return (
-                <div className={"businessDays"} onClick={this.toggleForm}>
-                    <div className={"businessDaysIcon"}>
-                        <div className={"businessDaysVal"}>{this.state.businessDays}</div>
-                    </div>
-                    <div className={"businessDaysDsc"}>Dni robocze</div>
-                </div>
-            )
+           return this.renderTile()
         }
     }
 
