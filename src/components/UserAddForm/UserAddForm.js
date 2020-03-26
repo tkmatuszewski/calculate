@@ -11,7 +11,8 @@ class UserAddForm extends React.Component {
         totalTime: 0,
         subs: [],
         show: true,
-        message : ""
+        success: "",
+        error: ""
     };
     generateNick = () => {
         this.setState({nick: this.state.name[0] + this.state.surname[0]})
@@ -36,23 +37,24 @@ class UserAddForm extends React.Component {
         document.querySelector("#surname").value = "";
         document.querySelector("#dailyTime").value = "";
     };
-    addUser = (e) => {
+    submitHandler = (e) => {
         e.preventDefault();
-        // if ((this.state.name === "") || (this.state.surname === "")) {
-        //     this.setState({message : "Pola Imię oraz Nazwisko muszą być uzupełnione!"});
-        // }
-        // else {
-            e.preventDefault();
-            this.setState({show: false});
-            this.props.passToggleForm(this.state.show);
-            this.generateFullName();
+        if ((this.state.name === "") || (this.state.surname === "")) {
+            this.setState({error : "Pola Imię oraz Nazwisko muszą być uzupełnione!"});
+        }
+        else {
+        e.preventDefault();
+        this.props.passToggleForm(this.state.show);
+        this.generateFullName();
 
-            data.collection(`users`).add(this.state);
-            this.setState({message : "Dodano nowego użytkownika!"});
-            this.clearForm();
-        // }
+        data.collection(`users`).add(this.state);
+        this.setState({success: "Dodano nowego użytkownika!"});
+        this.clearForm();
+
+
+        this.closeForm();
+        }
     };
-
     closeForm = () => {
         this.setState({show: false});
         this.props.passToggleForm(this.state.show);
@@ -61,10 +63,10 @@ class UserAddForm extends React.Component {
     render() {
         return (
             <div className={"userAddForm"}>
-                <form className={"userAddFormForm"} onSubmit={this.addUser}>
+                <form className={"userAddFormForm"} onSubmit={this.submitHandler}>
                     <div className={"userAddFormTop"}>
                         <h3 className={"userAddTitle"}>Nowy użytkownik</h3>
-                        <button className={"userAddFormClose"} onClick={this.closeForm}/>
+                        <button className={"userAddFormClose"} type="button" onClick={this.closeForm}/>
                     </div>
                     <label className={"userAddLabel"}> Imię
                         <input onChange={this.inputHandler} name="name" type="text" id="name"/>
@@ -77,7 +79,8 @@ class UserAddForm extends React.Component {
                                placeholder={"W godzinach"}/>
                     </label>
                     <button className={"userAddBtn"} type="submit">Dodaj</button>
-                    <div>{this.state.message}</div>
+                    <div className={"userAddSuccess"}>{this.state.success}</div>
+                    <div className={"userAddError"}>{this.state.error}</div>
                 </form>
             </div>
         )

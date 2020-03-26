@@ -1,0 +1,19 @@
+@keyframes slideIn {
+  0% {
+    transform: translateX(0);
+    opacity : (0)
+  }
+  100% {
+    transform: translateX(45px);
+    opacity : (1)
+  }
+}
+
+@keyframes darkenBg {
+  0% {
+    background-color: rgba(0,0,0,0.0);
+  }
+  100% {
+    background-color: rgba(0,0,0,0.6);
+  }
+}
