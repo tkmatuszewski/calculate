@@ -23,15 +23,18 @@ class User extends React.Component {
             user: true,
             'verified': this.state.verified
         });
+
+        const person = this.props.user.data();
+
         return (
             <>
                 <li className={user}>
                     <div className={"userCnt"}>
                         <div className={"userCntTop"}>
                             <div className={"userNames"}>
-                                <div className={"userName"}>{this.props.user.data().name}</div>
-                                <div className={"userSurname"}>{this.props.user.data().surname}</div>
-                                <div className={"userDaily"}>{this.props.user.data().dailyTime}h</div>
+                                <div className={"userName"}>{person.name}</div>
+                                <div className={"userSurname"}>{person.surname}</div>
+                                <div className={"userDaily"}>{person.dailyTime}h</div>
                             </div>
                             <UserMenu
                                 id={this.props.user.id}
@@ -44,7 +47,7 @@ class User extends React.Component {
                                     user={this.props.user.data()}/>
                             </div>
                             <TotalTime businessDays={this.props.businessDays}
-                                       dailyTime={this.props.user.data().dailyTime}
+                                       dailyTime={person.dailyTime}
                                        bonusHours={this.state.bonusHours}/>
                         </div>
                     </div>
