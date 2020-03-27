@@ -1,8 +1,9 @@
-$colorDark : #221824;
-$colorLight : white;
-$colorAccent : #26BEB5;
+$colorDark: #221824;
+$colorLight: white;
+$colorAccent: #26BEB5;
 $colorCalendarActive: #c300ff;
-$colorAccentGradient :  linear-gradient(to right top, #485DA6, #00a1ba, #00BF98, #36C486);
-$colorAccentCalendar : linear-gradient(to right top , #00a1ba, #00BF98, #36C486);
+$colorUserVerified: linear-gradient(to right top, rgba(72, 93, 166, 0.7), rgba(0, 161, 186, 0.7), rgba(0, 191, 152, 0.7), rgba(54, 196, 134, 0.7));
+$colorAccentGradient: linear-gradient(to right top, #485DA6, #00a1ba, #00BF98, #36C486);
+$colorAccentCalendar: linear-gradient(to right top, #00a1ba, #00BF98, #36C486);
 $colorAppBackground: linear-gradient(to right bottom, #5821b0, #7121c5, #8b1fd9, #a617ec, #c300ff);
-$colorForms : black;
+$colorForms: black;
