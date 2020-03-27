@@ -1,15 +1,9 @@
 .userDelete {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100px;
-  height: 30px;
+@extend .userMenuElement
 }
 .userDeleteIcon {
-  height: 20px;
-  width: 20px;
+  @include userMenuIcon;
   background: url("../../assets/trash.svg") no-repeat center;
-  background-size: contain;
 }
 
 span {
