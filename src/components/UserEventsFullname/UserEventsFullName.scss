@@ -1,0 +1,12 @@
+.userEventsFullName {
+  width: 50px;
+  height: 30px;
+  color: darken($colorLight, 20);
+  max-height: 50px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: -0.05em;
+  transform: rotate(-30deg);
+  margin-top: 5px;
+}
