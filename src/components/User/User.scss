@@ -1,33 +1,38 @@
 .user {
   min-width: 330px;
-  border-radius: 10px;
+  border-radius: 5%;
   color: $colorLight;
-  background-color: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin: 5px;
+  padding: 2%;
+  position: relative;
 }
 
 .verified {
   background: $colorUserVerified;
+  transition: 1s;
 }
 
 .userCnt {
   width: 90%;
-  padding: 5% 0;
+  margin: 5%;
+  //padding: 5%;
 }
 
 .userCntTop {
   display: flex;
+  justify-content: space-between;
 }
 
 
 .userCntBottom {
-  width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .userNames {
@@ -44,4 +49,16 @@
 
 .userCntBottomEvents {
   display: flex;
+}
+
+@media screen and (max-width: 480px) {
+  .user {
+    width: 95%;
+  }
+  .userNames {
+    font-size: 1.2em;
+  }
+  .userCntBottomEvents {
+    overflow-x: scroll;
+  }
 }

@@ -1,24 +1,43 @@
-import React from "react";
-import data from "../Firebase/Firebase";
+import React, {Component} from "react";
 import UserMenu from "../UserMenu/UserMenu";
 import TotalTime from "../UserTotalTime/UserTotalTime";
 import UserEvents from "../UserEvents/UserEvents";
-
 const classNames = require('classnames');
 
-class User extends React.Component {
-    _isMounted = false;
+class User extends Component {
     state = {
-        events: [],
         bonusHours: 0,
-        verified: false
+        verified: false,
     };
 
-    passVerification = (state) => {
-        this.setState({verified: state})
+    passVerification = () => {
+        this.setState({verified: !this.state.verified})
+    };
+
+    calculateAdditionalHours = () => {
+        const user = this.props.user.data();
+
+        let counterPlus = 0;
+        let counterMinus = 0;
+
+        this.props.events.map(e => {
+            const event = e.data();
+
+            if (event.inPlus === user.fullName) {
+                counterPlus += Number(event.count);
+            }
+            if (event.inMinus === user.fullName) {
+                return  counterMinus += Number(event.count);
+            }
+        });
+
+        return this.setState({
+            bonusHours : counterPlus-counterMinus
+        })
     };
 
     render() {
+
         let user = classNames({
             user: true,
             'verified': this.state.verified
@@ -43,8 +62,8 @@ class User extends React.Component {
                         <div className={"userCntBottom"}>
                             <div className={"userCntBottomEvents"}>
                                 <UserEvents
-                                    events={this.state.events}
-                                    user={this.props.user.data()}/>
+                                    events={this.props.events}
+                                    user={person}/>
                             </div>
                             <TotalTime businessDays={this.props.businessDays}
                                        dailyTime={person.dailyTime}
@@ -57,30 +76,13 @@ class User extends React.Component {
     }
 
     componentDidMount() {
-        this._isMounted = true;
+        this.calculateAdditionalHours()
+    }
 
-        data.collection(`sub`).onSnapshot((querySnapshot) => {
-            querySnapshot.docChanges().map((change) => {
-                if (change.type === "added") {
-                    return this.setState({
-                        events: this.state.events.concat(change.doc),
-                    });
-                }
-                if (change.type === "modified") {
-                    return console.log("Zmodyfikowano wydarzenie: ", change.doc.data());
-                }
-                if (change.type === "removed") {
-                    const filtered = this.state.events.filter(event => event.id !== change.doc.id);
-                    return this.setState({events: filtered});
-                }
-            })
-        }).error = (error) => {
-            return console.log(error)
-        };
-    };
-
-    componentWillUnmount() {
-        this._isMounted = false;
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.events !== prevProps.events) {
+            this.calculateAdditionalHours();
+        }
     }
 }
 
