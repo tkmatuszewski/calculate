@@ -1,6 +1,6 @@
-import React from "react";
+import React, {Component} from "react";
 
-class UserEventsFullName extends React.Component {
+class UserEventsFullName extends Component {
 
     render() {
         if (this.props.showFullName) {
