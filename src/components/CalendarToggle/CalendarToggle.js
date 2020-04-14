@@ -1,39 +1,32 @@
-import React from "react";
-import CalendarPart from "../CalendarPart/CalendarPart";
+import React, {Component} from "react";
 import classNames from 'classnames';
 
-class CalendarToggle extends React.Component {
+class CalendarToggle extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: true,
+            showCalendar: true,
         }
     };
 
-    toggle = () => {
-        this.setState({show: !this.state.show})
-    };
-    showCalendar = () => {
-        this.toggle();
+    toggleCalendar = () => {
+        this.setState({showCalendar: !this.state.showCalendar},
+            () => {
+                this.props.handleCalendar(this.state.showCalendar)
+            }
+        )
     };
 
     render() {
-        const toggleBtn =
-            <div className={"calendarToggle"} onClick={this.showCalendar}>
-                <div className="calendarToggleMask">
-                    <div className={classNames("calendarToggleIcon", {hide: this.state.show === true})}/>
-                </div>
-            </div>;
-        if (this.state.show) {
-            return (
-                <>
-                    {toggleBtn}
-                    <CalendarPart/>
-                </>
-            )
-        } else {
-            return toggleBtn
-        }
+        const calendarToggler = classNames({
+            calendarToggleIcon: true,
+            calendarMode: this.state.showCalendar
+        });
+        return (
+            <div className={"calendarToggle"} onClick={this.toggleCalendar}>
+                <div className={calendarToggler}/>
+            </div>
+        )
     }
 }
 
