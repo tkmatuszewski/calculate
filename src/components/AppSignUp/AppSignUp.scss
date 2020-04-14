@@ -1,0 +1,28 @@
+.appSignUpBg {
+  @extend .appLoginBg;
+}
+.appSignUpBgRight {
+  @extend .appLoginBgRight
+}
+.appSignUpBgLeft {
+  @extend .appLoginBgLeft
+}
+.appSignUp {
+  @extend .appLogin
+}
+
+.appSignUpTitle {
+  @extend .appLoginTitle
+}
+.appSignUpLabel {
+  @extend .appLoginLabel
+}
+.appSignUpInput {
+  @extend .appLoginInput
+}
+.appSignUpInfo {
+  @extend .appLoginInfo
+}
+.appSignUpBtn {
+  @extend .appLoginBtn
+}
