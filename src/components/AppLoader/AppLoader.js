@@ -1,39 +1,47 @@
-import React from "react";
+import React, {Component} from "react";
 import AppHeader from "../AppHeader/AppHeader";
 import AppContent from "../AppContent/AppContent";
-import AppFooter from "../AppFooter/AppFooter";
 
-class AppLoader extends React.Component {
+class AppLoader extends Component {
     constructor(props) {
         super(props);
+        this.loaderTimer = null;
         this.state = {
             loading: true
         };
     }
 
+    showLoader = () => {
+        this.loaderTimer = setTimeout(() => {
+            this.setState({loading: false})
+        }, 2500);
+    };
+
     render() {
         if (this.state.loading) {
             return (
-                <div className="appLoader">
-                    < div className="appLoaderImg">
-                        <div className="appLoaderLogo">Calculate</div>
+                <section className="appLoader">
+                    <div className="appLoaderImg">
+                        <span className="appLoaderLogo">Calculate</span>
                     </div>
-                </div>
+                </section>
             )
-        } else
+        } else {
             return (
                 <>
                     <AppHeader/>
                     <AppContent/>
-                    <AppFooter/>
                 </>
             )
+        }
     }
 
     componentDidMount() {
-        setTimeout(function loader() {
-            this.setState({loading: false})
-        }.bind(this), 2500);
+        this.showLoader()
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.loaderTimer)
     }
 }
 
