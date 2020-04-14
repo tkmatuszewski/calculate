@@ -1,9 +1,19 @@
 .totalTime {
-  width: fit-content;
-  height: fit-content;
-  text-align: center;
   font-size: 40px;
   font-weight: bolder;
   color: darken($colorLight, 30) ;
-  padding: 20px;
+  margin-left: 20px;
+
+  span {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .totalTime {
+    font-size: 1.5em;
+    span {
+      font-size: 0.8em;
+    }
+  }
 }
