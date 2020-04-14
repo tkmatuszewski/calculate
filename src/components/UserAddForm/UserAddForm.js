@@ -7,10 +7,8 @@ class UserAddForm extends React.Component {
         surname: "",
         fullName: "",
         dailyTime: 0,
-        totalTime: 0,
         show: true,
         message: "",
-        id: ""
     };
     generateFullName = () => {
         this.setState({fullName: this.state.name + " " + this.state.surname})
@@ -27,7 +25,16 @@ class UserAddForm extends React.Component {
         this.countTotal();
     };
     submitHandler = (e) => {
+
         e.preventDefault();
+
+        const user = {
+            name: this.state.name,
+            surname: this.state.surname,
+            fullName: this.state.fullName,
+            dailyTime: this.state.dailyTime
+        };
+
         if ((this.state.name === "") || (this.state.surname === "")) {
             this.setState({message: "Pola Imię oraz Nazwisko muszą być uzupełnione!"});
             setTimeout(() => {
@@ -36,7 +43,7 @@ class UserAddForm extends React.Component {
         } else {
             e.preventDefault();
             this.generateFullName();
-            data.collection(`users`).add(this.state);
+            data.collection(`users`).add(user);
             this.setState({message: "Dodano nowego użytkownika!"});
 
             setTimeout(() => {
