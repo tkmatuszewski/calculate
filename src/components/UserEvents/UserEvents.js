@@ -7,11 +7,8 @@ class UserEvents extends Component {
         showFullName: false,
     };
 
-    showFullName = () => {
-        this.setState({showFullName: true})
-    };
-    hideFullName = () => {
-        this.setState({showFullName: false})
+    toggleFullName = () => {
+        this.setState({showFullName: !this.state.showFullName})
     };
 
     shortenUsers = (name) => {
@@ -44,8 +41,7 @@ class UserEvents extends Component {
                     matchedEmployee = (
                         <div className={"userEvents"}
                              key={Math.random()}
-                             onMouseEnter={this.showFullName}
-                             onMouseLeave={this.hideFullName}>
+                             onClick={this.toggleFullName}>
                             <div className={"userEventsDate"}>{date}</div>
                             <div className={"userEventsCountPlus"}>
                                 <span className={"userEventsInPlusIcon"}/>
@@ -64,8 +60,7 @@ class UserEvents extends Component {
                     matchedEmployee = (
                         <div className={"userEvents"}
                              key={Math.random()}
-                             onMouseEnter={this.showFullName}
-                             onMouseLeave={this.hideFullName}>
+                             onClick={this.toggleFullName}>
                             <div className={"userEventsDate"}>{date}</div>
                             <div className={"userEventsCountMinus"}>
                                 <span className={"userEventsInMinusIcon"}/>
