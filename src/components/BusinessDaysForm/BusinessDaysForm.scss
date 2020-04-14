@@ -1,52 +1,56 @@
-.businessDaysForm{
-  @extend .userAddFormForm;
-  display: flex;
-  align-items: center;
-  position: absolute;
-  bottom: 50vh;
-  left: 50vw;
-  transform: translate(-50%, 50%);
+.businessDaysFormMask {
+  @include fullscreenMask;
+}
+
+.businessDaysForm {
+  @include userForm;
 }
 
 .businessDaysFormTop {
-@extend .userAddFormTop
+  @extend .userAddFormTop
 }
 
-.businessDaysFormTitle {
-  text-align: center;
-  font-size: 24px;
-  padding: 10px;
-}
 .businessDaysFormClose {
   @extend .userAddFormClose
 }
+
+.businessDaysFormTitle {
+  @extend .userAddTitle
+}
+
+.businessDaysFormMsg {
+  @include userAdd-msg;
+}
+
 .businessDaysFormBottom {
-  display: flex;
-  margin: 30px 0;
+  padding: 20px 40px 40px;
+  font-weight: bolder;
+}
+
+.businessDaysFormLabel {
+  @extend .userAddLabel
 }
 
 .businessDaysFormInput {
-  max-width: 80px;
-  height: 50px;
-  border-radius: 25px 0 0 25px;
-  background-color: $colorLight;
-  border: 1px solid $calendarActive;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
+  @extend #name
 }
-.businessDaysFormBtn {
-  width: 40px;
-  height: 50px;
-  border: none;
-  border-radius: 0 40px 40px 0;
-  background-color: $accent;
-  cursor: pointer;
 
-  .businessDaysFormBtnIcon {
-    height: 40px;
-    width: 40px;
-    background: url("../../assets/tick.svg") no-repeat center;
-    background-size: contain;
+.businessDaysFormBtn {
+  @extend .userAddBtn;
+}
+
+@media screen and (max-width: 480px) {
+  .businessDaysFormMask {
+    @include formMaskMobile;
+  }
+  .businessDaysForm {
+    @include formMobile;
+  }
+  .businessDaysFormClose {
+    height: 20px;
+    width: 20px;
+  }
+  .businessDaysFormTitle {
+    margin-top: 40%;
   }
 }

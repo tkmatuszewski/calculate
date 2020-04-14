@@ -1,0 +1,153 @@
+.appSignOutBtn {
+  height: 30px;
+  width: 30px;
+}
+.contributionsTop {
+  background-color: $colorDark;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contributionsTopCnt {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contributions {
+  background: $colorDark;
+  color: $colorLight;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 91vh;
+  border-bottom: 0.25px solid darken($colorLight, 50);
+  border-top: 0.25px solid darken($colorLight, 50);
+}
+
+.contributionsCnt {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+.contributionsBtn {
+  color: darken($colorLight, 30);
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: 0.25px solid darken($colorLight, 60);
+  cursor: pointer;
+  position: absolute;
+  top: 3vh;
+  right: 7%;
+  transform: translate(-50%, -50%);
+
+  &:focus {
+    border: 0.25px solid $colorAccent;
+  }
+}
+
+
+.contributionsLeft {
+  width: 50%;
+}
+
+.contributionsTitle {
+  font-family: 'Bebas Nue', sans-serif;
+  font-size: 3em;
+  margin-bottom: 5%;
+}
+
+.contributionsContent {
+  width: 70%;
+  font-family: Cabin, sans-serif;
+  font-size: 18px;
+  color: darken($colorLight, 20);
+  line-height: 1.3;
+}
+
+.contributionsRight {
+  list-style-type: none;
+
+  li {
+    margin-bottom: 5px;
+    color: darken($colorLight, 20);
+  }
+
+  a {
+    color: darken($colorLight, 40);
+  }
+}
+
+@media screen and (max-width: 1900px) {
+  .contributionsTitle {
+    font-size: 2.5em;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+
+  .contributionsBtn {
+    right: 8%;
+  }
+  .contributionsTitle {
+    font-size: 1.75em;
+  }
+  .contributionsRight {
+    li {
+      width: 80%;
+      font-size: 0.8em;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contributionsCnt {
+    flex-flow: wrap;
+  }
+  .contributionsBtn {
+    right: 10%;
+  }
+  .contributionsLeft {
+    width: 100%;
+  }
+  .contributionsRight {
+    width: 100%;
+  }
+  .contributionsContent {
+    margin: 10% 0;
+    width: 100%;
+  }
+  .contributionsRight {
+    li {
+      width: 100%;
+      font-size: 0.8em;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .contributionsBtn {
+    right: 12%;
+  }
+  .contributionsLeft {
+    margin-top: 10%;
+  }
+  .contributionsTitle {
+    font-size: 1.5em;
+  }
+
+  .contributionsContent {
+    font-size: 0.8em;
+    margin: 10% 0;
+  }
+
+  .contributionsRight {
+    font-size: 0.8em;
+  }
+};

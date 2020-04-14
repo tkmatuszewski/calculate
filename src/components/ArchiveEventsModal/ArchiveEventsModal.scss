@@ -1,9 +1,9 @@
+.archiveEventsModalMask {
+  @include fullscreenMask;
+}
+
 .archiveEventsModal {
-  @extend .userAddFormForm;
-  position: absolute;
-  top: 50vh;
-  left: 50vw;
-  transform: translate(-50%,-50%);
+  @include userForm;
 }
 
 .archiveEventsModalTop {
@@ -19,21 +19,38 @@
 }
 
 .archiveEventsModalContent {
-  margin: 30px 0;
+  padding: 0 40px 40px;
   text-align: center;
+  font-size: 20px;
 }
 
-.archiveEventsBtnCnt {
-  padding: 10px;
+.archiveEventsModalBtnCnt {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15%;
 }
 
 .archiveEventsModalBtn {
-  @extend .userAddBtn
+  @include userBtn;
 }
 
 .archiveEventsModalMsg {
-  text-align: center;
-  color: lawngreen;
+  @include userAdd-msg;
+  margin: 20px;
+}
+
+@media screen and (max-width: 480px) {
+  .archiveEventsModalMask {
+    @include formMaskMobile;
+  }
+  .archiveEventsModal {
+    @include formMobile;
+  }
+  .archiveEventsModalTitle {
+    margin-top: 40%;
+  }
+  .archiveEventsModalBtn {
+    margin-bottom: 0;
+  }
 }

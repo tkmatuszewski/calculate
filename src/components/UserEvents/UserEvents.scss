@@ -1,0 +1,60 @@
+.userEvents {
+  width: 50px;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 3px;
+}
+
+.userEventsDate {
+  width: 100%;
+  text-align: center;
+}
+
+.userEventsCountMinus {
+  min-height: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userEventsCountPlus {
+@extend .userEventsCountMinus
+}
+
+.userEventsInPlus {
+@extend .userEventsInMinus
+}
+
+.userEventsInMinus {
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  //position: relative;
+  cursor: pointer;
+}
+
+.userEventsInMinusIcon {
+  width: 25px;
+  height: 30px;
+  background: url("../../assets/triangleDown.svg") no-repeat center;
+  background-size: cover;
+}
+
+.userEventsInPlusIcon {
+  width: 25px;
+  height: 30px;
+  background: url("../../assets/triangleUp.svg") no-repeat center;
+  background-size: cover;
+}
+
+@media screen and (max-width: 480px) {
+  .userEvents {
+    font-size: 1em;
+  }
+}

@@ -1,9 +1,10 @@
-import React from "react";
+import React, {Component} from "react";
 import UserAddForm from "../UserAddForm/UserAddForm";
 
-class UserAdd extends React.Component {
+class UserAdd extends Component {
     state = {
-        show: false
+        show: false,
+        showTileDescription: false
     };
 
     toggleForm = (e) => {
@@ -15,25 +16,34 @@ class UserAdd extends React.Component {
         this.setState({show: state})
     };
 
-    render() {
-        if (this.state.show) {
-            return (
-                <>
-                    <div className={"userAdd"} onClick={this.toggleForm}>
-                        <div className={"userAddIcon"}/>
-                        <div className={"userAddDesc"}>Nowy pracownik</div>
-                    </div>
-                    <UserAddForm passToggleForm={this.passToggleForm}/>
-                </>
-            )
-        } else {
-            return (
-                <div className={"userAdd"} onClick={this.toggleForm}>
+    handleMouseover = () => {
+        this.setState({showTileDescription: !this.state.showTileDescription})
+    };
+
+    renderTile = () => {
+        return (
+            <div className={"userAdd"}
+                 onClick={this.toggleForm}
+                 onMouseEnter={this.handleMouseover}
+                 onMouseLeave={this.handleMouseover}>
+                <span className={"userAddMobile"}>Dodaj pracownika
+                    <span className={"userAddMobileDecor"}/>
+                </span>
+                <div className={"userAddCnt"}>
                     <div className={"userAddIcon"}/>
-                    <div className={"userAddDesc"}>Nowy pracownik</div>
+                    {this.state.showTileDescription && <span className={"userAddDesc"}>Nowy pracownik</span>}
                 </div>
-            )
-        }
+            </div>
+        )
+    };
+
+    render() {
+        return (
+            <>
+                {this.renderTile()}
+                {this.state.show && <UserAddForm passToggleForm={this.passToggleForm}/>}
+            </>
+        )
     }
 }
 

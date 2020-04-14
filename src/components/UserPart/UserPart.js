@@ -1,21 +1,61 @@
-import React from "react";
+import React, {Component} from "react";
 import UserPanel from "../UserPanel/UserPanel";
 import UserList from "../UserList/UserList";
+import data from "../Firebase/Firebase";
 
-class UserPart extends React.Component {
+class UserPart extends Component {
+    _isMounted = false;
     state = {
-      businessDays : 0
+        businessDays: "",
+        events: [],
+        triggerVerReset : false
     };
-    update = (days) => {
+    businessDaysToUserPart = (days) => {
         this.setState({businessDays: days})
     };
+
     render() {
         return (
-            <div className={"userPart"}>
-                <UserPanel update={this.update}/>
-                <UserList businessDays = {this.state.businessDays}/>
-            </div>
+            <section className={"userPart"}>
+                <UserPanel
+                    businessDaysToUserPart={this.businessDaysToUserPart}
+                    events={this.state.events}
+                    handleArchive = {this.props.handleArchive}/>
+                {!this.props.archiveMode && <UserList
+                    businessDays={this.state.businessDays}
+                    events={this.state.events}/>}
+            </section>
         )
+    }
+
+    componentDidMount() {
+        this._isMounted = true;
+
+        data.collection(`sub`).onSnapshot((querySnapshot) => {
+            querySnapshot.docChanges().map((change) => {
+                let data = null;
+                    if (change.type === "added") {
+                        data = this.setState({
+                            events: this.state.events.concat(change.doc),
+                        });
+                    }
+                    if (change.type === "modified") {
+                       data = console.log("Zmodyfikowano wydarzenie: ", change.doc);
+                    }
+                    if (change.type === "removed") {
+                        const filtered = this.state.events.filter(event => event.id !== change.doc.id);
+                        data = this.setState({events: filtered});
+                    }
+                    return data
+                }
+            )
+        }).error = (error) => {
+            return console.log(error)
+        };
+    };
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 }
 

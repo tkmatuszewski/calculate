@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg969"
+   version="1.1"
+   fill="#000"
+   viewBox="0 0 32 32"
+   height="32"
+   width="32">
+  <defs
+     id="defs973" />
+  <path
+     style="fill:#11a711;fill-opacity:0.68181819"
+     id="path965"
+     d="m 15.264042,10.327817 c -0.01,0.01203 -0.01392,0.02804 -0.02388,0.04007 l -6.9590943,7.73467 c -0.3887113,0.435155 -0.3866237,1.139152 0.00466,1.571993 0.00401,0.004 0.00802,0.006 0.012024,0.008 a 0.936,0.936 0 0 0 0.7130051,0.337887 l 13.9659389,-0.04142 a 0.948,0.948 0 0 0 0.720953,-0.354139 l 0.004,0.004 a 1.202,1.202 0 0 0 -0.0047,-1.571993 L 16.676036,10.32363 a 0.928,0.928 0 0 0 -1.411994,0.0042 z" />
+  <metadata
+     id="metadata967">
+    <rdf:RDF>
+      <rdf:Description
+         dc:language="en"
+         dc:format="image/svg+xml"
+         dc:date="2017-09-25"
+         dc:publisher="Iconscout"
+         dc:description="arrow,triangle,down"
+         dc:title="arrow,triangle,down"
+         about="https://iconscout.com/legal#licenses">
+        <dc:creator>
+          <rdf:Bag>
+            <rdf:li>Elegant Themes</rdf:li>
+          </rdf:Bag>
+        </dc:creator>
+      </rdf:Description>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>

@@ -1,26 +1,52 @@
 .userAdd {
-  height: 70px;
-  width: 70px;
-  background-color: #221824;
-  border-radius: 10px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: 'Bebas Nue', sans-serif;
-  font-weight: bold;
-  margin: 5px;
+  @include userPanelTile;
+}
+
+.userAddCnt {
+  @include userPanelCnt;
 }
 
 .userAddIcon {
-  width: 50px;
-  height: 50px;
+  @include userPanelIconSize;
   margin: 4px;
   background: url("../../assets/addUser.svg") no-repeat;
 }
 
 .userAddDesc {
-  color: $colorLight;
-  font-size: 10px;
-  margin: 5px;
+  @include userPanelDesc;
+}
+
+.userAddMobile {
+  @include userPanelName;
+}
+
+.userAddMobileDecor {
+  @include userPanelNameDecor;
+  background-color: mix($colorAccent, $colorCalendarActive, 95%);
+}
+
+@media screen and (max-width: 480px) {
+  .userAdd {
+    display: flex;
+    flex-flow: row-reverse;
+    justify-content: center;
+    background: transparent;
+    width: 100%;
+    margin: 5% 0;
+  }
+  .userAddMobile {
+    display: inline-block;
+  }
+  .userAddCnt {
+    width: 20px;
+  }
+  .userAddIcon {
+    width: 20px;
+    opacity: 0.6;
+    background-size: contain;
+    background-position: center;
+  }
+  .userAddDesc {
+    display: none;
+  }
 }

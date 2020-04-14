@@ -1,6 +1,5 @@
 .appHeader {
-  width: 100%;
-  height: 70px;
+  height: 6vh;
   background-color: $colorDark;
   display: flex;
   align-items: center;
@@ -8,14 +7,59 @@
 }
 
 .appHeaderContainer {
-  width: 95%;
-  height: 100%;
+  width: 90%;
+  height: 80%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
-
 .appLogo {
   color: $colorLight;
   font-weight: bold;
   font-family: 'Cabin', sans-serif;
+  font-size: 1.75em;
+  position: relative;
+  z-index: 1;
+
+  .appLogoBg {
+    position: absolute;
+    top: 0;
+    right: -10%;
+    width: 30%;
+    height: 100%;
+    background-color: $colorCalendarActive;
+    z-index: -1;
+    transition: 1s;
+  }
+
+  a {
+    text-decoration: none;
+    color: $colorLight;
+  }
 }
+
+.active {
+  @extend .appLogoBg;
+  width: 50% !important;
+}
+
+@media screen and (max-width: 1100px) {
+  .appLogo {
+    font-size: 1.75em;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .appLogo {
+    font-size: 1.5em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .appLogo {
+    font-size: 1.2em;
+  }
+  .appHeaderContainer {
+    width: 90vw;
+  }
+};

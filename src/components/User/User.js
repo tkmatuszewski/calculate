@@ -1,55 +1,74 @@
-import React from "react";
-import data from "../Firebase/Firebase";
+import React, {Component} from "react";
+import UserMenu from "../UserMenu/UserMenu";
 import TotalTime from "../UserTotalTime/UserTotalTime";
 import UserEvents from "../UserEvents/UserEvents";
+const classNames = require('classnames');
 
-class User extends React.Component {
-    _isMounted = false;
+class User extends Component {
     state = {
-        events: [],
-        bonusHours: 0
+        bonusHours: 0,
+        verified: false,
     };
-    // edit = () => {
-    //     let id  = e.target.closest("li").getAttribute("data-id");
-    //     db.collection(`users`).doc(id).update();
-    // };
-    additionalCount = () => {
+
+    passVerification = () => {
+        this.setState({verified: !this.state.verified})
+    };
+
+    calculateAdditionalHours = () => {
         const user = this.props.user.data();
-        let counter = 0;
-        this.state.events.forEach(event => {
+
+        let counterPlus = 0;
+        let counterMinus = 0;
+
+        this.props.events.map(e => {
+            const event = e.data();
+
             if (event.inPlus === user.fullName) {
-                counter += Number(event.count);
+                counterPlus += Number(event.count);
             }
             if (event.inMinus === user.fullName) {
-                counter -= Number(event.count);
+                return  counterMinus += Number(event.count);
             }
         });
-        this.setState({bonusHours: Number(counter)});
-    };
-    delete = (e) => {
-        let id = e.target.closest("li").getAttribute("data-id");
-        e.target.closest("li").remove();
-        data.collection(`users`).doc(id).delete();
+
+        return this.setState({
+            bonusHours : counterPlus-counterMinus
+        })
     };
 
     render() {
+
+        let user = classNames({
+            user: true,
+            'verified': this.state.verified
+        });
+
+        const person = this.props.user.data();
+
         return (
             <>
-                <li key={this.props.surname} data-id={this.props.user.id} className={"user"}>
-                    <div className={"userContainer"}>
-                        <div className={"userNames"}>
-                            <div className={"userName"}>{this.props.user.data().name}</div>
-                            <div className={"userSurname"}>{this.props.user.data().surname}</div>
+                <li className={user}>
+                    <div className={"userCnt"}>
+                        <div className={"userCntTop"}>
+                            <div className={"userNames"}>
+                                <div className={"userName"}>{person.name}</div>
+                                <div className={"userSurname"}>{person.surname}</div>
+                                <div className={"userDaily"}>{person.dailyTime}h</div>
+                            </div>
+                            <UserMenu
+                                id={this.props.user.id}
+                                passVerification={this.passVerification}/>
                         </div>
-                        <TotalTime businessDays={this.props.businessDays}
-                                   dailyTime={this.props.user.data().dailyTime}
-                                   bonusHours={this.state.bonusHours}/>
-                        <div className={"userButtons"}>
-                            <button className={"userDelete"} onClick={this.delete}/>
+                        <div className={"userCntBottom"}>
+                            <div className={"userCntBottomEvents"}>
+                                <UserEvents
+                                    events={this.props.events}
+                                    user={person}/>
+                            </div>
+                            <TotalTime businessDays={this.props.businessDays}
+                                       dailyTime={person.dailyTime}
+                                       bonusHours={this.state.bonusHours}/>
                         </div>
-                    </div>
-                    <div className={"userLowerContainer"}>
-                        <UserEvents events={this.state.events} user={this.props.user.data()}/>
                     </div>
                 </li>
             </>
@@ -57,19 +76,13 @@ class User extends React.Component {
     }
 
     componentDidMount() {
-        this._isMounted = true;
-        data.collection(`sub`).get().then((el) => {
-                el.docs.map((doc) => {
-                    return this.setState({events: this.state.events.concat(doc.data())}, () => {
-                        this.additionalCount();
-                    })
-                });
-            }
-        )
+        this.calculateAdditionalHours()
     }
 
-    componentWillUnmount() {
-        this._isMounted = false;
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.events !== prevProps.events) {
+            this.calculateAdditionalHours();
+        }
     }
 }
 

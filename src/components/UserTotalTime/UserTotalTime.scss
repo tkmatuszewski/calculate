@@ -1,11 +1,19 @@
 .totalTime {
-  height: fit-content;
-  width: fit-content;
-  border-radius: 50%;
-  text-align: center;
-  font-size: 50px;
-  font-family: 'Cabin', sans-serif;
+  font-size: 40px;
   font-weight: bolder;
-  color: rgba(90, 0, 141, 0.6);
-  padding: 20px;
+  color: darken($colorLight, 30) ;
+  margin-left: 20px;
+
+  span {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .totalTime {
+    font-size: 1.5em;
+    span {
+      font-size: 0.8em;
+    }
+  }
 }

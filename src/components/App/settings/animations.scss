@@ -1,0 +1,50 @@
+@keyframes slideIn {
+  0% {
+    transform: translateY(100%);
+    opacity : (0)
+  }
+  100% {
+    transform: translateY(0);
+    opacity : (1)
+  }
+}
+
+@keyframes darkenBg {
+  0% {
+    background-color: rgba(0,0,0,0.0);
+  }
+  100% {
+    background-color: rgba(0,0,0,0.3);
+  }
+}
+
+@keyframes logout {
+  0% {
+    opacity : (0);
+  }
+  75% {
+    opacity : (0.3);
+  }
+  100% {
+    opacity: (1);
+    transform: translate(70%,-50%);
+  }
+}
+
+@keyframes reveal {
+  0% {
+    opacity:(0.5)
+  }
+  100% {
+    opacity:(1)
+  }
+}
+
+@keyframes logo {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 60%;
+  }
+}

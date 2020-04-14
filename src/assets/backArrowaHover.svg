@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="10.74126"
+   height="18.764999"
+   viewBox="0 0 10.74126 18.764999"
+   version="1.1"
+   id="svg12490"
+   sodipodi:docname="backArrowaHover.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata12496">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs12494">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient15258">
+      <stop
+         style="stop-color:#36c486;stop-opacity:0.95959598"
+         offset="0"
+         id="stop15254" />
+      <stop
+         style="stop-color:#00a1ba;stop-opacity:0.67676765"
+         offset="1"
+         id="stop15256" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient15258"
+       id="linearGradient15260"
+       x1="0"
+       y1="9.3825"
+       x2="10.74126"
+       y2="9.3825"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1853"
+     inkscape:window-height="1025"
+     id="namedview12492"
+     showgrid="false"
+     inkscape:zoom="19.666667"
+     inkscape:cx="-0.9228769"
+     inkscape:cy="8.2531784"
+     inkscape:window-x="67"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg12490" />
+  <path
+     d="m -6.2475,-2.6225 h 24 v 24 h -24 z"
+     id="path12486"
+     inkscape:connector-curvature="0"
+     style="opacity:0.87000002;fill:none" />
+  <path
+     d="m 10.3725,0.3675 c -0.49,-0.49 -1.28,-0.49 -1.77,0 l -8.31,8.31 c -0.39,0.39 -0.39,1.02 0,1.41 l 8.31,8.31 c 0.49,0.49 1.28,0.49 1.77,0 0.49,-0.49 0.49,-1.28 0,-1.77 l -7.24,-7.25 7.25,-7.25 c 0.48,-0.48 0.48,-1.28 -0.01,-1.76 z"
+     id="path12488"
+     style="fill:url(#linearGradient15260);fill-opacity:1"
+     inkscape:connector-curvature="0" />
+</svg>
