@@ -1,7 +1,7 @@
-import React from "react";
+import React, {Component} from "react";
 import UserEventsFullName from "../UserEventsFullname/UserEventsFullName";
 
-class UserEvents extends React.Component {
+class UserEvents extends Component {
     state = {
         count: 0,
         showFullName: false,
@@ -15,15 +15,20 @@ class UserEvents extends React.Component {
     };
 
     shortenUsers = (name) => {
-        const separateNames = name.split(" ");
+        if (name === "Inne") {
+            return "Inne"
+        } else {
+            const separateNames = name.split(" ");
 
-        return separateNames[0][0] + separateNames[1][0];
+            return separateNames[0][0] + separateNames[1][0];
+        }
     };
 
     render() {
-        return this.props.events.map(evnt => {
 
-                const event = evnt.data();
+        return this.props.events.map(e => {
+
+                const event = e.data();
                 const user = this.props.user;
 
                 const day = event.date.split(".");
@@ -32,8 +37,11 @@ class UserEvents extends React.Component {
                 const initialsInMinus = this.shortenUsers(event.inMinus);
                 const initialsInPlus = this.shortenUsers(event.inPlus);
 
+                let matchedEmployee = null;
+
                 if (event.inPlus === user.fullName) {
-                    return (
+
+                    matchedEmployee = (
                         <div className={"userEvents"}
                              key={Math.random()}
                              onMouseEnter={this.showFullName}
@@ -53,7 +61,7 @@ class UserEvents extends React.Component {
                     )
                 }
                 if (event.inMinus === user.fullName) {
-                    return (
+                    matchedEmployee = (
                         <div className={"userEvents"}
                              key={Math.random()}
                              onMouseEnter={this.showFullName}
@@ -70,8 +78,9 @@ class UserEvents extends React.Component {
                                 fullName={event.inPlus}
                                 showFullName={this.state.showFullName}/>
                         </div>
-                    )
+                    );
                 }
+                return matchedEmployee
             }
         )
     };
