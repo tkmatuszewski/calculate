@@ -1,7 +1,7 @@
-import React from "react";
+import React, {Component} from "react";
 import UserAddForm from "../UserAddForm/UserAddForm";
 
-class UserAdd extends React.Component {
+class UserAdd extends Component {
     state = {
         show: false,
         showTileDescription: false
@@ -38,16 +38,12 @@ class UserAdd extends React.Component {
     };
 
     render() {
-        if (this.state.show) {
-            return (
-                <>
-                    {this.renderTile()}
-                    <UserAddForm passToggleForm={this.passToggleForm}/>
-                </>
-            )
-        } else {
-            return this.renderTile()
-        }
+        return (
+            <>
+                {this.renderTile()}
+                {this.state.show && <UserAddForm passToggleForm={this.passToggleForm}/>}
+            </>
+        )
     }
 }
 
