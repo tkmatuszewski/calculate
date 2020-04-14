@@ -1,9 +1,17 @@
 .appFooter {
-  min-width: 100vh;
-  min-height: 30px;
+  height:3vh;
   color: $colorLight;
   background-color: $colorDark;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  span {
+    margin-right: 10px;
+  }
+
+  a {
+    text-decoration: none;
+    color: $colorAccent;
+  }
 }
