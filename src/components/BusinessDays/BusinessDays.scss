@@ -1,18 +1,20 @@
 .businessDays {
-@include userPanelTile;
+  @include userPanelTile;
 }
+
 .businessDaysIcon {;
   width: 30px;
   height: 30px;
-  margin: 10px 10px 0 10px;
   background: url("../../assets/briefcase.svg") no-repeat center;
   position: relative;
 }
 
 .businessDaysVal {
-  height: 25px;
-  width: 25px;
-  font-weight: bold;
+  height: 22px;
+  width: 22px;
+  font-family: 'Bebas Nue', sans-serif;
+  font-size: 14px;
+  font-weight: bolder;
   background-color: $colorCalendarActive;
   border-radius: 50%;
   color: $colorLight;
@@ -26,6 +28,33 @@
   align-items: center;
 }
 
+.businessDaysDecor {
+  @include userPanelNameDecor;
+  background-color: $colorAccent;
+}
+
 .businessDaysDsc {
-  @extend .userAddDesc
+  @include userPanelDesc;
+}
+
+@media screen and (max-width: 480px) {
+  .businessDays {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    background: transparent;
+    width: 100%;
+    margin: 5% 0;
+  }
+  .businessDaysTitle {
+    display: inline-block;
+  }
+  .businessDaysIcon {
+    width: 20px;
+    opacity: 0.6;
+    background-size: contain;
+  }
+  .businessDaysDsc {
+    display: none;
+  }
 }
