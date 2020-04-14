@@ -1,6 +1,7 @@
-import React from "react";
+import React, {Component} from "react";
+import data from "../Firebase/Firebase";
 
-class ArchiveEventsModal extends React.Component {
+class ArchiveEventsModal extends Component {
     state = {
         show: true,
         message: ""
@@ -11,16 +12,33 @@ class ArchiveEventsModal extends React.Component {
     };
     submitHandler = (e) => {
         e.preventDefault();
+        this.archiveEvents();
         this.setState({message: "Przeniesiono wydarzenia do archiwum"});
         setTimeout(() => {
             this.toggleHandler();
         }, 2000)
     };
-    // archiveEvents = () =>  {
-    //     this.props.map((event)=>{
-    //         return this.setState({archive : this.state.archive.concat(event)})
-    //     })
-    // };
+
+    archiveEvents = () => {
+
+        this.props.events.map(e => {
+
+                const event = e.data();
+
+                const single ={
+                    date: event.date,
+                    inMinus: event.inMinus,
+                    inPlus: event.inPlus,
+                    count: event.count
+                };
+
+                data.collection('archive').add(single);
+
+                return data.collection('sub').doc(e.id).delete()
+            }
+        );
+    };
+
     render() {
         return (
             <div className={"archiveEventsModalMask"}>

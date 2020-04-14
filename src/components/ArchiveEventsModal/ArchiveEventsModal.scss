@@ -28,14 +28,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 15%;
 }
 
 .archiveEventsModalBtn {
   @include userBtn;
-  margin-bottom: 30px;
 }
 
 .archiveEventsModalMsg {
   @include userAdd-msg;
   margin: 20px;
+}
+
+@media screen and (max-width: 480px) {
+  .archiveEventsModalMask {
+    @include formMaskMobile;
+  }
+  .archiveEventsModal {
+    @include formMobile;
+  }
+  .archiveEventsModalTitle {
+    margin-top: 40%;
+  }
+  .archiveEventsModalBtn {
+    margin-bottom: 0;
+  }
 }
