@@ -1,9 +1,10 @@
-import React from "react";
+import React, {Component} from "react";
 import ArchiveEventsModal from "../ArchiveEventsModal/ArchiveEventsModal";
 
-class ArchiveEvents extends React.Component {
+class ArchiveEvents extends Component {
     state = {
-        show: false
+        show: false,
+        showTileDescription: false
     };
     toggle = () => {
         this.setState({show: !this.state.show})
@@ -11,28 +12,37 @@ class ArchiveEvents extends React.Component {
     closeModal = (state) => {
         this.setState({show: state})
     };
+    handleMouseover = () => {
+        this.setState({showTileDescription: !this.state.showTileDescription})
+    };
+
     renderTile = () => {
         return (
-            <div className={"archiveEvents"} onClick={this.toggle}>
+            <div className={"archiveEvents"}
+                 onClick={this.toggle}
+                 onMouseEnter={this.handleMouseover}
+                 onMouseLeave={this.handleMouseover}>
+                <span className={"userAddMobile"}>Zarchiwizuj zastępstwa
+                    <span className={"archiveEventsMobileDecor"}/>
+                </span>
                 <div className={"archiveEventsCnt"}>
                     <div className={"archiveEventsIcon"}/>
-                    <div className={"archiveEventsDesc"}>Archiwizuj zastępstwa</div>
+                    {this.state.showTileDescription && <div className={"archiveEventsDesc"}>Archiwizuj zastępstwa</div>}
                 </div>
             </div>
         )
     };
 
     render() {
-        if (this.state.show) {
-            return (
-                <>
-                    {this.renderTile()}
-                    <ArchiveEventsModal closeModal={this.closeModal}/>
-                </>
-            )
-        } else {
-            return this.renderTile()
-        }
+        return (
+            <>
+                {this.renderTile()}
+                {this.state.show && <ArchiveEventsModal
+                    events={this.props.events}
+                    closeModal={this.closeModal}
+                />}
+            </>
+        )
     }
 }
 

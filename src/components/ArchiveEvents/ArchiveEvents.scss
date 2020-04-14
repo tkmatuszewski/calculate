@@ -1,22 +1,44 @@
 .archiveEvents {
-@extend .userAdd
+  @include userPanelTile;
 }
 
 .archiveEventsCnt {
-  width: 95%;
-  height: 95%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include userPanelCnt;
 }
 
 .archiveEventsIcon {
-  width: 40px;
-  height: 40px;
+  @include userPanelIconSize;
   background: url("../../assets/archive.svg") no-repeat center;
+  background-size: contain;
 }
 
 .archiveEventsDesc {
-  @extend .userAddDesc
+  @include userPanelDesc;
+}
+
+.archiveEventsMobileDecor {
+  @include userPanelNameDecor;
+  background-color: mix($colorAccent, $colorCalendarActive, 90%);
+}
+
+@media screen and (max-width: 480px) {
+  .archiveEvents {
+    display: flex;
+    flex-flow: row-reverse;
+    justify-content: center;
+    background: transparent;
+    width: 100%;
+    margin: 5% 0;
+  }
+  .archiveEventsCnt {
+    width: unset;
+  }
+  .archiveEventsIcon{
+    width: 20px;
+    opacity: 0.6;
+    background-size: contain;
+  }
+  .archiveEventsDesc {
+    display: none;
+  }
 }
