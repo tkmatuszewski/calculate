@@ -1,0 +1,149 @@
+.appLoginBg {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.appLogin {
+  color: $colorLight;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+}
+
+.appLoginBgLeft {
+  height: 100vh;
+  width: 30vw;
+  background-color: black;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.appLoginBgRight {
+  background: url("../../assets/spa.jpg") center no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 70%;
+}
+
+.appLoginTitle {
+  font-family: 'Bebas Nue', sans-serif;
+  font-size: 30px;
+  margin: 10%;
+}
+
+.appLoginError {
+  color: #36C486;
+  height: 30px;
+  margin: 5% 0;
+}
+
+.appLoginLabel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-family: Cabin, sans-serif;
+}
+
+.appLoginInput {
+  height: 40px;
+  width: 100%;
+  font-size: 16px;
+  text-align: center;
+  border: 0.25px solid darken($colorLight, 50);
+  background-color: black;
+  color: white;
+
+  &:focus {
+    outline: 0.25px solid #36C486;
+  }
+}
+
+.appLoginInfo {
+  width: 100%;
+  font-size: 16px;
+  letter-spacing: 1.0px;
+
+  a {
+    text-decoration: none;
+    color: #36C486;
+    margin-left: 5px;
+  }
+}
+
+.appLoginBtn {
+  height: 40px;
+  width: 100%;
+  margin: 20% 0;
+  color: white;
+  background-image: linear-gradient(to right top, #485DA6, #00a1ba, #00BF98, #36C486);
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+}
+
+@media screen and (max-width: 1500px) {
+  .appLoginBgLeft {
+    width: 40%;
+  }
+  .appLoginBgRight {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .appLoginBg {
+    flex-flow: wrap-reverse;
+  }
+  .appLoginBgLeft {
+    width: 100%;
+    height: 50vh;
+  }
+  .appLoginBgRight {
+    height: 50vh;
+    width: 100vw;
+  }
+  .appLogin {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .appLoginBg {
+    flex-flow: wrap-reverse;
+  }
+  .appLoginBgLeft {
+    width: 100%;
+    height: 60vh;
+  }
+  .appLoginBgRight {
+    height: 40vh;
+    width: 100vw;
+  }
+  .appLogin {
+    width: 65%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .appLoginBg {
+    flex-flow: wrap-reverse;
+  }
+  .appLoginBgLeft {
+    width: 100%;
+    height: 100vh;
+  }
+  .appLoginBgRight {
+    width: 100%;
+    display: none;
+  }
+  .appLogin {
+    width: 85%;
+  }
+};
