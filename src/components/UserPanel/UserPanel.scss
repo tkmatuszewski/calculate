@@ -1,10 +1,80 @@
 .userPanel {
   position: fixed;
-  top: 0;
-  height: 100vh;
-  width: 5%;
-  padding-top: 7%;
-  display: flex;
-  flex-direction: column;
+  top: 10vh;
+  height: 70vh;
+  width: 5vw;
+}
+
+.hamburgerIcon {
+  display: none;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: url("../../assets/hamburger.svg") center no-repeat;
+  background-size: contain;
+  position: absolute;
+  transform: translate(-50%, 20%);
+}
+
+.closeIcon {
+  @extend .hamburgerIcon;
+  background: url("../../assets/close.svg");
+  background-size: contain;
+}
+
+.signOutMobile {
+  display: none;
   align-items: center;
+  justify-content: center;
+  background: transparent;
+  width: 100%;
+  margin: 5% 0;
+}
+
+.signOutMobileIcon {
+  background: url("../../assets/logout.svg");
+  @include userPanelIconSize;
+}
+
+.signOutMobileName {
+  margin: 0 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  font-family: 'Bebas Nue', sans-serif;
+  color: darken($colorLight, 10);
+  z-index: 1;
+  position: relative;
+}
+
+.signOutMobileDecor {
+  @include userPanelNameDecor;
+  background-color: mix($colorAccent, $colorCalendarActive, 95%);
+}
+
+@media screen and (max-width: 480px) {
+  .hamburgerIcon {
+    display: block;
+  }
+  .userPanel {
+    position: fixed;
+    top: 0;
+    right: 5%;
+  }
+  .userPanelElements {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 6vh;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $colorDark;
+  }
+  .signOutMobile {
+    display: flex;
+  }
 }
