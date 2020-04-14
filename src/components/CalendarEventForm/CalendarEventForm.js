@@ -6,58 +6,82 @@ class CalendarEventForm extends React.Component {
         date: "",
         inPlus: "Wybierz pracownika",
         inMinus: "Wybierz pracownika",
-        count: 0,
+        count: "",
         show: true,
         users: [],
-        error: "",
-        success: ""
+        message: "",
+        error: false,
+        valid: false
     };
+
     setDate = () => {
         const date = this.props.date.toLocaleDateString();
-        this.setState({date: date})
+        this.setState({date})
     };
     selectPerson1 = () => {
         return this.state.users.map((person) => {
             return (
-                <option key={Math.random()} value={person.fullName}>{person.fullName}</option>
+                <option key={person.fullName + "InMinus"} value={person.fullName}>{person.fullName}</option>
             )
         })
     };
     selectPerson2 = () => {
         return this.state.users.map((person) => {
             return (
-                <option key={Math.random()} value={person.fullName}>{person.fullName}</option>
+                <option key={person.fullName + "inPlus"} value={person.fullName}>{person.fullName}</option>
             )
         })
     };
     inputHandler = (e) => {
-        this.setState({[e.target.id]: e.target.value});
+        this.setState({
+            [e.target.id]: e.target.value
+        });
     };
-    hoursHandler = (e) => {
-        this.setState({[e.target.id]: e.target.value});
-        this.setDate()
-    };
-    submitHandler = (e) => {
-        if (this.state.error === "") {
-            e.preventDefault();
-            this.props.onAdded();
-            this.setState({success: "Dodano nowe zastępstwo!"});
-            data.collection(`sub`).add(this.state);
-            setTimeout(() => {
-                this.props.hide();
-            }, 4000);
-        }
-        if ((this.state.inPlus === "Wybierz pracownika") || (this.state.inMinus === "Wybierz pracownika")) {
-            e.preventDefault();
-            this.setState({error: "Wybierz pracownika z listy"})
-        }
+
+    validateForm = () => {
+
+        let formIsValid = true;
+
         if (this.state.inPlus === this.state.inMinus) {
-            e.preventDefault();
-            this.setState({error: "Pola osoby zastępującej i zastępowanej nie mogą mieć tej samej wartości!"});
+            this.setState({
+                message: "Zaznacz dwie różne osoby!",
+            });
+            formIsValid = false
+        }
+        if ((this.state.inMinus === "Wybierz pracownika") || (this.state.inPlus === "Wybierz pracownika")) {
+            this.setState({
+                message: "Wybierz pracowników"
+            });
+            formIsValid = false
         }
         if ((this.state.count === "") || (this.state.count <= 0)) {
-            e.preventDefault();
-            this.setState({error: "Pole godzin nie może być puste ani mniejsze od 0!"});
+            this.setState({
+                message: "Pole godzin musi być większe od 0!",
+            });
+            formIsValid = false
+        }
+        return formIsValid
+    };
+
+    submitHandler = (e) => {
+        e.preventDefault();
+
+        const event = {
+            date: this.state.date,
+            inPlus: this.state.inPlus,
+            inMinus: this.state.inMinus,
+            count: this.state.count
+        };
+
+        if (this.validateForm()) {
+            this.setState({message: "Dodano nowe zastępstwo!"});
+            this.props.addEventMarkerOnCalendar(Math.random());
+            data.collection(`sub`).add(event);
+            setTimeout(() => {
+                this.setState({
+                    message: ""
+                }, this.props.hide);
+            }, 2000);
         }
     };
     closeForm = () => {
@@ -67,32 +91,37 @@ class CalendarEventForm extends React.Component {
 
     render() {
         return (
-            <div className={"eventForm"}>
-                <form onSubmit={this.submitHandler} className={"eventFormForm"}>
+            <div className={"eventFormMask"}>
+                <div className={"eventForm"}>
+                    <div className={"userAddFormTop"}>
+                        <button className={"userAddFormClose"} type="button" onClick={this.closeForm}/>
+                    </div>
                     <h3 className={"eventFormTitle"}>Nowe zastępstwo</h3>
-                    <div className={"eventFormError"}>{this.state.error}</div>
-                    <div className={"eventFormSuccess"}>{this.state.success}</div>
-                    <label className={"eventFormLabel1"}>Osoba zastępowana
-                        <select id="inMinus" className={"eventFormSct"} onChange={this.inputHandler}
-                                value={this.state.inMinus}>
-                            <option value="Wybierz pracownika">Wybierz pracownika</option>
-                            <option value="Inne">Inne</option>
-                            {this.selectPerson1()}
-                        </select>
-                    </label>
-                    <label className={"eventFormLabel2"}>Osoba zastępująca
-                        <select id="inPlus" className={"eventFormSct"} onChange={this.inputHandler}
-                                value={this.state.inPlus}>
-                            <option value={"Wybierz pracownika"}>Wybierz pracownika</option>
-                            {this.selectPerson2()}
-                        </select>
-                    </label>
-                    <input id="count" className={"eventFormInput"} onChange={this.hoursHandler}
-                           placeholder="Ile godzin?">
-                    </input>
-                    <button type="submit" className={"eventFormBtn"}>Zatwierdź</button>
-                    <button className={"eventFormClose"} onClick={this.closeForm}/>
-                </form>
+                    <div className={"eventFormMsg"}>{this.state.message}</div>
+                    <form className={"eventFormForm"} onSubmit={this.submitHandler}>
+                        <label className={"eventFormLabel"}>Osoba zastępowana
+                            <select id="inMinus" className={"eventFormSct"} onChange={this.inputHandler}
+                                    value={this.state.inMinus}>
+                                <option value="Wybierz pracownika">Wybierz pracownika</option>
+                                <option value="Inne">Inne</option>
+                                {this.selectPerson1()}
+                            </select>
+                        </label>
+                        <label className={"eventFormLabel"}>Osoba zastępująca
+                            <select id="inPlus" className={"eventFormSct"} onChange={this.inputHandler}
+                                    value={this.state.inPlus}>
+                                <option value={"Wybierz pracownika"}>Wybierz pracownika</option>
+                                {this.selectPerson2()}
+                            </select>
+                        </label>
+                        <label className={"eventFormLabel"}>Czas
+                            <input id="count" className={"eventFormInput"} onChange={this.inputHandler}
+                                   placeholder="W godzinach">
+                            </input>
+                        </label>
+                        <button className={"eventFormBtn"} type="submit">Dodaj</button>
+                    </form>
+                </div>
             </div>
         )
     }
@@ -100,10 +129,11 @@ class CalendarEventForm extends React.Component {
     componentDidMount() {
         data.collection(`users`).get()
             .then((collection) => {
+                    this.setDate();
                     return collection.docs.map((doc) => {
                         return this.setState({
                             users: this.state.users.concat(doc.data())
-                        })
+                        });
                     })
                 }
             )
