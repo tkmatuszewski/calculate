@@ -1,5 +1,12 @@
 .calendarEventList {
-  min-height: 300px;
   list-style-type: none;
-  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 480px) {
+  .calendarEventList {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+  }
 }
