@@ -2,5 +2,26 @@
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
-  margin: 1% 1% 0 5%;
+  margin: 5% 1% 3% 5%;
+
+}
+
+.userListSide {
+  writing-mode: vertical-rl;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: bolder;
+  color: $colorLight;
+  font-size: 3em;
+  transform: rotate(-180deg);
+  margin: 0 2%;
+}
+
+@media screen and (max-width: 480px) {
+  .userList {
+    min-height: 100%;
+  }
+
+  .userListSide {
+    display: none;
+  }
 }
