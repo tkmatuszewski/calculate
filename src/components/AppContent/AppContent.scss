@@ -1,5 +1,8 @@
 .appContent {
+  height: 94vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background: $colorAppBackground;
+  overflow-y: scroll;
 }
