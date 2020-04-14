@@ -1,7 +1,7 @@
-import React from "react";
+import React, {Component} from "react";
 import data from "../Firebase/Firebase";
 
-class BusinessDaysForm extends React.Component {
+class BusinessDaysForm extends Component {
     state = {
         businessDays: this.props.businessDays,
         show: true,
@@ -12,8 +12,13 @@ class BusinessDaysForm extends React.Component {
     };
     submitHandler = (e) => {
         e.preventDefault();
-        this.props.update(this.state.businessDays);
-        data.collection(`businessDays`).doc("hvcziTCipJEMkNgYIxRt").set(this.state);
+        const businessDays = {
+            businessDays: this.state.businessDays
+        };
+        this.props.updateBusinessDaysOnChange(this.state.businessDays);
+        this.props.businessDaysToUserPart(this.state.businessDays);
+
+        data.collection(`businessDays`).doc("hvcziTCipJEMkNgYIxRt").set(businessDays);
         this.setState({message: "Zaktualizowano liczbę dni roboczych"});
 
         setTimeout(() => {
@@ -22,14 +27,17 @@ class BusinessDaysForm extends React.Component {
         }, 3000);
     };
 
-    closeForm = () => {
-        this.setState({show: false});
-        this.props.passToggleForm(false);
+    closeForm = (e) => {
+        e.stopPropagation();
+        this.setState({show: false}, () => {
+            this.props.passToggleForm(this.state.show)
+        });
     };
 
     render() {
         return (
-            <div className={"businessDaysFormMask"}>
+            <>
+                <div className={"businessDaysFormMask"}/>
                 <form className={"businessDaysForm"} onSubmit={this.submitHandler}>
                     <div className={"businessDaysFormTop"}>
                         <button className={"businessDaysFormClose"} type="button" onClick={this.closeForm}/>
@@ -45,7 +53,7 @@ class BusinessDaysForm extends React.Component {
                         </button>
                     </div>
                 </form>
-            </div>
+            </>
         )
     }
 }

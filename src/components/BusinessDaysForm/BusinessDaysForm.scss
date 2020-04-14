@@ -12,7 +12,6 @@
 
 .businessDaysFormClose {
   @extend .userAddFormClose
-
 }
 
 .businessDaysFormTitle {
@@ -38,4 +37,20 @@
 
 .businessDaysFormBtn {
   @extend .userAddBtn;
+}
+
+@media screen and (max-width: 480px) {
+  .businessDaysFormMask {
+    @include formMaskMobile;
+  }
+  .businessDaysForm {
+    @include formMobile;
+  }
+  .businessDaysFormClose {
+    height: 20px;
+    width: 20px;
+  }
+  .businessDaysFormTitle {
+    margin-top: 40%;
+  }
 }
