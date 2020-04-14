@@ -1,37 +1,25 @@
 import React from "react";
 import data from "../Firebase/Firebase";
 
-class Event extends React.Component {
-    state = {
-        shortInMin: "",
-        shortInPls: ""
+function Event(props) {
+
+    const eventDelete = () => {
+        let id = props.event.id;
+        data.collection(`sub`).doc(id).delete();
+        props.addEventMarkerOnCalendar(Math.random());
     };
-    eventDelete = (e) => {
-        const eventId = e.target.parentElement.getAttribute("data-id");
-        data.collection(`sub`).doc(eventId).delete();
-        e.target.parentElement.remove();
-        this.render()
-    };
-    // shortenUsers  =()=> {
-    //     let name = this.props.event.data();
-    //     let shortinMin = name.inMinus.split("");
-    //     // shortMin = shortinMin[0][0]+shortinMin[1][0]
-    //     console.log(shortinMin);
-    //     return shortinMin
-    // ;
-    render() {
-        let event = this.props.event;
-        return (
-            <li key={event} className={"eventEl"}>
-                <div data-id={event.id} className={"eventContainer"}>
-                    <div className={"eventUser1"}>{event.data().inMinus}</div>
-                    <div className={"eventCount"}>{event.data().count}</div>
-                    <div className={"eventUser2"}>{event.data().inPlus}</div>
-                    <button onClick={this.eventDelete} className={"eventDel"}/>
-                </div>
-            </li>
-        )
-    }
+
+    const event = props.event.data();
+    return (
+        <li key={event.id} className={"event"}>
+            <div className={"eventCnt"}>
+                <button onClick={eventDelete} className={"eventDel"}/>
+                <div className={"eventUser1"}>{event.inMinus}</div>
+                <div className={"eventCount"}>{event.count}h</div>
+                <div className={"eventUser2"}>{event.inPlus}</div>
+            </div>
+        </li>
+    )
 }
 
 export default Event
