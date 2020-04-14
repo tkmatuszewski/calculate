@@ -1,7 +1,7 @@
-import React from "react";
+import React, {Component} from "react";
 import Event from "../Event/Event";
 
-class CalendarEventList extends React.Component {
+class CalendarEventList extends Component {
 
     dayEvents = () => {
         let selectedDate = this.props.date.toLocaleDateString();
