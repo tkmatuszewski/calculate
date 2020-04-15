@@ -47,7 +47,7 @@ class BusinessDaysForm extends Component {
                     <div className={"businessDaysFormBottom"}>
                         <label className={"businessDaysFormLabel"}>Podaj liczbę dni roboczych w miesiącu
                             <input type="number" name="businessDays" className={"businessDaysFormInput"}
-                                   onChange={this.inputHandler} placeholder={this.state.businessDays}/>
+                                   onChange={this.inputHandler} placeholder="Podaj liczbę"/>
                         </label>
                         <button className={"businessDaysFormBtn"} type={"submit"}>Zatwierdź
                         </button>
