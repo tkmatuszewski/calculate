@@ -15,7 +15,7 @@
   top: 50vh;
   left: 50vw;
   transform: translate(-50%, -50%);
-  width: 400px;
+  width: 450px;
   height: 450px;
   border-radius: 30px;
   color: $colorLight;
@@ -33,6 +33,7 @@
   background: url("../../../assets/close.svg") center no-repeat transparent;
   background-size: contain;
   margin: 10px 10px 0 auto ;
+  cursor: pointer;
 }
 
 @mixin userFormCnt {
