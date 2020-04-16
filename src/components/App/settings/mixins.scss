@@ -15,27 +15,58 @@
   top: 50vh;
   left: 50vw;
   transform: translate(-50%, -50%);
-  width: 500px;
-  height: 600px;
+  width: 400px;
+  height: 450px;
   border-radius: 30px;
   color: $colorLight;
   background-color: $colorDark;
-  font-family: "Cabin", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
+}
+
+@mixin userFormClose {
+  display: flex;
+  flex-grow: 0;
+  justify-content: flex-end;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: url("../../../assets/close.svg") center no-repeat transparent;
+  background-size: contain;
+  margin: 10px 10px 0 auto ;
+}
+
+@mixin userFormCnt {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 80%;
+  height: 90%;
+  margin: auto;
+}
+
+@mixin userFormTitle {
+  font-size: 28px;
+  margin: auto;
+}
+
+@mixin userFormLabel {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  width: 90%;
+  color: darken($colorLight, 20);
+  margin: auto;
 }
 
 @mixin userBtn {
   width: 80%;
   height: 35px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 800;
   color: $colorLight;
   background-image: $colorAccentGradient;
   border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
-  margin-top: 10%;
+  margin: auto;
 }
 
 @mixin userMenuIcon {
@@ -47,10 +78,9 @@
 @mixin userAdd-msg {
   color: $colorAccent;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
   text-align: center;
-  margin-top: 20px;
-  height: 30px;
+  margin: auto;
 }
 
 @mixin userPanelTile {
