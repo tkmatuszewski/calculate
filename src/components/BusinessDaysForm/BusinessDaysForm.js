@@ -39,18 +39,15 @@ class BusinessDaysForm extends Component {
             <>
                 <div className={"businessDaysFormMask"}/>
                 <form className={"businessDaysForm"} onSubmit={this.submitHandler}>
-                    <div className={"businessDaysFormTop"}>
-                        <button className={"businessDaysFormClose"} type="button" onClick={this.closeForm}/>
-                    </div>
-                    <h3 className={"businessDaysFormTitle"}>Dni robocze</h3>
-                    <div className={"businessDaysFormMsg"}>{this.state.message}</div>
-                    <div className={"businessDaysFormBottom"}>
+                    <button className={"businessDaysFormClose"} type="button" onClick={this.closeForm}/>
+                    <div className={"businessDaysFormCnt"}>
+                        <h3 className={"businessDaysFormTitle"}>Dni robocze</h3>
+                        <div className={"businessDaysFormMsg"}>{this.state.message}</div>
                         <label className={"businessDaysFormLabel"}>Podaj liczbę dni roboczych w miesiącu
                             <input type="number" name="businessDays" className={"businessDaysFormInput"}
                                    onChange={this.inputHandler} placeholder="Podaj liczbę"/>
                         </label>
-                        <button className={"businessDaysFormBtn"} type={"submit"}>Zatwierdź
-                        </button>
+                        <button className={"businessDaysFormBtn"} type={"submit"}>Zatwierdź</button>
                     </div>
                 </form>
             </>

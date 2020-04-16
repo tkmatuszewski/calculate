@@ -6,29 +6,28 @@
   @include userForm;
 }
 
-.businessDaysFormTop {
-  @extend .userAddFormTop
+.businessDaysFormClose {
+@include userFormClose;
 }
 
-.businessDaysFormClose {
-  @extend .userAddFormClose
+.businessDaysFormCnt {
+  @include userFormCnt;
+  grid-template-rows: 0.75fr 0.25fr 1fr 1fr;
 }
 
 .businessDaysFormTitle {
-  @extend .userAddTitle
+  grid-row: 1/2;
+  @include userFormTitle;
 }
 
 .businessDaysFormMsg {
+  grid-row: 2/3;
   @include userAdd-msg;
 }
 
-.businessDaysFormBottom {
-  padding: 20px 40px 40px;
-  font-weight: bolder;
-}
-
 .businessDaysFormLabel {
-  @extend .userAddLabel
+  grid-row: 3/4;
+  @include userFormLabel;
 }
 
 .businessDaysFormInput {
@@ -36,7 +35,9 @@
 }
 
 .businessDaysFormBtn {
-  @extend .userAddBtn;
+  @include userBtn;
+  grid-row: 4/5;
+  margin: auto;
 }
 
 @media screen and (max-width: 480px) {
@@ -46,11 +47,11 @@
   .businessDaysForm {
     @include formMobile;
   }
-  .businessDaysFormClose {
-    height: 20px;
-    width: 20px;
-  }
+
   .businessDaysFormTitle {
-    margin-top: 40%;
+    margin: auto auto 0 auto;
+  }
+  .businessDaysFormBtn {
+    margin: 0 auto auto auto;
   }
 }
