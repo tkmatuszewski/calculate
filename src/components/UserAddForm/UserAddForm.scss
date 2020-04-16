@@ -4,56 +4,47 @@
 
 .userAddForm {
   @include userForm;
-}
-
-.userAddFormForm {
-  width: 70%;
-  margin: 0 auto;
-  font-weight: bolder;
-}
-
-.userAddFormTop {
-  display: grid;
-  grid-template-columns: 1fr 30px;
-  grid-template-rows: 1fr;
-  margin: 15px;
+  height: 600px;
 }
 
 .userAddFormClose {
-  grid-row: 1/2;
-  grid-column: 2/3;
-  width: 30px;
-  height: 30px;
-  border: none;
-  background: url("../../assets/close.svg") center no-repeat transparent;
-  cursor: pointer;
+  @include userFormClose;
+}
+
+.userAddFormCnt {
+  @include userFormCnt;
+  grid-template-rows: 0.4fr 0.25fr auto auto auto auto 0.5fr;
 }
 
 .userAddTitle {
-  grid-row: 1/2;
-  grid-column: 1/2;
-  display: flex;
-  justify-content: center;
-  font-size: 28px;
+  @include userFormTitle;
 }
 
-.userAddLabel {
-  display: flex;
-  flex-direction: column;
-  font-size: 20px;
-  font-weight: bold;
-  //text-align: center;
-  color: darken($colorLight, 20);
-  margin-bottom: 20px;
+.userAddLabel-1 {
+  grid-row: 3/4;
+  @include userFormLabel;
+}
+.userAddLabel-2 {
+  grid-row: 4/5;
+  @include userFormLabel;
+}
+.userAddLabel-3 {
+  grid-row: 5/6;
+  @include userFormLabel;
+}
+.userAddLabel-4 {
+  grid-row: 6/7;
+  @include userFormLabel
 }
 
-#name, #surname, #dailyTime {
-  height: 35px;
+#name, #surname, #dailyTime, #rate {
+  height: 30px;
   width: 100%;
   background: $colorLight;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
   margin: 10px auto;
+
   &:focus {
     outline: 1px solid #36C486;
   }
@@ -61,7 +52,7 @@
 
 .userAddBtn {
   @include userBtn;
-  margin: 50px auto 0;
+  grid-row: 7/8;
 }
 
 .userAddMsg {
@@ -74,8 +65,5 @@
   }
   .userAddForm {
     @include formMobile;
-  }
-  .userAddTitle {
-    margin-top: 30%;
   }
 }

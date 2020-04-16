@@ -7,6 +7,7 @@ class UserAddForm extends React.Component {
         surname: "",
         fullName: "",
         dailyTime: 0,
+        rate: 0,
         show: true,
         message: "",
     };
@@ -32,7 +33,8 @@ class UserAddForm extends React.Component {
             name: this.state.name,
             surname: this.state.surname,
             fullName: this.state.fullName,
-            dailyTime: this.state.dailyTime
+            dailyTime: this.state.dailyTime,
+            rate: this.state.rate
         };
 
         if ((this.state.name === "") || (this.state.surname === "")) {
@@ -60,26 +62,28 @@ class UserAddForm extends React.Component {
     render() {
         return (
             <div className={"userAddFormMask"}>
-                <div className={"userAddForm"}>
-                    <div className={"userAddFormTop"}>
-                        <button className={"userAddFormClose"} type="button" onClick={this.closeForm}/>
-                    </div>
-                    <h3 className={"userAddTitle"}>Nowy pracownik</h3>
-                    <div className={"userAddMsg"}>{this.state.message}</div>
-                    <form className={"userAddFormForm"} onSubmit={this.submitHandler}>
-                        <label className={"userAddLabel"}> Imię
+                <form className={"userAddForm"} onSubmit={this.submitHandler}>
+                    <button className={"userAddFormClose"} type="button" onClick={this.closeForm}/>
+                    <div className="userAddFormCnt">
+                        <h3 className={"userAddTitle"}>Nowy pracownik</h3>
+                        <div className={"userAddMsg"}>{this.state.message}</div>
+                        <label className={"userAddLabel-1"}> Imię
                             <input onChange={this.inputHandler} name="name" type="text" id="name"/>
                         </label>
-                        <label className={"userAddLabel"}> Nazwisko
+                        <label className={"userAddLabel-2"}> Nazwisko
                             <input onChange={this.inputHandler} name="surname" type="text" id="surname"/>
                         </label>
-                        <label className={"userAddLabel"}> Dzienny wymiar pracy
+                        <label className={"userAddLabel-3"}> Dzienny wymiar pracy
                             <input onChange={this.inputHandler} name="dailyTime" type="number" id="dailyTime"
                                    placeholder={"W godzinach"}/>
                         </label>
+                        <label className={"userAddLabel-4"}> Stawka godzinowa
+                            <input onChange={this.inputHandler} name="rate" type="number" id="rate"
+                                   placeholder={"W zł"}/>
+                        </label>
                         <button className={"userAddBtn"} type="submit">Dodaj</button>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         )
     }
