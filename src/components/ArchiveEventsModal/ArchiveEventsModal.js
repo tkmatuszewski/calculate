@@ -25,7 +25,7 @@ class ArchiveEventsModal extends Component {
 
                 const event = e.data();
 
-                const single ={
+                const single = {
                     date: event.date,
                     inMinus: event.inMinus,
                     inPlus: event.inPlus,
@@ -42,24 +42,24 @@ class ArchiveEventsModal extends Component {
     render() {
         return (
             <div className={"archiveEventsModalMask"}>
-                <div className={"archiveEventsModal"}>
-                    <div className={"userAddFormTop"}>
-                        <button className={"userAddFormClose"} type="button" onClick={this.toggleHandler}/>
+                <form className={"archiveEventsModal"}>
+                    <button className={"userAddFormClose"} type="button" onClick={this.toggleHandler}/>
+                    <div className={"archiveEventsModalCnt"}>
+                        <h3 className={"userAddTitle"}>Zarchiwizować?</h3>
+                        <div className={"archiveEventsModalMsg"}>{this.state.message}</div>
+                        <p className={"archiveEventsModalContent"}>
+                            Archiwizacja spowoduje przeniesienie wszystkich wprowadzonych zastępstw do archiwum
+                        </p>
+                        <div className={"archiveEventsModalBtnCnt"}>
+                            <button className={"archiveEventsModalBtn"} type="button"
+                                    onClick={this.toggleHandler}> Rezygnuj
+                            </button>
+                            <button className={"archiveEventsModalBtn"} type="button"
+                                    onClick={this.submitHandler}>Archiwizuj
+                            </button>
+                        </div>
                     </div>
-                    <h3 className={"userAddTitle"}>Zarchiwizować?</h3>
-                    <div className={"archiveEventsModalMsg"}>{this.state.message}</div>
-                    <p className={"archiveEventsModalContent"}>
-                        Archiwizacja spowoduje przeniesienie wszystkich wprowadzonych zastępstw do archiwum
-                    </p>
-                    <div className={"archiveEventsModalBtnCnt"}>
-                        <button className={"archiveEventsModalBtn"} type="button"
-                                onClick={this.toggleHandler}> Rezygnuj
-                        </button>
-                        <button className={"archiveEventsModalBtn"} type="button"
-                                onClick={this.submitHandler}>Archiwizuj
-                        </button>
-                    </div>
-                </div>
+                </form>
             </div>
         );
     }
