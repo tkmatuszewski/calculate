@@ -6,7 +6,7 @@
   bottom: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   animation: darkenBg 0.5s ease-in-out forwards;
 }
 
@@ -19,7 +19,9 @@
   height: 450px;
   border-radius: 30px;
   color: $colorLight;
-  background-color: $colorDark;
+  //background: linear-gradient(105deg, black 60%, #262328);
+  background: linear-gradient(103deg, black 20%, #56008f);
+  box-shadow: -3px -3px 5px 2px #00000061;
   font-family: "Bebas Neue", sans-serif;
 }
 
@@ -129,6 +131,7 @@
   opacity: 1;
   z-index: -1;
   position: absolute;
+  background: linear-gradient(to right, #75059a, #49266e);
 }
 
 @mixin userPanelIconSize {
@@ -161,5 +164,6 @@
   height: 100%;
   color: $colorLight;
   font-family: Cabin, sans-serif;
+  border-radius: 0;
   z-index: 10;
 }
