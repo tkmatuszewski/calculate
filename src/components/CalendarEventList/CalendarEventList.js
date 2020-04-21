@@ -7,25 +7,24 @@ class CalendarEventList extends Component {
         let selectedDate = this.props.date.toLocaleDateString();
         return this.props.events.map(event => {
 
+            let eventThisDay = "";
+
             if (event.data().date === selectedDate) {
-                return <Event
+                eventThisDay = <Event
                     event={event}
                     key={event.id}
-                    addEventMarkerOnCalendar ={this.props.addEventMarkerOnCalendar}
+                    addEventMarkerOnCalendar={this.props.addEventMarkerOnCalendar}
                 />
-            } else {
-                return null
             }
+            return eventThisDay
         });
     };
 
     render() {
         return (
-            <>
-                <ul className={"calendarEventList"}>
-                    {this.dayEvents()}
-                </ul>
-            </>
+            <ul className={"calendarEventList"}>
+                {this.dayEvents()}
+            </ul>
         )
     }
 }
