@@ -1,17 +1,25 @@
 .totalTime {
-  font-size: 40px;
   font-weight: bolder;
-  color: darken($colorLight, 30) ;
+  color: darken($colorLight, 30);
   margin-left: 20px;
+}
 
-  span {
-    font-size: 30px;
-  }
+.totalTimeHours {
+  display: block;
+  text-align: right;
+  font-size: 1.5em;
+}
+
+.totalTimeSalary {
+  display: block;
+  color: darken($colorLight,10);
+  font-size: 1.8em;
 }
 
 @media screen and (max-width: 480px) {
   .totalTime {
     font-size: 1.5em;
+
     span {
       font-size: 0.8em;
     }
