@@ -4,7 +4,7 @@
 
 .eventForm {
   @include userForm;
-  height: 550px;
+  height: 600px;
 }
 
 .eventFormClose {
@@ -13,7 +13,7 @@
 
 .eventFormCnt {
   @include userFormCnt;
-  grid-template-rows: 20% 0.25fr auto auto auto 15%;
+  grid-template-rows: 2fr 0.5fr 1fr 1fr 1fr 2fr;
 }
 
 .eventFormTitle {
@@ -30,6 +30,11 @@
   select {
     @extend #name;
     text-align-last: center;
+
+    option {
+      background-color: $colorDark;
+      color : $colorLight
+    }
   }
 }
 
@@ -39,6 +44,11 @@
   select {
     @extend #name;
     text-align-last: center;
+
+    option {
+      background-color: $colorDark;
+      color : $colorLight
+    }
   }
 }
 
@@ -61,8 +71,5 @@
   }
   .eventForm {
     @include formMobile;
-  }
-  .eventFormLabel-1 {
-    margin: 0 auto
   }
 }
