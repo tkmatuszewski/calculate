@@ -4,6 +4,8 @@
 
 .archiveEventsModal {
   @include userForm;
+  height: 550px;
+  grid-template-rows: 2fr 0.25fr 2fr 1fr;
 }
 
 .archiveEventsModalClose {
@@ -24,8 +26,10 @@
 
 .archiveEventsModalContent {
   text-align: center;
-  font-size: 16px;
-  margin: auto;
+  font-size: 18px;
+  span {
+    color: $colorAccent;
+  }
 }
 
 .archiveEventsModalBtnCnt {
@@ -37,9 +41,27 @@
 
 .archiveEventsModalBtn {
   @extend .businessDaysFormBtn;
-  margin-bottom: 10%;
 }
 
+#months {
+  @extend #name;
+  text-align-last: center;
+  margin: auto !important;
+
+  option {
+    text-align: center;
+    background-color: $colorDark;
+    color: $colorLight;
+
+    &:hover {
+      background-color: #0f7b93;
+    }
+
+    //&:focus {
+    //  background-color: $colorAccent;
+    //}
+  }
+}
 
 @media screen and (max-width: 480px) {
   .archiveEventsModalMask {
