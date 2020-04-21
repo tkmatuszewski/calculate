@@ -22,8 +22,13 @@ class UserEvents extends Component {
     };
 
     render() {
+        const sortFromFirstToLast =(a,b)=>{
+          return new Date(a.data().date)-new Date(b.data().date);
+        };
 
-        return this.props.events.map(e => {
+        const sortedEvents = this.props.events.sort(sortFromFirstToLast);
+
+        return sortedEvents.map(e => {
 
                 const event = e.data();
                 const user = this.props.user;
@@ -45,7 +50,7 @@ class UserEvents extends Component {
                             <div className={"userEventsDate"}>{date}</div>
                             <div className={"userEventsCountPlus"}>
                                 <span className={"userEventsInPlusIcon"}/>
-                                {event.count}</div>
+                                {event.count}h</div>
                             <div className={"userEventsInMinus"}>
                                 <span className={"userEventsInMinusIcon"}/>
                                 {initialsInMinus}
@@ -64,7 +69,7 @@ class UserEvents extends Component {
                             <div className={"userEventsDate"}>{date}</div>
                             <div className={"userEventsCountMinus"}>
                                 <span className={"userEventsInMinusIcon"}/>
-                                {event.count}</div>
+                                {event.count}h</div>
                             <div className={"userEventsInPlus"}>
                                 <span className={"userEventsInPlusIcon"}/>
                                 {initialsInPlus}
