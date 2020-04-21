@@ -1,76 +1,103 @@
 import React, {Component} from "react";
 import data from "../Firebase/Firebase";
+import AppFooter from "../AppFooter/AppFooter";
+
+const classNames = require('classnames');
 
 class ArchivedFiles extends Component {
     state = {
         archive: [],
-        selectedMonth: ""
+        selectedMonth: null
     };
 
     quitArchiveMode = () => {
         this.props.handleArchive()
     };
 
-    renderArchived = () => {
-        function compareNumbers(a, b) {
-            return a - b
+    inputHandler = (e) => {
+
+        this.setState({
+            selectedMonth: e.target.id,
+            archive: []
+        });
+
+        data.collection(`archive`).doc(e.target.id).collection('events').get().then(querySnapshot => {
+
+            let downloadedEvent = "";
+
+            querySnapshot.docs.map((doc) => {
+                return downloadedEvent = this.setState({archive: this.state.archive.concat(doc)});
+
+            });
+
+            return downloadedEvent
+        })
+            .error = (error) => {
+            return console.log(error)
         }
+    };
 
-        const archivesSorted = this.state.archive.sort(compareNumbers);
+    monthToChoose = () => {
 
-        return archivesSorted.map(e => {
-            const event = e.data();
-            return <li className={"archivedEvent"} key={e.id}>
-                <div className={"archivedEventLeft"}>
-                    <span className={"eventDate"}>{event.date}</span>
-                </div>
-                <div className="archivedEventRight">
-                    <div className="archivedEventRightCnt">
-                        <div>{event.inMinus}</div>
-                        <div className={"eventCount"}>{event.count}h</div>
-                        <div>{event.inPlus}</div>
-                    </div>
-                </div>
-            </li>
+        const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec",
+            "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
+
+        return months.map(month => {
+            return <li
+                className={classNames("archivedFilesMonth", {"selectedMonth": month === this.state.selectedMonth})}
+                id={month} key={month}
+                onClick={this.inputHandler}>{month}</li>
         })
     };
 
+    renderArchived = () => {
+        if ((this.state.selectedMonth !== null) && (this.state.archive.length < 1)) {
+            return <li className={"archivedEventEmpty"}>Pusto</li>
+        }
+        else {
+            const sortDates = (a, b) => {
+                return Number(a.data().date) - Number(b.data().date);
+            };
+
+            const archivesSorted = this.state.archive.sort(sortDates);
+
+            return archivesSorted.map(e => {
+                const event = e.data();
+                return <li className={"archivedEvent"} key={e.id}>
+                    <span className={"archivedEventDate"}>{event.date}</span>
+                    <div className="archivedEventCnt">
+                        <span>{event.inMinus}</span>
+                        <div className={"eventCount"}>{event.count}h</div>
+                        <span>{event.inPlus}</span>
+                    </div>
+                </li>
+            })
+        }
+    };
+
     render() {
+
         return (
-            <section className={"archivedFiles"}>
-                <div className={"archivedFilesCnt"}>
+            <>
+                <section className={"archivedFiles"}>
+                    <div className={"archivedFilesCnt"}>
                         <div className={"archivedFilesTop"}>
-                            <button className={"archivedFilesBtn"} onClick={this.quitArchiveMode}/>
+                            <button className={"archivedFilesBackBtn"} onClick={this.quitArchiveMode}/>
                             <h2 className={"archivedFilesTitle"}>Archiwum zastępstw</h2>
                         </div>
-                        <ul className={"archivedFilesList"}>
-
-                            {this.renderArchived()}
-                        </ul>
-                </div>
-            </section>
+                        <div className={"archivedFilesContent"}>
+                            <ul className={classNames("archivedFilesList", {"narrow": this.state.selectedMonth !== null})}>
+                                {this.monthToChoose()}
+                            </ul>
+                            <ul className={classNames("archivedFilesList", {"wide": this.state.selectedMonth !== null})}>
+                                {this.renderArchived()}
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <AppFooter/>
+            </>
         )
-    }
-
-    componentDidMount() {
-        data.collection(`archive`).onSnapshot((querySnapshot) => {
-
-            querySnapshot.docChanges().map((change) => {
-                let archivedEvent = "";
-                if (change.type === "added") {
-                    archivedEvent = this.setState({
-                        archive: this.state.archive.concat(change.doc),
-                    });
-                }
-                // if (change.type === "removed") {
-                //     const filtered = this.state.archive.filter(user => user.id !== change.doc.id);
-                //     archivedEvent = this.setState({archive: filtered});
-                // }
-            return archivedEvent;
-            })
-        }).error = (error) => {
-            return console.log(error)
-        }
     }
 }
 

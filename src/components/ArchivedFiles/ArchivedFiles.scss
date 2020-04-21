@@ -1,153 +1,150 @@
 .archivedFiles {
-  min-height: 100%;
-  width: 100%;
-  list-style-type: none;
+  min-height: 85vh;
   color: $colorLight;
   font-family: "Bebas Neue", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: url("../../assets/archiveVectorIlustration.svg") no-repeat bottom right;
+  background-size: 25%;
+  margin-top: 2%;
 }
 
 .archivedFilesCnt {
-  width: 95%;
-  min-height: 90%;
-  background: url("../../assets/archiveVectorIlustration.svg") no-repeat right bottom;
-  background-size: 30%;
+  width: 90%;
+  min-height: 100%;
+  //min-height: 90%;
 }
 
 .archivedFilesTop {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 0.05fr 1fr;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.archivedFilesBtn {
-  grid-row: 1/2;
-  grid-column: 1/2;
-  width: 50px;
-  height: 50px;
+.archivedFilesBackBtn {
+  width: 40px;
+  height: 40px;
   background: url("../../assets/backArrow.svg") center no-repeat;
   background-size: cover;
   border: none;
   cursor: pointer;
 
   &:hover {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background: url("../../assets/backArrowaHover.svg") center no-repeat;
     background-size: cover;
   }
 }
 
 .archivedFilesTitle {
-  grid-row: 2/3;
-  grid-column: 2/3;
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
-.archivedFilesInfo {
-  width: 35%;
-  background: $colorDark;
-  text-transform: uppercase;
-  margin-bottom: 3%;
-  padding: 1%;
+.archivedFilesContent {
+  display: flex;
+}
 
-  .archivedFilesInfoRow1,
-  .archivedFilesInfoRow2 {
-    display: flex;
-  }
+.archivedFilesMonth {
+  color: $colorLight;
+  font-weight: bold;
+  background-color: transparent;
+  border: 0.5px solid darken($colorLight, 30);
+  margin: 1%;
+  width: 30%;
+  height: 150px;
+  font-size: 1.5em;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 1;
 
-  .archivedFilesInfoRow2 {
-    justify-content: flex-end;
+  &:hover {
+    color: $colorLight;
+    background: $colorAccentCalendar;
+    margin: 1% 2%;
   }
+}
 
-  span {
-    margin: 5px;
-    text-align: center;
-  }
+.selectedMonth {
+  color: #7820CB;
+  background: darken($colorLight, 10);
 }
 
 .archivedFilesList {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 5%;
-}
-
-.archivedEvent {
+  margin-top: 3%;
   list-style-type: none;
-  border-radius: 10px;
-  box-shadow: 3px 3px 12px 2px rgba(black, 0.6);
-  transition: 0.2s;
-  color: darken($colorLight, 15);
-  font-weight: 100;
+  width: 40%;
 }
 
-.archivedEventElementHeader {
-  font-size: 18px;
-  display: flex;
 
-  span {
-    margin: 3%;
+.narrow {
+  width: 25%;
+  animation: shrinkMonthList 0.5s ease-in-out forwards;
+
+  .archivedFilesMonth {
+    height: 100px;
+    font-size: 1.1em;
+    animation: shrinkMonth 0.5s ease-in-out forwards;
   }
 }
 
-.archivedEventElementCnt {
-  display: flex;
-  justify-content: flex-end;
+.wide {
+  width: 70%;
+}
+.archivedEventEmpty {
+  font-size: 3em;
+  font-weight: bold;
+  color: rgba(255,255,255,0.5);
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  animation: showAndSlideIn 1s ease-in-out forwards;
 }
 
 .archivedEvent {
   @extend .event;
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  grid-template-columns: 1fr;
   width: 15%;
-  display: flex;
-  flex-grow: 0;
+  color: darken($colorLight, 15);
+  font-weight: 100;
+  background: rgba(0, 0, 0, 0.3);;
+  border-radius: 0;
 }
 
-.archivedEventLeft {
-  background-color: $colorDark;
+.archivedEventDate {
   height: 100%;
-  min-width: 20%;
+  color: darken($colorLight, 20);
+  background-color: rgba($colorDark, 0.4);
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.6);
+  grid-row: 1/2;
+  font-size: 1.2em;
+  font-weight: bold;
   display: flex;
-  justify-content: center;
   align-items: center;
-}
-
-.eventDate {
-  writing-mode: vertical-lr;
-  transform: rotate(-180deg);
-  font-weight: lighter;
-}
-
-.archivedEventRight {
-  width: 80%;
-  height: 100%;
-  display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: darken($colorCalendarActive, 10);
+  margin: 0;
 }
 
-.archivedEventRightCnt {
-  width: 80%;
-  height: 80%;
+.archivedEventCnt {
+  grid-row: 2/3;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
 
-.archivedFilesMonth {
-  width: 300px;
-  height: 150px;
-  text-align: center;
-  color: $colorLight;
+  span {
+    font-weight: bold;
+  }
 }
-
 
 @media screen and (max-width: 480px) {
-  .archivedFilesBtn {
+  .archivedFilesBackBtn {
     height: 30px;
     width: 30px;
   }
