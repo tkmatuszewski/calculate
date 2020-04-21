@@ -8,7 +8,6 @@ class UserPart extends Component {
     state = {
         businessDays: "",
         events: [],
-        triggerVerReset : false
     };
     businessDaysToUserPart = (days) => {
         this.setState({businessDays: days})
