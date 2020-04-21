@@ -123,13 +123,20 @@ const AppContributions = () => {
                             Icon</a> by <a
                             href="https://iconscout.com/contributors/eva-icons">Eva Icons</a> on <a
                             href="https://iconscout.com">Iconscout</a></li>
-                        <li><a href="https://iconscout.com/icons/logout" rel="noopener noreferrer" target="_blank">Logout Icon</a> by <a
+                        <li><a href="https://iconscout.com/icons/logout" rel="noopener noreferrer" target="_blank">Logout
+                            Icon</a> by <a
                             href="https://iconscout.com/contributors/theicontree">Diacanvas Studio</a> on <a
                             href="https://iconscout.com">Iconscout</a></li>
-                        <li><a href="https://iconscout.com/illustrations/time-management" rel="noopener noreferrer" target="_blank">Time
+                        <li><a href="https://iconscout.com/illustrations/time-management" rel="noopener noreferrer"
+                               target="_blank">Time
                             Management Illustration</a> by <a
-                            href="https://iconscout.com/contributors/manypixels-gallery" rel="noopener noreferrer" target="_blank">Manypixels
+                            href="https://iconscout.com/contributors/manypixels-gallery" rel="noopener noreferrer"
+                            target="_blank">Manypixels
                             Gallery</a></li>
+                        <li><a href="https://iconscout.com/illustrations/authentication" rel="noopener noreferrer"
+                               target="_blank">Authentication Illustration</a> by <a
+                            href="https://iconscout.com/contributors/manypixels-gallery"
+                            rel="noopener noreferrer" target="_blank">Manypixels Gallery</a></li>
                     </ul>
                 </div>
             </section>
