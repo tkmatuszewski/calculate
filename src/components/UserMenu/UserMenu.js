@@ -20,7 +20,7 @@ class UserMenu extends React.Component {
     delete = (e) => {
         e.stopPropagation();
         let id = this.props.id;
-        data.collection(`users`).doc(id).delete().then(function () {
+        data.collection(`users`).doc(id).delete().then(()=> {
             console.log("Usunięto pracownika!");
         }).catch(function (error) {
             console.error("Wystąpił błąd podczas usuwania pracownika: ", error);
