@@ -43,7 +43,10 @@ const AppSignUp = ({history}) => {
                     <button type="submit" className="appSignUpBtn">Utwórz</button>
                 </form>
             </div>
-            <div className="appSignUpBgRight"/>
+            <div className="appSignUpBgRight">C
+                <div className="appSignUpImg"/>
+                {/*<span className={"appSignUpLogo"}>Calcu <span>late</span></span>*/}
+            </div>
         </div>
     );
 };

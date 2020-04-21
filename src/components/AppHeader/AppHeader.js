@@ -1,30 +1,13 @@
-import React, {useState} from "react";
+import React from "react";
 import AppSignOut from "../AppSignOut/AppSignOut";
-import {Link} from "react-router-dom";
-var classNames = require('classnames');
+import AppLogo from "../AppLogo/AppLogo";
 
-const AppHeader =()=> {
-
-    const [activeLogo, setActiveLogo] = useState(false);
-
-    const handleMouseOver = () => {
-        return setActiveLogo(!activeLogo)
-    };
-
-    const logoBackground = classNames({
-        "appLogoBg": true,
-        active: activeLogo
-    });
+const AppHeader = () => {
 
     return (
         <div className={"appHeader"}>
             <div className={"appHeaderContainer"}>
-                    <div className={"appLogo"}
-                         onMouseEnter={handleMouseOver}
-                         onMouseLeave={handleMouseOver}>
-                        <Link to={"/"}>Calculate</Link>
-                        <div className={logoBackground}/>
-                    </div>
+                <AppLogo/>
                 <AppSignOut/>
             </div>
         </div>

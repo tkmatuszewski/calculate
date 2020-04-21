@@ -92,14 +92,12 @@ class CalendarEventForm extends React.Component {
     render() {
         return (
             <div className={"eventFormMask"}>
-                <div className={"eventForm"}>
-                    <div className={"userAddFormTop"}>
-                        <button className={"userAddFormClose"} type="button" onClick={this.closeForm}/>
-                    </div>
-                    <h3 className={"eventFormTitle"}>Nowe zastępstwo</h3>
-                    <div className={"eventFormMsg"}>{this.state.message}</div>
-                    <form className={"eventFormForm"} onSubmit={this.submitHandler}>
-                        <label className={"eventFormLabel"}>Osoba zastępowana
+                <form className={"eventForm"} onSubmit={this.submitHandler}>
+                    <button className={"userAddFormClose"} type="button" onClick={this.closeForm}/>
+                    <div className={"eventFormCnt"}>
+                        <h3 className={"eventFormTitle"}>Nowe zastępstwo</h3>
+                        <div className={"eventFormMsg"}>{this.state.message}</div>
+                        <label className={"eventFormLabel-1"}>Osoba zastępowana
                             <select id="inMinus" className={"eventFormSct"} onChange={this.inputHandler}
                                     value={this.state.inMinus}>
                                 <option value="Wybierz pracownika">Wybierz pracownika</option>
@@ -107,21 +105,21 @@ class CalendarEventForm extends React.Component {
                                 {this.selectPerson1()}
                             </select>
                         </label>
-                        <label className={"eventFormLabel"}>Osoba zastępująca
+                        <label className={"eventFormLabel-2"}>Osoba zastępująca
                             <select id="inPlus" className={"eventFormSct"} onChange={this.inputHandler}
                                     value={this.state.inPlus}>
                                 <option value={"Wybierz pracownika"}>Wybierz pracownika</option>
                                 {this.selectPerson2()}
                             </select>
                         </label>
-                        <label className={"eventFormLabel"}>Czas
+                        <label className={"eventFormLabel-3"}>Czas
                             <input id="count" className={"eventFormInput"} onChange={this.inputHandler}
                                    placeholder="W godzinach">
                             </input>
                         </label>
                         <button className={"eventFormBtn"} type="submit">Dodaj</button>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         )
     }

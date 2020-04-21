@@ -18,7 +18,6 @@
 
 .archiveEventsMobileDecor {
   @include userPanelNameDecor;
-  background-color: mix($colorAccent, $colorCalendarActive, 90%);
 }
 
 @media screen and (max-width: 480px) {

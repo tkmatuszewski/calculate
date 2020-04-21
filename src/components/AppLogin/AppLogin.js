@@ -19,7 +19,7 @@ const AppLogin = ({history}) => {
             history.push("/")
         } catch (error) {
             setErrorMsg(error.message);
-            setTimeout(function() {
+            setTimeout(function () {
                 setErrorMsg(null)
             }, 5000);
         }
@@ -49,7 +49,10 @@ const AppLogin = ({history}) => {
                         <button type="submit" className="appLoginBtn">Zaloguj</button>
                     </form>
                 </div>
-                <div className="appLoginBgRight"/>
+                <div className="appLoginBgRight">
+                    <div className={"appLogoDisplay"}>Calculate</div>
+                    <div className="appLoginImg"/>
+                </div>
             </div>
         </>
     )

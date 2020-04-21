@@ -1,40 +1,75 @@
 .eventFormMask {
-  @extend .userAddFormMask
+  @include fullscreenMask;
 }
+
 .eventForm {
   @include userForm;
-  position: fixed;
-}
-
-.eventFormForm {
-  @extend .userAddFormForm;
-}
-
-.eventFormTitle {
-  @extend .userAddTitle;
+  height: 600px;
 }
 
 .eventFormClose {
-  @extend .userAddFormClose;
+  @include userFormClose;
 }
-.eventFormMsg{
+
+.eventFormCnt {
+  @include userFormCnt;
+  grid-template-rows: 2fr 0.5fr 1fr 1fr 1fr 2fr;
+}
+
+.eventFormTitle {
+  @include userFormTitle;
+}
+
+.eventFormMsg {
   @include userAdd-msg;
 }
 
-.eventFormLabel {
-  @extend .userAddLabel;
+.eventFormLabel-1 {
+  @extend .userAddLabel-1;
 
   select {
     @extend #name;
     text-align-last: center;
+
+    option {
+      background-color: $colorDark;
+      color : $colorLight
+    }
   }
+}
+
+.eventFormLabel-2 {
+  @extend .userAddLabel-2;
+
+  select {
+    @extend #name;
+    text-align-last: center;
+
+    option {
+      background-color: $colorDark;
+      color : $colorLight
+    }
+  }
+}
+
+.eventFormLabel-3 {
+  @extend .userAddLabel-3;
 }
 
 .eventFormInput {
   @extend #name;
-
 }
 
 .eventFormBtn {
-  @extend .userAddBtn;
+  grid-row: 6/7;
+  @include userBtn;
+}
+
+@media screen and (max-width: 480px) {
+  .eventFormMask {
+    @include formMaskMobile;
+  }
+  .eventForm {
+    @include formMobile;
+  }
 }

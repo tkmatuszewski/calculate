@@ -22,23 +22,21 @@ class CalendarPart extends Component {
 
     tileContent = (view) => {
 
-        let event = false;
         let eventsThisDay = 0;
+        let indicator = null;
         this.state.eventDates.map(eventDate => {
             if ((view.view === 'month') && (view.date.toLocaleDateString() === eventDate)) {
 
-                event = true;
                 eventsThisDay +=1;
+                indicator = <div className={"calendarPartIndicator"}>{eventsThisDay}</div>
             }
+            return indicator
         });
-        if (event === true) {
-            return <div className={"calendarPartIndicator"}>{eventsThisDay}</div>
-        }
+        return indicator
     };
 
     addEventMarkerOnCalendar = (update)=> {
         return this.setState({addEventMarkerOnCalendar : update})
-
     };
 
     render() {
@@ -77,18 +75,18 @@ class CalendarPart extends Component {
         data.collection(`sub`).onSnapshot((querySnapshot) => {
 
             querySnapshot.docChanges().map((change) => {
-
                 this.state.eventDates.push(change.doc.data().date);
-
+                let eventsData = "";
                 if (change.type === "added") {
-                    return this.setState({
+                    eventsData = this.setState({
                         events: this.state.events.concat(change.doc),
                     });
                 }
                 if (change.type === "removed") {
                     const filtered = this.state.events.filter(event => event.id !== change.doc.id);
-                    return this.setState({events: filtered});
+                    eventsData = this.setState({events: filtered});
                 }
+                return eventsData
             });
             this.setState({dataFetched : true})
         }).error = (error) => {

@@ -2,13 +2,50 @@
   @extend .appLoginBg;
 }
 .appSignUpBgRight {
-  @extend .appLoginBgRight
+  height: 100%;
+  width: 70%;
+  background: $colorAppBackground;
+  color: white;
+  text-align: center;
+  line-height: 100vh;
+  font-size: 80vh;
+  font-weight: bold;
+  color: rgba(0,0,0,0.3);
+  position: relative;
+  font-family: 'Bebas Nue', sans-serif;
+}
+.appSignUpImg {
+  background: url("../../assets/register.svg") center no-repeat;
+  height: 40%;
+  width: 35%;
+  background-size: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.9;
+}
+.appSignUpLogo {
+  font-size: 20em;
+  font-family: Cabin, sans-serif;
+  font-weight: bold;
+  color: transparent;
+    -webkit-text-stroke-color: darken($colorLight,40);
+    -webkit-text-stroke-width: 3px;
 }
 .appSignUpBgLeft {
-  @extend .appLoginBgLeft
+  @extend .appLoginBgLeft;
 }
 .appSignUp {
-  @extend .appLogin
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4fr 0.5fr repeat(4, auto) 4fr;
+  grid-row-gap: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  color : $colorLight;
+  margin: auto;
 }
 
 .appSignUpTitle {
@@ -21,8 +58,10 @@
   @extend .appLoginInput
 }
 .appSignUpInfo {
-  @extend .appLoginInfo
+  @extend .appLoginInfo;
+  grid-row: 6/7;
 }
 .appSignUpBtn {
-  @extend .appLoginBtn
+  @extend .appLoginBtn;
+  grid-row: 7/8;
 }

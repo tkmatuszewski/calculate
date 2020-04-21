@@ -12,19 +12,29 @@ class BusinessDaysForm extends Component {
     };
     submitHandler = (e) => {
         e.preventDefault();
-        const businessDays = {
-            businessDays: this.state.businessDays
-        };
-        this.props.updateBusinessDaysOnChange(this.state.businessDays);
-        this.props.businessDaysToUserPart(this.state.businessDays);
 
-        data.collection(`businessDays`).doc("hvcziTCipJEMkNgYIxRt").set(businessDays);
-        this.setState({message: "Zaktualizowano liczbę dni roboczych"});
+        if (this.state.businessDays < 0) {
+            // return this.setState({message: "Liczba dni roboczych nie może być ujemna!"},
+            //     () => {
+            //         setTimeout(() => {
+            //             return this.setState({message: ""})
+            //         }, 3000);
+            //     })
+        } else {
+            const businessDays = {
+                businessDays: this.state.businessDays
+            };
+            this.props.updateBusinessDaysOnChange(this.state.businessDays);
+            this.props.businessDaysToUserPart(this.state.businessDays);
 
-        setTimeout(() => {
-            this.props.passToggleForm(false);
-            return this.setState({message: ""})
-        }, 3000);
+            data.collection(`businessDays`).doc("hvcziTCipJEMkNgYIxRt").set(businessDays);
+            this.setState({message: "Zaktualizowano liczbę dni roboczych"});
+
+            setTimeout(() => {
+                this.props.passToggleForm(false);
+                return this.setState({message: ""})
+            }, 3000);
+        }
     };
 
     closeForm = (e) => {
@@ -39,18 +49,15 @@ class BusinessDaysForm extends Component {
             <>
                 <div className={"businessDaysFormMask"}/>
                 <form className={"businessDaysForm"} onSubmit={this.submitHandler}>
-                    <div className={"businessDaysFormTop"}>
-                        <button className={"businessDaysFormClose"} type="button" onClick={this.closeForm}/>
-                    </div>
-                    <h3 className={"businessDaysFormTitle"}>Dni robocze</h3>
-                    <div className={"businessDaysFormMsg"}>{this.state.message}</div>
-                    <div className={"businessDaysFormBottom"}>
+                    <button className={"businessDaysFormClose"} type="button" onClick={this.closeForm}/>
+                    <div className={"businessDaysFormCnt"}>
+                        <h3 className={"businessDaysFormTitle"}>Dni robocze</h3>
+                        <div className={"businessDaysFormMsg"}>{this.state.message}</div>
                         <label className={"businessDaysFormLabel"}>Podaj liczbę dni roboczych w miesiącu
                             <input type="number" name="businessDays" className={"businessDaysFormInput"}
-                                   onChange={this.inputHandler} placeholder={this.state.businessDays}/>
+                                   onChange={this.inputHandler} placeholder="Podaj liczbę"/>
                         </label>
-                        <button className={"businessDaysFormBtn"} type={"submit"}>Zatwierdź
-                        </button>
+                        <button className={"businessDaysFormBtn"} type={"submit"}>Zatwierdź</button>
                     </div>
                 </form>
             </>
