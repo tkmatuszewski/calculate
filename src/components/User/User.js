@@ -85,7 +85,6 @@ class User extends Component {
             this.calculateAdditionalHours();
         }
         if (this.props.verificationResetClicked !== prevProps.verificationResetClicked) {
-
             this.setState({ verified: false})
         }
     }
