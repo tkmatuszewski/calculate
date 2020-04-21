@@ -1,7 +1,6 @@
 .userPanel {
   position: fixed;
   top: 10vh;
-  height: 70vh;
   width: 5vw;
 }
 
@@ -48,7 +47,6 @@
 
 .signOutMobileDecor {
   @include userPanelNameDecor;
-  background-color: mix($colorAccent, $colorCalendarActive, 95%);
 }
 
 @media screen and (max-width: 480px) {
