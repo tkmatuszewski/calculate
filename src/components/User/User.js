@@ -27,12 +27,12 @@ class User extends Component {
                 counterPlus += Number(event.count);
             }
             if (event.inMinus === user.fullName) {
-                return  counterMinus += Number(event.count);
+                return counterMinus += Number(event.count);
             }
         });
 
         return this.setState({
-            bonusHours : counterPlus-counterMinus
+            bonusHours: counterPlus - counterMinus
         })
     };
 
@@ -67,7 +67,8 @@ class User extends Component {
                             </div>
                             <TotalTime businessDays={this.props.businessDays}
                                        dailyTime={person.dailyTime}
-                                       bonusHours={this.state.bonusHours}/>
+                                       bonusHours={this.state.bonusHours}
+                                       rate={person.rate}/>
                         </div>
                     </div>
                 </li>
@@ -82,6 +83,10 @@ class User extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.events !== prevProps.events) {
             this.calculateAdditionalHours();
+        }
+        if (this.props.verificationResetClicked !== prevProps.verificationResetClicked) {
+
+            this.setState({ verified: false})
         }
     }
 }
