@@ -4,7 +4,7 @@
 
 .userAddForm {
   @include userForm;
-  height: 600px;
+  height: 650px;
 }
 
 .userAddFormClose {
@@ -13,7 +13,7 @@
 
 .userAddFormCnt {
   @include userFormCnt;
-  grid-template-rows: 0.4fr 0.25fr auto auto auto auto 0.5fr;
+  grid-template-rows: 2fr 0.5fr 1fr 1fr 1fr 1fr 2fr;
 }
 
 .userAddTitle {
@@ -40,7 +40,10 @@
 #name, #surname, #dailyTime, #rate {
   height: 30px;
   width: 100%;
-  background: $colorLight;
+  color: $colorLight;
+  background: transparent;
+  border: 0.25px solid $colorAccent;
+  //#178f84;
   font-size: 16px;
   text-align: center;
   margin: 10px auto;

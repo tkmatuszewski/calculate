@@ -1,7 +1,7 @@
-import React from "react";
+import React, {Component} from "react";
 import data from "../Firebase/Firebase";
 
-class UserAddForm extends React.Component {
+class UserAddForm extends Component {
     state = {
         name: "",
         surname: "",
@@ -14,16 +14,11 @@ class UserAddForm extends React.Component {
     generateFullName = () => {
         this.setState({fullName: this.state.name + " " + this.state.surname})
     };
-    countTotal = () => {
-        let total = this.state.dailyTime * this.props.businessDays;
-        return this.setState({totalTime: {total}})
-    };
     inputHandler = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         });
         this.generateFullName();
-        this.countTotal();
     };
     submitHandler = (e) => {
 
