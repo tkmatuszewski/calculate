@@ -1,12 +1,15 @@
 import React, {Component} from "react";
 import User from "../User/User";
 import data from "../Firebase/Firebase";
+import AppFooter from "../AppFooter/AppFooter";
 
 class UserList extends Component {
     _isMounted = false;
     state = {
         users: [],
+        verificationResetClicked: false
     };
+
 
     renderUsers = () => {
         return this.state.users.map((user) => {
@@ -14,17 +17,38 @@ class UserList extends Component {
                 user={user}
                 businessDays={this.props.businessDays}
                 events={this.props.events}
-                key={user.id}/>
+                key={user.id}
+                verificationResetClicked={this.state.verificationResetClicked}
+            />
         })
+    };
+
+    verificationResetTrigger = () => {
+        this.setState({verificationResetClicked: true});
+        setTimeout(() => {
+            this.setState({
+                verificationResetClicked: false
+            })
+        }, 1000);
     };
 
     render() {
         return (
             <>
-                {!this.props.archiveMode && <ul className={"userList"}>
-                    {this.state.users.length > 0 && <li className="userListSide">Pracownicy</li>}
-                    {this.renderUsers()}
-                </ul>}
+                {!this.props.archiveMode &&
+                <ul className={"userList"}>
+                    {this.state.users.length > 0 &&
+                    <>
+                        <li className="userListSide">Pracownicy
+                            <button className={"userListResetBtn"}
+                                    onClick={this.verificationResetTrigger}>Reset</button>
+                        </li>
+                        {this.renderUsers()}
+                    </>
+                    }
+                </ul>
+                }
+                <AppFooter/>
             </>
         )
     }
@@ -56,6 +80,7 @@ class UserList extends Component {
 
     componentWillUnmount() {
         this._isMounted = false;
+        clearTimeout()
     }
 }
 
