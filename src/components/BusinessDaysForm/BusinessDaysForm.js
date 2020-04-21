@@ -12,19 +12,29 @@ class BusinessDaysForm extends Component {
     };
     submitHandler = (e) => {
         e.preventDefault();
-        const businessDays = {
-            businessDays: this.state.businessDays
-        };
-        this.props.updateBusinessDaysOnChange(this.state.businessDays);
-        this.props.businessDaysToUserPart(this.state.businessDays);
 
-        data.collection(`businessDays`).doc("hvcziTCipJEMkNgYIxRt").set(businessDays);
-        this.setState({message: "Zaktualizowano liczbę dni roboczych"});
+        if (this.state.businessDays < 0) {
+            // return this.setState({message: "Liczba dni roboczych nie może być ujemna!"},
+            //     () => {
+            //         setTimeout(() => {
+            //             return this.setState({message: ""})
+            //         }, 3000);
+            //     })
+        } else {
+            const businessDays = {
+                businessDays: this.state.businessDays
+            };
+            this.props.updateBusinessDaysOnChange(this.state.businessDays);
+            this.props.businessDaysToUserPart(this.state.businessDays);
 
-        setTimeout(() => {
-            this.props.passToggleForm(false);
-            return this.setState({message: ""})
-        }, 3000);
+            data.collection(`businessDays`).doc("hvcziTCipJEMkNgYIxRt").set(businessDays);
+            this.setState({message: "Zaktualizowano liczbę dni roboczych"});
+
+            setTimeout(() => {
+                this.props.passToggleForm(false);
+                return this.setState({message: ""})
+            }, 3000);
+        }
     };
 
     closeForm = (e) => {
