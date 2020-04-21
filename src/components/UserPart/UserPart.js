@@ -7,7 +7,7 @@ class UserPart extends Component {
     _isMounted = false;
     state = {
         businessDays: "",
-        events: [],
+        events: []
     };
     businessDaysToUserPart = (days) => {
         this.setState({businessDays: days})
