@@ -1,17 +1,30 @@
 **Calculate**
 
-Project still in development.
+Project in continuous development.
 
 **What is it?** => 
-This project is a desktop SPA developed as a tool for my current employer.
+This project is a SPA developed to enable checking upon contract employees invoices.
+Contract employees are allowed to pass their work to another contracted employees (substitute employee) which affects invoices. 
 
-**Target** => 
-Tool is designed to eliminate the problem of tracking work time of employees.
+App calculates salary based on:
+-given business days
+-amount of hours employee works a day
+-negative/positive hours
+-employee's rate per hour
 
-**Background** => 
-Since all employees are on B2B contract and the employer allows absence only if you have a substitute (another contracted employee) to covered your work. 
+**Example** => 
+Employee A has a doctor appointment and needs to get out of work 2 hours early to make it. Employee B does Employee's A work for 2 hours. Invoice result : 
+-Employee B (-2x Employee's B rate/hour)
+-Employee A (+2x Employee's B rate/hour)
 
-**Example** => You want to go on holiday, fine but someone else needs to do your job. So you basically give away your working time to your colleague. Your hour count diminishes your colleague's grows.  
+**Features** =>
+- add employee
+- add events to calendar
+- set amount of bussiness days in a current month
+- when checking upon invoices at the end of a month set "verified" status when employee invoice is ok
+- when you're done click "reset" button to discard "verified" status in all users
+- clean up the space by moving events from chcecked month to archive
+- browse archived events if needed
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
