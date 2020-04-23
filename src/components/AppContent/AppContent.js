@@ -3,6 +3,7 @@ import CalendarToggle from "../CalendarToggle/CalendarToggle";
 import UserPart from "../UserPart/UserPart";
 import ArchivedFiles from "../ArchivedFiles/ArchivedFiles";
 import CalendarPart from "../CalendarPart/CalendarPart";
+import AppFooter from "../AppFooter/AppFooter";
 
 class AppContent extends Component {
     state = {
@@ -31,6 +32,7 @@ class AppContent extends Component {
                     {this.state.showCalendar && <CalendarPart/>}
                     <UserPart handleArchive={this.handleArchive}/>
                 </>}
+                <AppFooter/>
             </section>
         )
     }
