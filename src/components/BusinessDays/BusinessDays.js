@@ -7,7 +7,8 @@ class BusinessDays extends Component {
     state = {
         show: false,
         showTileDescription: false,
-        businessDays: 0
+        businessDays: 0,
+        docRef: ""
     };
 
     toggleForm = () => {
@@ -36,11 +37,13 @@ class BusinessDays extends Component {
                     <span className={"businessDaysDecor"}/>
                 </span>
                 </div>
-                {this.state.show && <BusinessDaysForm
+                {this.state.show &&
+                <BusinessDaysForm
                     toggleForm={this.toggleForm}
                     updateBusinessDaysIcon={this.updateBusinessDaysIcon}
                     businessDaysToUserPart={this.props.businessDaysToUserPart}
                     businessDays={this.state.businessDays}
+                    docRef = {this.state.docRef}
                 />}
             </>
         )
@@ -51,10 +54,12 @@ class BusinessDays extends Component {
         const user = app.auth().currentUser;
 
         data.collection(`businessDays`).where("author", "==", user.uid).get().then((doc) => {
-            const fetched = doc.docs[0].data();
+            const fetched = doc.docs[0];
 
-            this.setState({businessDays: fetched.businessDays},
-                () => this.props.businessDaysToUserPart(fetched.businessDays));
+            this.setState({
+                    businessDays: fetched.data().businessDays,
+                    docRef: fetched.id
+                }, () => this.props.businessDaysToUserPart(fetched.businessDays));
 
         }).catch(error => {
             console.log(error)

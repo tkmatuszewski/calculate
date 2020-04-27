@@ -1,47 +1,49 @@
 import React, {Component} from "react";
 import data from "../Firebase/Firebase";
+import {app} from "../Firebase/Firebase";
 
 class BusinessDaysForm extends Component {
     state = {
-        businessDays: this.props.businessDays,
-        show: true,
-        message: ""
+        businessDays: 0,
+        message: "",
+        author: ""
     };
+
     inputHandler = (e) => {
         this.setState({[e.target.name]: e.target.value});
     };
     submitHandler = (e) => {
         e.preventDefault();
 
-        if (this.state.businessDays < 0) {
-            // return this.setState({message: "Liczba dni roboczych nie może być ujemna!"},
-            //     () => {
-            //         setTimeout(() => {
-            //             return this.setState({message: ""})
-            //         }, 3000);
-            //     })
+        if (this.state.businessDays < 0 || this.state.businessDays > 31) {
+            return this.setState({message: "Liczba dni roboczych nie może być ujemna ani większa niż 31!"},
+                () => {
+                    setTimeout(() => {
+                        return this.setState({message: ""})
+                    }, 3000);
+                })
         } else {
+            const userId = app.auth().currentUser.uid;
+
             const businessDays = {
-                businessDays: this.state.businessDays
+                businessDays: this.state.businessDays,
+                author: userId
             };
-            this.props.updateBusinessDaysOnChange(this.state.businessDays);
+            this.props.updateBusinessDaysIcon(this.state.businessDays);
             this.props.businessDaysToUserPart(this.state.businessDays);
 
-            data.collection(`businessDays`).doc("hvcziTCipJEMkNgYIxRt").set(businessDays);
-            this.setState({message: "Zaktualizowano liczbę dni roboczych"});
-
-            setTimeout(() => {
-                this.props.passToggleForm(false);
+            data.collection(`businessDays`).doc("hvcziTCipJEMkNgYIxRt").set(businessDays).then(
+                () => this.setState({message: "Zaktualizowano liczbę dni roboczych"})
+            ).then(() => setTimeout(() => {
+                this.props.toggleForm();
                 return this.setState({message: ""})
-            }, 3000);
+            }, 3000))
+                .catch(error => console.log(error));
         }
     };
 
-    closeForm = (e) => {
-        e.stopPropagation();
-        this.setState({show: false}, () => {
-            this.props.passToggleForm(this.state.show)
-        });
+    closeForm = () => {
+        this.props.toggleForm();
     };
 
     render() {
@@ -62,6 +64,10 @@ class BusinessDaysForm extends Component {
                 </form>
             </>
         )
+    }
+
+    componentDidMount() {
+        this.setState({businessDays: this.props.businessDays})
     }
 }
 
