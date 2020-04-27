@@ -22,16 +22,14 @@ class AppContent extends Component {
     render() {
         return (
             <section className={"appContent"}>
-                {this.state.archiveMode &&
-                <>
-                    <ArchivedFiles handleArchive={this.handleArchive}/>
-                </>}
+                {this.state.archiveMode && <ArchivedFiles handleArchive={this.handleArchive}/>}
                 {!this.state.archiveMode &&
                 <>
                     <CalendarToggle handleCalendar={this.handleCalendar}/>
                     {this.state.showCalendar && <CalendarPart/>}
                     <UserPart handleArchive={this.handleArchive}/>
-                </>}
+                </>
+                }
                 <AppFooter/>
             </section>
         )
