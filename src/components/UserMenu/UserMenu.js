@@ -1,22 +1,19 @@
-import React from "react";
+import React, {Component} from "react";
 import data from "../Firebase/Firebase";
 
-class UserMenu extends React.Component {
+class UserMenu extends Component {
     state = {
         show: false
     };
 
-    show = () => {
-        this.setState({show: !this.state.show});
+    clickHandler = () => {
+        return this.setState({show: !this.state.show});
     };
 
     verify = () => {
         this.props.passVerification();
     };
 
-    clickHandler = () => {
-        return this.setState({show: !this.state.show});
-    };
     delete = (e) => {
         e.stopPropagation();
         let id = this.props.id;
