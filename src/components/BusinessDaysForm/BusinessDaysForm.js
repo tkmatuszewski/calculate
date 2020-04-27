@@ -3,6 +3,7 @@ import data from "../Firebase/Firebase";
 import {app} from "../Firebase/Firebase";
 
 class BusinessDaysForm extends Component {
+
     state = {
         businessDays: 0,
         message: "",
@@ -32,7 +33,7 @@ class BusinessDaysForm extends Component {
             this.props.updateBusinessDaysIcon(this.state.businessDays);
             this.props.businessDaysToUserPart(this.state.businessDays);
 
-            data.collection(`businessDays`).doc("hvcziTCipJEMkNgYIxRt").set(businessDays).then(
+            data.collection(`businessDays`).doc(this.props.docRef).set(businessDays).then(
                 () => this.setState({message: "Zaktualizowano liczbę dni roboczych"})
             ).then(() => setTimeout(() => {
                 this.props.toggleForm();
