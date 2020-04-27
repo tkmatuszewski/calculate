@@ -3,7 +3,6 @@ import BusinessDays from "../BusinessDays/BusinessDays";
 import UserAdd from "../UserAdd/UserAdd";
 import ArchiveEvents from "../ArchiveEvents/ArchiveEvents";
 import Archives from "../Archives/Archives";
-import app from "firebase";
 
 const classNames = require('classnames');
 

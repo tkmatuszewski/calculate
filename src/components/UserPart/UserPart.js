@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import UserPanel from "../UserPanel/UserPanel";
 import UserList from "../UserList/UserList";
-import data from "../Firebase/Firebase";
+import data, {app} from "../Firebase/Firebase";
 
 class UserPart extends Component {
     _isMounted = false;
@@ -29,8 +29,9 @@ class UserPart extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+        const user = app.auth().currentUser;
 
-        data.collection(`sub`).onSnapshot((querySnapshot) => {
+        data.collection(`sub`).where("author", "==", user.uid).onSnapshot((querySnapshot) => {
             querySnapshot.docChanges().map((change) => {
                 let data = null;
                     if (change.type === "added") {
