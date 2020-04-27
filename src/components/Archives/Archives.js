@@ -8,20 +8,15 @@ const Archives = (props) => {
         props.handleArchive();
     };
 
-
-    const handleMouseEnter = () => {
-        setTileDescription(true)
-    };
-
-    const handleMouseLeave = () => {
-        setTileDescription(false)
+    const handleDescription = () => {
+        setTileDescription(!tileDescription)
     };
 
     return (
         <div className={"archives"}
              onClick={handleClick}
-             onMouseEnter={handleMouseEnter}
-             onMouseLeave={handleMouseLeave}>
+             onMouseEnter={handleDescription}
+             onMouseLeave={handleDescription}>
             <span className={"userAddMobile"}>Przeglądaj archiwum
                     <span className={"archivesMobileDecor"}/>
                 </span>
