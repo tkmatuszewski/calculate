@@ -5,8 +5,8 @@ function Event(props) {
 
     const eventDelete = () => {
         let id = props.event.id;
-        data.collection(`sub`).doc(id).delete();
-        props.addEventMarkerOnCalendar(Math.random());
+        data.collection(`sub`).doc(id).delete().then(props.addEventMarkerOnCalendar(Math.random()))
+            .catch(error => console.log(error));
     };
 
     const event = props.event.data();

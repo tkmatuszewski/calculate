@@ -4,6 +4,10 @@
   font-family: 'Cabin', sans-serif;
   font-weight: bolder;
 }
+.calendarDateCnt {
+  width: 100%;
+  display: flex;
+}
 
 .calendarDate_day {
   @extend .calendarDate_dayName;

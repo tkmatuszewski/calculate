@@ -3,19 +3,19 @@ import app from "firebase"
 
 class AppSignOut extends Component {
     state = {
-        renderSign: false
+        renderDescription: false
     };
 
-    renderSign = () => {
-        return this.setState({renderSign: !this.state.renderSign});
+    renderDescription = () => {
+        return this.setState({renderDescription: !this.state.renderDescription});
     };
 
     render() {
         return (
             <button className="appSignOutBtn" onClick={() => app.auth().signOut()}
-                    onMouseEnter={this.renderSign}
-                    onMouseLeave={this.renderSign}>
-                {this.state.renderSign && <span className="appSignOutInfo">Wyloguj</span>}
+                    onMouseEnter={this.renderDescription}
+                    onMouseLeave={this.renderDescription}>
+                {this.state.renderDescription && <span className="appSignOutInfo">Wyloguj</span>}
                 <div className="appSignOutIcon"/>
             </button>
         )

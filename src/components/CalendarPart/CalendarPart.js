@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import Calendar from 'react-calendar/dist/entry.nostyle'
-import data from "../Firebase/Firebase";
+import data, {app} from "../Firebase/Firebase";
 import CalendarDate from "../CalendarDate/CalendarDate";
-import CalendarAddEvent from "../CalendarAddEvent/CalendarAddEvent";
 import CalendarEventList from "../CalendarEventList/CalendarEventList";
 
 class CalendarPart extends Component {
@@ -13,8 +12,8 @@ class CalendarPart extends Component {
             events: [],
             eventDates: [],
             loaded: false,
-            dataFetched : false,
-            addEventMarkerOnCalendar : ""
+            dataFetched: false,
+            addEventMarkerOnCalendar: ""
         }
     };
 
@@ -27,7 +26,7 @@ class CalendarPart extends Component {
         this.state.eventDates.map(eventDate => {
             if ((view.view === 'month') && (view.date.toLocaleDateString() === eventDate)) {
 
-                eventsThisDay +=1;
+                eventsThisDay += 1;
                 indicator = <div className={"calendarPartIndicator"}>{eventsThisDay}</div>
             }
             return indicator
@@ -35,8 +34,8 @@ class CalendarPart extends Component {
         return indicator
     };
 
-    addEventMarkerOnCalendar = (update)=> {
-        return this.setState({addEventMarkerOnCalendar : update})
+    addEventMarkerOnCalendar = (update) => {
+        return this.setState({addEventMarkerOnCalendar: update})
     };
 
     render() {
@@ -53,17 +52,12 @@ class CalendarPart extends Component {
                 </div>
                 <div className={"calendarPartRight"}>
                     <div className={"calendarEvents"}>
-                        <div className={"calendarEventsCnt"}>
-                            <div className={"calendarEventsTop"}>
-                                <CalendarDate date={this.state.date}/>
-                                <CalendarAddEvent
-                                    date={this.state.date}
-                                    addEventMarkerOnCalendar ={this.addEventMarkerOnCalendar}/>
-                            </div>
-                            <CalendarEventList date={this.state.date}
-                                               events={this.state.events}
-                                               addEventMarkerOnCalendar ={this.addEventMarkerOnCalendar}/>
-                        </div>
+                        <CalendarDate date={this.state.date}
+                                      addEventMarkerOnCalendar={this.addEventMarkerOnCalendar}/>
+
+                        <CalendarEventList date={this.state.date}
+                                           events={this.state.events}
+                                           addEventMarkerOnCalendar={this.addEventMarkerOnCalendar}/>
                     </div>
                     <h2 className={"calendarPartTitle"}>Kalendarz</h2>
                 </div>
@@ -71,8 +65,9 @@ class CalendarPart extends Component {
     }
 
     componentDidMount() {
+        const user = app.auth().currentUser;
 
-        data.collection(`sub`).onSnapshot((querySnapshot) => {
+        data.collection(`sub`).where("author", "==", user.uid).onSnapshot((querySnapshot) => {
 
             querySnapshot.docChanges().map((change) => {
                 this.state.eventDates.push(change.doc.data().date);
@@ -88,7 +83,7 @@ class CalendarPart extends Component {
                 }
                 return eventsData
             });
-            this.setState({dataFetched : true})
+            this.setState({dataFetched: true})
         }).error = (error) => {
             return console.log(error)
         };

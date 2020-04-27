@@ -1,26 +1,24 @@
 import React, {Component} from "react";
 import BusinessDaysForm from "../BusinessDaysForm/BusinessDaysForm";
 import data from "../Firebase/Firebase";
+import {app} from "../Firebase/Firebase";
 
 class BusinessDays extends Component {
     state = {
         show: false,
+        showTileDescription: false,
         businessDays: 0,
-        showTileDescription: false
+        docRef: ""
     };
 
     toggleForm = () => {
         this.setState({show: !this.state.show})
     };
 
-    passToggleForm = (state) => {
-        this.setState({show: state})
+    updateBusinessDaysIcon = (input) => {
+        this.setState({businessDays: input})
     };
-
-    updateBusinessDaysOnChange = (state) => {
-        this.setState({businessDays: state})
-    };
-    handleMouseover = () => {
+    handleTileDescription = () => {
         this.setState({showTileDescription: !this.state.showTileDescription})
     };
 
@@ -29,34 +27,43 @@ class BusinessDays extends Component {
             <>
                 <div className={"businessDays"}
                      onClick={this.toggleForm}
-                     onMouseEnter={this.handleMouseover}
-                     onMouseLeave={this.handleMouseover}>
+                     onMouseEnter={this.handleTileDescription}
+                     onMouseLeave={this.handleTileDescription}>
                     <div className={"businessDaysIcon"}>
-                        <div className={"businessDaysVal"}>{this.state.businessDays}</div>
+                        <span className={"businessDaysVal"}>{this.state.businessDays}</span>
                     </div>
                     {this.state.showTileDescription && <div className={"businessDaysDsc"}>Dni robocze</div>}
                     <span className={"userAddMobile"}>Dni robocze
                     <span className={"businessDaysDecor"}/>
                 </span>
                 </div>
-                {this.state.show && <BusinessDaysForm
-                    passToggleForm={this.passToggleForm}
-                    updateBusinessDaysOnChange={this.updateBusinessDaysOnChange}
+                {this.state.show &&
+                <BusinessDaysForm
+                    toggleForm={this.toggleForm}
+                    updateBusinessDaysIcon={this.updateBusinessDaysIcon}
                     businessDaysToUserPart={this.props.businessDaysToUserPart}
-                    businessDays={this.state.businessDays}/>}
+                    businessDays={this.state.businessDays}
+                    docRef = {this.state.docRef}
+                />}
             </>
         )
     }
 
     componentDidMount() {
-        data.collection(`businessDays`).doc("hvcziTCipJEMkNgYIxRt").get()
-            .then((doc) => {
-                this.setState({businessDays: doc.data().businessDays});
-                this.props.businessDaysToUserPart(this.state.businessDays)
-            })
-            .catch((error => {
-                console.log(error)
-            }));
+
+        const user = app.auth().currentUser;
+
+        data.collection(`businessDays`).where("author", "==", user.uid).get().then((doc) => {
+            const fetched = doc.docs[0];
+
+            this.setState({
+                    businessDays: fetched.data().businessDays,
+                    docRef: fetched.id
+                }, () => this.props.businessDaysToUserPart(fetched.businessDays));
+
+        }).catch(error => {
+            console.log(error)
+        });
     }
 }
 

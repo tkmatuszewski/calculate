@@ -1,91 +1,86 @@
 import React, {Component} from "react";
 import data from "../Firebase/Firebase";
+import {app} from "../Firebase/Firebase";
 
 class ArchiveEventsModal extends Component {
     state = {
-        show: true,
-        selectedMonthValue: "",
-        selectedMonthName: "",
+        selectedMonth: "",
         message: ""
     };
-    toggleHandler = () => {
-        this.setState({show: false});
-        this.props.closeModal();
+
+    renderMonths = () => {
+        const months = [
+            "styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec",
+            "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień",
+        ];
+        return months.map(month => {
+            return (
+                <option key={month} value={month}>
+                    {month}
+                </option>
+            )
+        });
     };
+
+    handleChange = (e) => {
+
+        this.setState({
+            selectedMonth: e.target.value
+        })
+    };
+
+    archiveEvents = () => {
+
+        const matchSelectedMonthToEvent = (month) => {
+            const eventMonthName = month.data().monthName.toLowerCase();
+            return eventMonthName === this.state.selectedMonth
+        };
+
+        this.props.events.filter(matchSelectedMonthToEvent).map(e => {
+
+                const event = e.data();
+
+                data.collection('archive').doc(this.state.selectedMonth).collection('events').add({
+                        date: event.date,
+                        inMinus: event.inMinus,
+                        inPlus: event.inPlus,
+                        count: event.count,
+                        author: app.auth().currentUser.uid
+                    }
+                ).then(
+                    () => {
+                        this.setState({message: "Przeniesiono wydarzenia do archiwum"});
+                        setTimeout(() => {
+                            this.setState({message: ""});
+                            this.closeForm();
+                        }, 2000)
+                    }
+                ).catch(error => {
+                    console.log(error)
+                });
+
+                return data.collection('sub').doc(e.id).delete()
+            }
+        );
+    };
+
     submitHandler = (e) => {
         e.preventDefault();
         if ((this.state.selectedMonth !== "") && (this.state.selectedMonth !== "placeholder")) {
             this.archiveEvents();
-            this.setState({message: "Przeniesiono wydarzenia do archiwum"});
-            setTimeout(() => {
-                this.toggleHandler();
-            }, 2000)
+
         } else {
             return this.setState({message: "Zaznacz miesiąc który chcesz przenieść do archiwum"},
                 () => {
                     setTimeout(() => {
                         this.setState({message: ""})
                     }, 3000)
-                })
+                }
+            )
         }
-
     };
-
-    inputHandler = (e) => {
-        let monthValue = e.target.value.split(",")[0];
-        let monthName = e.target.value.split(",")[1];
-        this.setState({
-            selectedMonthValue: monthValue,
-            selectedMonthName: monthName
-        })
-    };
-
-
-    renderMonths = () => {
-        const months = [
-            {name: "styczeń", value: "01"},
-            {name: "luty", value: "02"},
-            {name: "marzec", value: "03"},
-            {name: "kwiecień", value: "04"},
-            {name: "maj", value: "05"},
-            {name: "czerwiec", value: "06"},
-            {name: "lipiec", value: "07"},
-            {name: "sierpień", value: "08"},
-            {name: "wrzesień", value: "09"},
-            {name: "październik", value: "10"},
-            {name: "listopad", value: "11"},
-            {name: "grudzień", value: "12"}
-        ];
-        return months.map(month => {
-            return <option key={month.name}
-                           value={[month.value, month.name]}>
-                {month.name}
-            </option>
-        });
-    };
-    archiveEvents = () => {
-
-        const matchSelectedMonth = (month) => {
-            const eventMonth = month.data().date.split(".")[1];
-            return eventMonth === this.state.selectedMonthValue;
-        };
-
-        const eventsToBeArchived = this.props.events.filter(matchSelectedMonth);
-
-        eventsToBeArchived.map(e => {
-
-                const event = e.data();
-
-                data.collection('archive').doc(this.state.selectedMonthName).collection('events').add({
-                        date: event.date,
-                        inMinus: event.inMinus,
-                        inPlus: event.inPlus,
-                        count: event.count
-                    }
-                );
-                return data.collection('sub').doc(e.id).delete()
-            }
-        );
+    closeForm = () => {
+        this.props.toggleForm();
     };
 
     render() {
@@ -94,13 +89,13 @@ class ArchiveEventsModal extends Component {
                 <form className={"archiveEventsModal"}>
                     <button className={"userAddFormClose"}
                             type="button"
-                            onClick={this.toggleHandler}/>
+                            onClick={this.closeForm}/>
                     <div className={"archiveEventsModalCnt"}>
                         <h3 className={"userAddTitle"}>Zarchiwizować?</h3>
                         <div className={"archiveEventsModalMsg"}>{this.state.message}</div>
                         <select id="months"
-                                value={this.state.selectedMonthName}
-                                onChange={this.inputHandler}>
+                                value={this.state.selectedMonth}
+                                onChange={this.handleChange}>
                             <option value="placeholder">Wybierz miesiąc</option>
                             {this.renderMonths()}
                         </select>
@@ -115,7 +110,7 @@ class ArchiveEventsModal extends Component {
                             </button>
                             <button className={"archiveEventsModalBtn"}
                                     type="button"
-                                    onClick={this.toggleHandler}> Rezygnuj
+                                    onClick={this.closeForm}> Rezygnuj
                             </button>
                         </div>
                     </div>

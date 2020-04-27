@@ -5,23 +5,21 @@ class CalendarAddEvent extends Component {
     state = {
         show: false
     };
-    showForm = (e) => {
-        e.preventDefault();
+
+    toggleForm = () => {
         this.setState({show: !this.state.show})
-    };
-    passToggle = (state) => {
-        this.setState({show: state})
     };
 
     render() {
         return (
             <>
                 <button className={"calendarAddEvent"}
-                        onClick={this.showForm}/>
+                        onClick={this.toggleForm}/>
                 {this.state.show && <CalendarEventForm
                     date={this.props.date}
-                    hide={this.passToggle}
-                    addEventMarkerOnCalendar ={this.props.addEventMarkerOnCalendar}/>}
+                    monthName = {this.props.monthName}
+                    toggleForm={this.toggleForm}
+                    addEventMarkerOnCalendar={this.props.addEventMarkerOnCalendar}/>}
             </>
         )
     }

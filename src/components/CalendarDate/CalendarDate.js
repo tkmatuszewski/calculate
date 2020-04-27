@@ -1,40 +1,22 @@
 import React from "react";
+import CalendarAddEvent from "../CalendarAddEvent/CalendarAddEvent";
 
-class CalendarDate extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            date: "",
-        };
-    }
+const CalendarDate = (props) => {
 
-    formatDate = () => {
-        const dayNumber = this.props.date.toLocaleDateString().split(`.`)[0];
-        const dayNamesArr = [
-            "Niedz",
-            "Pon",
-            "Wt",
-            "Śr",
-            "Czw",
-            "Pt",
-            "Sob"
+    let monthName = "";
+
+    const formatDate = (date) => {
+        const dayNumber = date.toLocaleDateString().split(`.`)[0];
+        const dayNames = [
+            "Niedz", "Pon", "Wt", "Śr", "Czw", "Pt", "Sob"
         ];
-        const dayName = dayNamesArr[this.props.date.getDay()];
-        const monthsArr = [
-            "Styczeń",
-            "Luty",
-            "Marzec",
-            "Kwiecień",
-            "Maj",
-            "Czerwiec",
-            "Lipiec",
-            "Sierpień",
-            "Wrzesień",
-            "Październik",
-            "Listopad",
-            "Grudzień"
+        const dayName = dayNames[date.getDay()];
+        const monthNames = [
+            "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec",
+            "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"
         ];
-        const monthName = monthsArr[this.props.date.getMonth()];
+        monthName = monthNames[date.getMonth()];
+
         return (
             <div className={"calendarDate"}>
                 <h2 className={"calendarDate_dayName"}>{dayName}</h2>
@@ -44,12 +26,15 @@ class CalendarDate extends React.Component {
         )
     };
 
-    render() {
-        const date = this.formatDate();
-        return (
-            <div>{date}</div>
-        )
-    }
-}
+    return (
+        <div className={"calendarEventsTop"}>
+            {formatDate(props.date)}
+            <CalendarAddEvent
+                date={props.date}
+                monthName={monthName}
+                addEventMarkerOnCalendar={props.addEventMarkerOnCalendar}/>
+        </div>
+    )
+};
 
 export default CalendarDate

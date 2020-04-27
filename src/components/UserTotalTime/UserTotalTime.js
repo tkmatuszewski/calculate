@@ -2,10 +2,6 @@ import React, {Component} from "react";
 
 class TotalTime extends Component {
 
-    state = {
-        totalTime: ""
-    };
-
     render() {
 
         const totalTime = (this.props.businessDays * this.props.dailyTime) + this.props.bonusHours;

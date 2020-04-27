@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+
 const classNames = require('classnames');
 
-const AppLogo = ()=> {
+const AppLogo = () => {
 
     const [activeLogo, setActiveLogo] = useState(false);
 

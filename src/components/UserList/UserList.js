@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import User from "../User/User";
-import data from "../Firebase/Firebase";
-import AppFooter from "../AppFooter/AppFooter";
+import data, {app} from "../Firebase/Firebase";
 
 class UserList extends Component {
     _isMounted = false;
@@ -48,15 +47,16 @@ class UserList extends Component {
                     }
                 </ul>
                 }
-                <AppFooter/>
             </>
         )
     }
 
     componentDidMount() {
         this._isMounted = true;
+        const user = app.auth().currentUser;
 
-        data.collection(`users`).onSnapshot((querySnapshot) => {
+        data.collection(`users`).where("author", "==", user.uid).onSnapshot((querySnapshot) => {
+
             querySnapshot.docChanges().map((change) => {
                 let userData = "";
                 if (change.type === "added") {
@@ -80,7 +80,6 @@ class UserList extends Component {
 
     componentWillUnmount() {
         this._isMounted = false;
-        clearTimeout()
     }
 }
 

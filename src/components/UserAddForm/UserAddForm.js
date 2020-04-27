@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import data from "../Firebase/Firebase";
+import {app} from "../Firebase/Firebase";
 
 class UserAddForm extends Component {
     state = {
@@ -8,7 +9,7 @@ class UserAddForm extends Component {
         fullName: "",
         dailyTime: 0,
         rate: 0,
-        show: true,
+        author: "",
         message: "",
     };
     generateFullName = () => {
@@ -17,19 +18,20 @@ class UserAddForm extends Component {
     inputHandler = (e) => {
         this.setState({
             [e.target.name]: e.target.value
-        });
-        this.generateFullName();
+        }, this.generateFullName);
     };
     submitHandler = (e) => {
 
         e.preventDefault();
+        const userId = app.auth().currentUser.uid;
 
         const user = {
             name: this.state.name,
             surname: this.state.surname,
             fullName: this.state.fullName,
             dailyTime: this.state.dailyTime,
-            rate: this.state.rate
+            rate: this.state.rate,
+            author: userId
         };
 
         if ((this.state.name === "") || (this.state.surname === "")) {
@@ -39,19 +41,18 @@ class UserAddForm extends Component {
             }, 3000)
         } else {
             e.preventDefault();
-            this.generateFullName();
-            data.collection(`users`).add(user);
-            this.setState({message: "Dodano nowego użytkownika!"});
 
-            setTimeout(() => {
-                this.closeForm();
-                return this.setState({message: ""})
-            }, 3000);
+            data.collection(`users`).add(user).then(() => {
+                this.setState({message: "Dodano nowego użytkownika!"});
+                setTimeout(() => {
+                    this.closeForm();
+                    return this.setState({message: ""})
+                }, 3000);
+            });
         }
     };
     closeForm = () => {
-        this.setState({show: false});
-        return this.props.passToggleForm(false);
+        this.props.toggleForm();
     };
 
     render() {

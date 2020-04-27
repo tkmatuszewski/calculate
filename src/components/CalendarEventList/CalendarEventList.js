@@ -3,27 +3,40 @@ import Event from "../Event/Event";
 
 class CalendarEventList extends Component {
 
-    dayEvents = () => {
+    selectedDayEvents = () => {
         let selectedDate = this.props.date.toLocaleDateString();
-        return this.props.events.map(event => {
 
-            let eventThisDay = "";
+        const noEvents =
+            <div className={"calendarEventEmpty"} key="CalendarEventEmpty">
+                <span>Brak</span>
+                <span>zastępstw</span>
+            </div>;
 
-            if (event.data().date === selectedDate) {
-                eventThisDay = <Event
-                    event={event}
-                    key={event.id}
-                    addEventMarkerOnCalendar={this.props.addEventMarkerOnCalendar}
-                />
-            }
-            return eventThisDay
-        });
+        if (this.props.events.length === 0) {
+            return noEvents
+        } else {
+            return this.props.events.map(event => {
+
+                let eventThisDay = "";
+
+                if (event.data().date === selectedDate) {
+                    eventThisDay = <Event
+                        event={event}
+                        key={event.id}
+                        addEventMarkerOnCalendar={this.props.addEventMarkerOnCalendar}
+                    />
+                } else {
+                    eventThisDay = noEvents;
+                }
+                return eventThisDay
+            })
+        }
     };
 
     render() {
         return (
             <ul className={"calendarEventList"}>
-                {this.dayEvents()}
+                {this.selectedDayEvents()}
             </ul>
         )
     }

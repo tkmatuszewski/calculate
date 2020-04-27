@@ -7,16 +7,11 @@ class UserAdd extends Component {
         showTileDescription: false
     };
 
-    toggleForm = (e) => {
-        e.preventDefault();
+    toggleForm = () => {
         this.setState({show: !this.state.show})
     };
 
-    passToggleForm = (state) => {
-        this.setState({show: state})
-    };
-
-    handleMouseover = () => {
+    handleTileDescription = () => {
         this.setState({showTileDescription: !this.state.showTileDescription})
     };
 
@@ -24,8 +19,8 @@ class UserAdd extends Component {
         return (
             <div className={"userAdd"}
                  onClick={this.toggleForm}
-                 onMouseEnter={this.handleMouseover}
-                 onMouseLeave={this.handleMouseover}>
+                 onMouseEnter={this.handleTileDescription}
+                 onMouseLeave={this.handleTileDescription}>
                 <span className={"userAddMobile"}>Dodaj pracownika
                     <span className={"userAddMobileDecor"}/>
                 </span>
@@ -41,7 +36,7 @@ class UserAdd extends Component {
         return (
             <>
                 {this.renderTile()}
-                {this.state.show && <UserAddForm passToggleForm={this.passToggleForm}/>}
+                {this.state.show && <UserAddForm toggleForm={this.toggleForm}/>}
             </>
         )
     }

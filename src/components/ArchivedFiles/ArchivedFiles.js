@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import data from "../Firebase/Firebase";
-import AppFooter from "../AppFooter/AppFooter";
+import data, {app} from "../Firebase/Firebase";
 
 const classNames = require('classnames');
 
@@ -18,26 +17,28 @@ class ArchivedFiles extends Component {
 
         this.setState({
             selectedMonth: e.target.id,
-            archive: []
+            archive : []
         });
 
-        data.collection(`archive`).doc(e.target.id).collection('events').get().then(querySnapshot => {
+        const user = app.auth().currentUser;
 
-            let downloadedEvent = "";
+        data.collection(`archive`).doc(e.target.id).collection('events').where("author", "==", user.uid).get().then(querySnapshot => {
+
+            let fetchedEvent = "";
 
             querySnapshot.docs.map((doc) => {
-                return downloadedEvent = this.setState({archive: this.state.archive.concat(doc)});
+                return fetchedEvent = this.setState({archive: this.state.archive.concat(doc)});
 
             });
 
-            return downloadedEvent
+            return fetchedEvent
         })
             .error = (error) => {
             return console.log(error)
         }
     };
 
-    monthToChoose = () => {
+    monthTiles = () => {
 
         const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec",
             "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
@@ -53,8 +54,7 @@ class ArchivedFiles extends Component {
     renderArchived = () => {
         if ((this.state.selectedMonth !== null) && (this.state.archive.length < 1)) {
             return <li className={"archivedEventEmpty"}>Pusto</li>
-        }
-        else {
+        } else {
             const sortDates = (a, b) => {
                 return Number(a.data().date) - Number(b.data().date);
             };
@@ -63,40 +63,38 @@ class ArchivedFiles extends Component {
 
             return archivesSorted.map(e => {
                 const event = e.data();
-                return <li className={"archivedEvent"} key={e.id}>
-                    <span className={"archivedEventDate"}>{event.date}</span>
-                    <div className="archivedEventCnt">
-                        <span>{event.inMinus}</span>
-                        <div className={"eventCount"}>{event.count}h</div>
-                        <span>{event.inPlus}</span>
-                    </div>
-                </li>
+                return (
+                    <li className={"archivedEvent"} key={e.id}>
+                        <span className={"archivedEventDate"}>{event.date}</span>
+                        <div className="archivedEventCnt">
+                            <span>{event.inMinus}</span>
+                            <div className={"eventCount"}>{event.count}h</div>
+                            <span>{event.inPlus}</span>
+                        </div>
+                    </li>
+                )
             })
         }
     };
 
     render() {
-
         return (
-            <>
-                <section className={"archivedFiles"}>
-                    <div className={"archivedFilesCnt"}>
-                        <div className={"archivedFilesTop"}>
-                            <button className={"archivedFilesBackBtn"} onClick={this.quitArchiveMode}/>
-                            <h2 className={"archivedFilesTitle"}>Archiwum zastępstw</h2>
-                        </div>
-                        <div className={"archivedFilesContent"}>
-                            <ul className={classNames("archivedFilesList", {"narrow": this.state.selectedMonth !== null})}>
-                                {this.monthToChoose()}
-                            </ul>
-                            <ul className={classNames("archivedFilesList", {"wide": this.state.selectedMonth !== null})}>
-                                {this.renderArchived()}
-                            </ul>
-                        </div>
+            <section className={"archivedFiles"}>
+                <div className={"archivedFilesCnt"}>
+                    <div className={"archivedFilesTop"}>
+                        <button className={"archivedFilesBackBtn"} onClick={this.quitArchiveMode}/>
+                        <h2 className={"archivedFilesTitle"}>Archiwum zastępstw</h2>
                     </div>
-                </section>
-                <AppFooter/>
-            </>
+                    <div className={"archivedFilesContent"}>
+                        <ul className={classNames("archivedFilesList", {"narrow": this.state.selectedMonth !== null})}>
+                            {this.monthTiles()}
+                        </ul>
+                        <ul className={classNames("archivedFilesList", {"wide": this.state.selectedMonth !== null})}>
+                            {this.renderArchived()}
+                        </ul>
+                    </div>
+                </div>
+            </section>
         )
     }
 }
