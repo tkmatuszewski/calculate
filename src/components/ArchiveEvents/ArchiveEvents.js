@@ -6,22 +6,19 @@ class ArchiveEvents extends Component {
         show: false,
         showTileDescription: false
     };
-    toggle = () => {
+    toggleForm = () => {
         this.setState({show: !this.state.show})
     };
-    closeModal = (state) => {
-        this.setState({show: state})
-    };
-    handleMouseover = () => {
+    handleTileDescription = () => {
         this.setState({showTileDescription: !this.state.showTileDescription})
     };
 
     renderTile = () => {
         return (
             <div className={"archiveEvents"}
-                 onClick={this.toggle}
-                 onMouseEnter={this.handleMouseover}
-                 onMouseLeave={this.handleMouseover}>
+                 onClick={this.toggleForm}
+                 onMouseEnter={this.handleTileDescription}
+                 onMouseLeave={this.handleTileDescription}>
                 <span className={"userAddMobile"}>Zarchiwizuj zastępstwa
                     <span className={"archiveEventsMobileDecor"}/>
                 </span>
@@ -39,7 +36,7 @@ class ArchiveEvents extends Component {
                 {this.renderTile()}
                 {this.state.show && <ArchiveEventsModal
                     events={this.props.events}
-                    closeModal={this.closeModal}
+                    toggleForm={this.toggleForm}
                 />}
             </>
         )
