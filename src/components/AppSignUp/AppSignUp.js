@@ -16,7 +16,7 @@ const AppSignUp = ({history}) => {
             history.push("/")
         } catch (error) {
             setErrorMsg(error.message);
-            setTimeout(function() {
+            setTimeout(function () {
                 setErrorMsg(null)
             }, 5000);
         }
@@ -45,7 +45,6 @@ const AppSignUp = ({history}) => {
             </div>
             <div className="appSignUpBgRight">C
                 <div className="appSignUpImg"/>
-                {/*<span className={"appSignUpLogo"}>Calcu <span>late</span></span>*/}
             </div>
         </div>
     );
