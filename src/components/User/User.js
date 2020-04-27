@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import UserMenu from "../UserMenu/UserMenu";
 import TotalTime from "../UserTotalTime/UserTotalTime";
 import UserEvents from "../UserEvents/UserEvents";
+
 const classNames = require('classnames');
 
 class User extends Component {
@@ -14,25 +15,38 @@ class User extends Component {
         this.setState({verified: !this.state.verified})
     };
 
-    calculateAdditionalHours = () => {
-        const user = this.props.user.data();
+    handleHours = () => {
+        const user = this.props.user;
 
-        let counterPlus = 0;
-        let counterMinus = 0;
+        const positiveEffect = () => {
+            const positive = (a) => {
+                return a.data().inPlus === user.data().fullName
+            };
 
-        this.props.events.map(e => {
-            const event = e.data();
+            let positiveCount = 0;
 
-            if (event.inPlus === user.fullName) {
-                counterPlus += Number(event.count);
-            }
-            if (event.inMinus === user.fullName) {
-                return counterMinus += Number(event.count);
-            }
-        });
+            this.props.events.filter(positive).map(e => {
+                return positiveCount += e.data().count
+            });
+            return Number(positiveCount)
+        };
+
+        const negativeEffect = () => {
+            const negative = (a) => {
+                return a.data().inMinus === user.data().fullName
+            };
+            let negativeCount = 0;
+
+            this.props.events.filter(negative).map(e => {
+                return negativeCount += e.data().count
+            });
+            return Number(negativeCount)
+        };
+
+        const result = positiveEffect() - negativeEffect();
 
         return this.setState({
-            bonusHours: counterPlus - counterMinus
+            bonusHours: result
         })
     };
 
@@ -57,6 +71,7 @@ class User extends Component {
                             </div>
                             <UserMenu
                                 id={this.props.user.id}
+                                user={person}
                                 passVerification={this.passVerification}/>
                         </div>
                         <div className={"userCntBottom"}>
@@ -77,15 +92,15 @@ class User extends Component {
     }
 
     componentDidMount() {
-        this.calculateAdditionalHours()
+        this.handleHours()
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.events !== prevProps.events) {
-            this.calculateAdditionalHours();
+            this.handleHours();
         }
         if (this.props.verificationResetClicked !== prevProps.verificationResetClicked) {
-            this.setState({ verified: false})
+            this.setState({verified: false})
         }
     }
 }
