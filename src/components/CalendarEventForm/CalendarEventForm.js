@@ -1,5 +1,5 @@
 import React from "react";
-import data from "../Firebase/Firebase";
+import data, {app} from "../Firebase/Firebase";
 
 class CalendarEventForm extends React.Component {
     state = {
@@ -7,7 +7,7 @@ class CalendarEventForm extends React.Component {
         inPlus: "Wybierz pracownika",
         inMinus: "Wybierz pracownika",
         count: "",
-        show: true,
+        author: "",
         users: [],
         message: "",
         error: false,
@@ -65,28 +65,35 @@ class CalendarEventForm extends React.Component {
 
     submitHandler = (e) => {
         e.preventDefault();
+        const userId = app.auth().currentUser.uid;
 
         const event = {
             date: this.state.date,
             inPlus: this.state.inPlus,
             inMinus: this.state.inMinus,
-            count: this.state.count
+            count: this.state.count,
+            monthName: this.props.monthName,
+            author: userId
         };
 
         if (this.validateForm()) {
-            this.setState({message: "Dodano nowe zastępstwo!"});
+
             this.props.addEventMarkerOnCalendar(Math.random());
-            data.collection(`sub`).add(event);
-            setTimeout(() => {
-                this.setState({
-                    message: ""
-                }, this.props.hide);
-            }, 2000);
+            data.collection(`sub`).add(event).then(() => {
+                    this.setState({message: "Dodano nowe zastępstwo!"});
+                    setTimeout(() => {
+                        this.setState({
+                            message: ""
+                        }, this.props.toggleForm());
+                    }, 2000);
+                }
+            ).catch(error => {
+                console.log(error)
+            });
         }
     };
     closeForm = () => {
-        this.setState({show: false});
-        this.props.hide();
+        this.props.toggleForm();
     };
 
     render() {
@@ -125,17 +132,17 @@ class CalendarEventForm extends React.Component {
     }
 
     componentDidMount() {
-        data.collection(`users`).get()
-            .then((collection) => {
-                    this.setDate();
-                    return collection.docs.map((doc) => {
-                        return this.setState({
-                            users: this.state.users.concat(doc.data())
-                        });
-                    })
-                }
-            )
-            .catch((error) => console.error('Error:', error))
+        const user = app.auth().currentUser;
+
+        data.collection(`users`).where("author", "==", user.uid).get().then(collection => {
+                this.setDate();
+                return collection.docs.map(doc => {
+                    return this.setState({
+                        users: this.state.users.concat(doc.data())
+                    });
+                })
+            }
+        ).catch((error) => console.error('Error:', error))
     }
 }
 
