@@ -22,8 +22,8 @@ class UserEvents extends Component {
     };
 
     render() {
-        const sortFromFirstToLast =(a,b)=>{
-          return new Date(a.data().date)-new Date(b.data().date);
+        const sortFromFirstToLast = (a, b) => {
+            return a.data().date - b.data().date;
         };
 
         const sortedEvents = this.props.events.sort(sortFromFirstToLast);
@@ -33,8 +33,8 @@ class UserEvents extends Component {
                 const event = e.data();
                 const user = this.props.user;
 
-                const day = event.date.split(".");
-                const date = day[0] + "." + day[1];
+                const dateNoYear = event.date.split(".");
+                const date = dateNoYear[0] + "." + dateNoYear[1];
 
                 const initialsInMinus = this.shortenUsers(event.inMinus);
                 const initialsInPlus = this.shortenUsers(event.inPlus);
@@ -50,7 +50,8 @@ class UserEvents extends Component {
                             <div className={"userEventsDate"}>{date}</div>
                             <div className={"userEventsCountPlus"}>
                                 <span className={"userEventsInPlusIcon"}/>
-                                {event.count}h</div>
+                                {event.count}h
+                            </div>
                             <div className={"userEventsInMinus"}>
                                 <span className={"userEventsInMinusIcon"}/>
                                 {initialsInMinus}
@@ -69,7 +70,8 @@ class UserEvents extends Component {
                             <div className={"userEventsDate"}>{date}</div>
                             <div className={"userEventsCountMinus"}>
                                 <span className={"userEventsInMinusIcon"}/>
-                                {event.count}h</div>
+                                {event.count}h
+                            </div>
                             <div className={"userEventsInPlus"}>
                                 <span className={"userEventsInPlusIcon"}/>
                                 {initialsInPlus}
