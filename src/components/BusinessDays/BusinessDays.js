@@ -59,8 +59,9 @@ class BusinessDays extends Component {
             this.setState({
                     businessDays: fetched.data().businessDays,
                     docRef: fetched.id
-                }, () => this.props.businessDaysToUserPart(fetched.businessDays));
-
+                }, ()=> {
+                this.props.businessDaysToUserPart(fetched.data().businessDays);
+            })
         }).catch(error => {
             console.log(error)
         });
